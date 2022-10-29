@@ -1,0 +1,10 @@
+:root {
+  font-family: 'Open Sans';
+}
+
+body {
+  margin: 0;
+  font-family: 'OpenSans';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

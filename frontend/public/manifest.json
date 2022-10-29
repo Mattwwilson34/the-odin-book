@@ -1,0 +1,7 @@
+{
+  "short_name": "THE ODIN BOOK",
+  "name": "The Odin Book a Facebook clone",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone"
+}

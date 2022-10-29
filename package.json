@@ -1,0 +1,38 @@
+{
+  "name": "the-odin-book",
+  "version": "1.0.0",
+  "description": "Facebook clone for The Odin Project.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint",
+    "backend": "nodemon ./backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mattwwilson34/the-odin-book.git"
+  },
+  "author": "Matthew Wilson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mattwwilson34/the-odin-book/issues"
+  },
+  "homepage": "https://github.com/Mattwwilson34/the-odin-book#readme",
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3"
+  }
+}

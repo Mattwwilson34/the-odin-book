@@ -7,9 +7,9 @@ import connectToDB from './database.js';
 const app = express();
 
 // DB connection
-const connection = connectToDB();
+const dbConnection = connectToDB();
 
-connection.query('SHOW tables', function (err, results, fields) {
+dbConnection.query('SHOW tables', function (err, results, fields) {
   console.log(results); // results contains rows returned by server
 });
 
@@ -18,7 +18,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.json({ message: 'You hit the backend home route!' });
 });
 
 export default app;

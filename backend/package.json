@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint",
-    "backend": "nodemon ./backend/server.js"
+    "backend": "nodemon ./src/server.js"
   },
   "repository": {
     "type": "git",

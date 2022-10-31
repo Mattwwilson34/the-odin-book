@@ -1,17 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import createHttpError from 'http-errors';
-import connectToDB from './database.js';
+// import createHttpError from 'http-errors';
 
 const app = express();
-
-// DB connection
-const dbConnection = connectToDB();
-
-dbConnection.query('SHOW tables', function (err, results, fields) {
-  console.log(results); // results contains rows returned by server
-});
 
 // MIDDLEWARE
 app.use(cors());

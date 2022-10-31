@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import mysql from 'mysql2';
 
-dotenv.config();
+dotenv.config({ path: 'backend/.env' });
 
 const dbConfig = {
   host: process.env.DB_HOST,
@@ -11,17 +11,16 @@ const dbConfig = {
   socketPath: process.env.DB_SOCKET_PATH,
 };
 
-console.log(dbConfig);
-
 const connectToDB = () => {
   try {
     const dbConnection = mysql.createConnection(dbConfig);
     console.log('========================================');
-    console.log(`Successful connection to MySQL database.`);
+    console.log('Successful connection to MySQL database.');
     console.log('========================================');
     return dbConnection;
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
 

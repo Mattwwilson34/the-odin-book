@@ -1,0 +1,26 @@
+{
+  "name": "the-odin-book",
+  "version": "1.0.0",
+  "description": "The Odin Book a Facebook core feature clone.",
+  "main": "index.js",
+  "scripts": {
+    "frontend-lint": "cd frontend && npm run lint",
+    "backend-lint": "cd backend && npm run lint",
+    "server": "cd backend && npm run backend",
+    "client": "cd frontend && npm run frontend",
+    "lint-all": "concurrently \"npm run frontend-lint\" \"npm run backend-lint\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mattwwilson34/the-odin-book.git"
+  },
+  "author": "Matthew Wilson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mattwwilson34/the-odin-book/issues"
+  },
+  "homepage": "https://github.com/Mattwwilson34/the-odin-book#readme",
+  "dependencies": {
+    "concurrently": "^7.5.0"
+  }
+}

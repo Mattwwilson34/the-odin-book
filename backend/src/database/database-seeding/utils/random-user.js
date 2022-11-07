@@ -1,13 +1,14 @@
 import { faker } from '@faker-js/faker';
+import moment from 'moment';
 
 const randomUser = () => ({
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   username: faker.internet.userName(),
-  email: faker.internet.email(),
   password: faker.internet.password(),
-  birthdate: faker.date.birthdate(),
-  registeredAt: faker.date.past(),
+  email: faker.internet.email(),
+  birthdate: moment(faker.date.birthdate()).format('YYYY-MM-DD'),
+  registeredAt: moment(faker.date.past()).format('YYYY-MM-DD HH:mm:ss'),
 });
 
 export default randomUser;

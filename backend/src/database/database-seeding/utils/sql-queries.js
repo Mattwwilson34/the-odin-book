@@ -16,7 +16,7 @@ const createTableUsers = `CREATE TABLE IF NOT EXISTS ${process.env.DB_DATABASE}.
   last_name VARCHAR(20) NOT NULL,
   username VARCHAR(20) NOT NULL,
   password VARCHAR(20) NOT NULL,
-  email VARCHAR(20) NOT NULL,
+  email VARCHAR(40) NOT NULL,
   birthdate DATE NOT NULL,
   created_date DATETIME NOT NULL,
   PRIMARY KEY (user_id))
@@ -108,6 +108,13 @@ const createTablePostLike = `CREATE TABLE IF NOT EXISTS ${process.env.DB_DATABAS
   DEFAULT CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;`;
 
+const insertUser = (userDataObj) => {
+  const userDataArray = Object.values(userDataObj);
+  const userDataQuoteWrapped = userDataArray.map((data) => `"${data}"`);
+  const userData = userDataQuoteWrapped.join(',');
+  return `INSERT INTO users (first_name,last_name,username,password,email,birthdate,created_date)VALUES(${userData});`;
+};
+
 export {
   dropDB,
   createDB,
@@ -118,4 +125,5 @@ export {
   createTableCommentLike,
   createTableFriends,
   createTablePostLike,
+  insertUser,
 };

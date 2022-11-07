@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "lint": "eslint .",
-    "backend": "nodemon ./src/server.js"
+    "backend": "nodemon ./src/server.js",
+    "seed-database": "node ./src/database/database-seeding/seed.js"
   },
   "devDependencies": {
     "eslint": "^8.26.0",
@@ -20,6 +21,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "http-errors": "^2.0.0",
+    "moment": "^2.29.4",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3"
   }

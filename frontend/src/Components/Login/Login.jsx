@@ -1,6 +1,8 @@
 import './Login.css';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import GoogleButton from 'react-google-button';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
@@ -38,6 +40,40 @@ const Login = ({ className }) => {
     }
   };
 
+  const fetchUser = async () => {
+    const response = await axios
+      .get('http://localhost:8080/auth/user', { withCredentials: true })
+      .catch((err) => {
+        console.log('Not Authenticated prperly');
+        console.log(err);
+      });
+
+    if (response && response.data) {
+      console.log('User', response.data);
+    }
+  };
+
+  const redirectToGoogleOAuth = () => {
+    let timer = null;
+
+    const googleLoginURL = 'http://localhost:8080/auth/google';
+    const newWindow = window.open(
+      googleLoginURL,
+      '_blank',
+      'width=500,height=600',
+    );
+
+    if (newWindow) {
+      timer = setInterval(() => {
+        if (newWindow.closed) {
+          console.log('Yay Authenticated');
+          fetchUser();
+          if (timer) clearInterval(timer);
+        }
+      });
+    }
+  };
+
   return (
     <div className={className}>
       <form onSubmit={handleSubmit}>
@@ -55,9 +91,7 @@ const Login = ({ className }) => {
         <a href='https://www.google.com/'>Forgot Password</a>
         <hr />
         <Button submit={false} text='Create new account' />
-        <a href='http://localhost:8080/auth/google'>
-          <Button submit={false} text='Sign in with Google' />
-        </a>
+        <GoogleButton onClick={redirectToGoogleOAuth} />
       </form>
       <div className='message'>{message ? <p>{message}</p> : null}</div>
     </div>

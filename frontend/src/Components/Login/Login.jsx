@@ -55,6 +55,9 @@ const Login = ({ className }) => {
         <a href='https://www.google.com/'>Forgot Password</a>
         <hr />
         <Button submit={false} text='Create new account' />
+        <a href='http://localhost:8080/auth/google'>
+          <Button submit={false} text='Sign in with Google' />
+        </a>
       </form>
       <div className='message'>{message ? <p>{message}</p> : null}</div>
     </div>

@@ -1,10 +1,81 @@
-:root {
-  font-family: 'Open Sans';
+*,
+*::before,
+*:after {
+  box-sizing: border-box;
 }
 
+:root {
+  --bg-primary: #eff2f5;
+  --blue-300: #1a76f2;
+  --green-300: #42b729;
+  --white-300: #ffffff;
+
+  /* Padding */
+  --pd-xsm: 0.25rem;
+  --pd-sm: 0.5rem;
+  --pd-m: 1rem;
+  --pd-lg: 1.25rem;
+  --pd-xl: 1.5rem;
+
+  /* Font size */
+  --font-xsm: 0.25rem;
+  --font-sm: 0.5rem;
+  --font-m: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.5rem;
+
+  /* Border radius */
+  --board-rad-xsm: 0.25rem;
+  --board-rad-sm: 0.5rem;
+  --board-rad-m: 1rem;
+  --board-rad-lg: 1.25rem;
+  --board-rad-xl: 1.5rem;
+
+  /* Gap */
+  --gap-xsm: 0.25rem;
+  --gap-sm: 0.5rem;
+  --gap-m: 1rem;
+  --gap-lg: 1.25rem;
+  --gap-xl: 1.5rem;
+}
+
+html,
 body {
   margin: 0;
   font-family: 'OpenSans';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+input {
+  padding: var(--pd-xsm) var(--pd-sm);
+  border-radius: var(--board-rad-xsm);
+}
+
+.LoginPage__Login {
+  background-color: var(--white-300);
+  min-width: 50%;
+  padding: var(--pd-m);
+}
+
+.LoginPage__Login * {
+  width: 100%;
+  font-size: var(--font-lg);
+}
+
+.LoginPage__Login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+
+.LoginPage__Login a {
+  text-align: center;
 }

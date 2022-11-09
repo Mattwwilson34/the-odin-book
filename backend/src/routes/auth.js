@@ -6,7 +6,6 @@ const router = express.Router();
 // MIDDLEWARE
 const isLoggedIn = (req, res, next) => {
   if (req.user) {
-    console.log(req);
     next();
   } else {
     res.sendStatus(401);
@@ -21,7 +20,7 @@ router.get('/logout', (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
     req.session.destroy();
-    res.send('Logged out!');
+    res.redirect('http://localhost:3000');
   });
 });
 
@@ -45,7 +44,11 @@ router.get('/failure', (req, res) => {
 });
 
 router.get('/protected', isLoggedIn, (req, res) => {
-  res.send(`Hello ${req.user.displayName}`);
+  res.redirect('http://localhost:3000/login-success');
+});
+
+router.get('/user', isLoggedIn, (req, res) => {
+  res.json(req.user);
 });
 
 export default router;

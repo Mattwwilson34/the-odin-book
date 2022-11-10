@@ -5,8 +5,9 @@ import passport from 'passport';
 import expressSession from 'express-session';
 import login from './routes/login.js';
 import auth from './routes/auth.js';
-import './config/passport-setup.js';
 import sessionConfig from './config/session-config.js';
+import './config/passport-setup.js';
+import './database/database-connection.js';
 
 const app = express();
 

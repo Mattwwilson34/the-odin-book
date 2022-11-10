@@ -1,22 +1,21 @@
 import * as dotenv from 'dotenv';
 import mysql from 'mysql2';
 import dbConfig from '../config/database-configs.js';
+import dotenvConfig from '../config/dontenv-config.js';
+import { log, success } from '../utils/console-log.js';
 
-dotenv.config({
-  path: '/Users/matthewwilson/Desktop/Coding/the-odin-project/the-odin-book/backend/.env',
+dotenv.config(dotenvConfig);
+
+const dbConnectionPool = mysql.createPool(dbConfig);
+
+dbConnectionPool.getConnection((err, conn) => {
+  if (err) throw err;
+  log('=================================================');
+  log(success(`Successful connection to ${dbConfig.database} database.`));
+  log('=================================================');
+  dbConnectionPool.releaseConnection(conn);
 });
 
-const connectToDB = () => {
-  try {
-    const dbConnection = mysql.createPool(dbConfig);
-    console.log('=================================================');
-    console.log(`Successful connection to ${dbConfig.database} database.`);
-    console.log('=================================================');
-    return dbConnection;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-};
+const dbConPool = dbConnectionPool.promise();
 
-export default connectToDB;
+export default dbConPool;

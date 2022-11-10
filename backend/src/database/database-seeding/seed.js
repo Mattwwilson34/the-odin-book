@@ -3,9 +3,7 @@ import switchDB from './utils/switch-db.js';
 import buildDatabaseTables from './utils/build-db-tables.js';
 import { insertUser } from './utils/sql-queries.js';
 import randomUser from './utils/random-user.js';
-import connectToDB from '../database-connection.js';
-
-const db = connectToDB().promise();
+import db from '../database-connection.js';
 
 await buildDB(db);
 

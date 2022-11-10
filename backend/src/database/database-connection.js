@@ -16,9 +16,9 @@ const dbConfig = {
 const connectToDB = () => {
   try {
     const dbConnection = mysql.createConnection(dbConfig);
-    console.log('========================================');
-    console.log(`Successful connection to ${dbConfig.database}.`);
-    console.log('========================================');
+    console.log('=================================================');
+    console.log(`Successful connection to ${dbConfig.database} database.`);
+    console.log('=================================================');
     return dbConnection;
   } catch (error) {
     console.log(error);

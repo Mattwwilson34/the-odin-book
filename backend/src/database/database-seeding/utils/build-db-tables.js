@@ -1,35 +1,50 @@
 import * as sqlQueries from './sql-queries.js';
+import connectToDB from '../../database-connection.js';
 
-const buildDatabaseTables = (dbConnection) => {
-  dbConnection.query(sqlQueries.createTableUsers, (err) => {
-    if (err) throw err;
+// const db = connectToDB().promise();
+
+const buildDatabaseTables = async (db) => {
+  try {
+    await db.query(sqlQueries.createTableUsers);
     console.log('📝 Successfully created Users table');
-  });
-
-  dbConnection.query(sqlQueries.createTableFriends, (err) => {
+  } catch (err) {
     if (err) throw err;
+  }
+
+  try {
+    await db.query(sqlQueries.createTableFriends);
     console.log('📝 Successfully created Friends table');
-  });
-
-  dbConnection.query(sqlQueries.createTableUserPost, (err) => {
+  } catch (err) {
     if (err) throw err;
+  }
+
+  try {
+    await db.query(sqlQueries.createTableUserPost);
     console.log('📝 Successfully created User Posts table');
-  });
-
-  dbConnection.query(sqlQueries.createTablePostComment, (err) => {
+  } catch (err) {
     if (err) throw err;
+  }
+
+  try {
+    await db.query(sqlQueries.createTablePostComment);
     console.log('📝 Successfully created Post Comments table');
-  });
-
-  dbConnection.query(sqlQueries.createTablePostLike, (err) => {
+  } catch (err) {
     if (err) throw err;
+  }
+
+  try {
+    await db.query(sqlQueries.createTablePostLike);
     console.log('📝 Successfully created Post Likes table');
-  });
-
-  dbConnection.query(sqlQueries.createTableCommentLike, (err) => {
+  } catch (err) {
     if (err) throw err;
+  }
+
+  try {
+    await db.query(sqlQueries.createTableCommentLike);
     console.log('📝 Successfully created Comment Likes table');
-  });
+  } catch (err) {
+    if (err) throw err;
+  }
 };
 
 export default buildDatabaseTables;

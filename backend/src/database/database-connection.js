@@ -1,21 +1,14 @@
 import * as dotenv from 'dotenv';
 import mysql from 'mysql2';
+import dbConfig from '../config/database-configs.js';
 
 dotenv.config({
   path: '/Users/matthewwilson/Desktop/Coding/the-odin-project/the-odin-book/backend/.env',
 });
 
-const dbConfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  socketPath: process.env.DB_SOCKET_PATH,
-};
-
 const connectToDB = () => {
   try {
-    const dbConnection = mysql.createConnection(dbConfig);
+    const dbConnection = mysql.createPool(dbConfig);
     console.log('=================================================');
     console.log(`Successful connection to ${dbConfig.database} database.`);
     console.log('=================================================');

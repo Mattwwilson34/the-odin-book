@@ -1,9 +1,8 @@
 import * as dotenv from 'dotenv';
 import sessionStore from './session-setup.js';
+import dotenvConfig from './dontenv-config.js';
 
-dotenv.config({
-  path: '/Users/matthewwilson/Desktop/Coding/the-odin-project/the-odin-book/backend/.env',
-});
+dotenv.config(dotenvConfig);
 
 const sessionConfig = {
   secret: process.env.SESSION_SECRET,

@@ -1,8 +1,7 @@
 import * as dotenv from 'dotenv';
+import dotenvConfig from './dontenv-config.js';
 
-dotenv.config({
-  path: '/Users/matthewwilson/Desktop/Coding/the-odin-project/the-odin-book/backend/.env',
-});
+dotenv.config(dotenvConfig);
 
 const dbConfig = {
   host: process.env.DB_HOST,

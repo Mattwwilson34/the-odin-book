@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 import moment from 'moment';
 
 const randomUser = () => ({
+  id: faker.datatype.uuid(),
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   username: faker.internet.userName(),

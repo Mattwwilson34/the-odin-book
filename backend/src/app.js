@@ -1,16 +1,29 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-// import createHttpError from 'http-errors';
+import passport from 'passport';
+import expressSession from 'express-session';
+import login from './routes/login.js';
+import auth from './routes/auth.js';
+import sessionConfig from './config/session-config.js';
+import './config/passport-setup.js';
+import './database/database-connection.js';
 
 const app = express();
 
 // MIDDLEWARE
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.json({ message: 'You hit the backend home route!' });
-});
+// PASSPORT MIDDLEWARE
+app.use(expressSession(sessionConfig));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// ROUTES
+app.use('/', login);
+app.use('/auth', auth);
 
 export default app;

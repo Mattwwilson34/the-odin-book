@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import checkIfLoggedIn from '../modules/checkIfLoggedIn';
-import Button from '../Components/Button/Button';
+import fetchUser from '../modules/fetchUser';
+import Login from '../Components/Login/Login';
 
 const Root = () => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // CHECK IF USER IS LOGGED IN
+  // CHECK IF USER IS LOGGED IN ON PAGE LOAD
   useEffect(() => {
     (async () => {
-      const response = await checkIfLoggedIn();
+      const response = await fetchUser();
       if (response && response.data) {
         console.log('User', response.data);
         setUser(response.data);
@@ -19,30 +19,19 @@ const Root = () => {
     })();
   }, []);
 
-  return (
-    <div>
-      <h1>Welcome to The Odin Book</h1>
-      <a href='http://localhost:3000/login'>login</a>
-
-      {user && <h1>{`Welcome ${user.first_name}`}</h1>}
-
-      {!user && (
-        <h2>
-          The user is
-          {isLoggedIn ? ' currently ' : ' not '}
-          logged in.
-        </h2>
-      )}
-
-      {user && (
-        <a href='http://localhost:8080/auth/logout'>
-          <Button submit={false} text='Logout' />
-        </a>
-      )}
-
-      <Outlet />
-    </div>
-  );
+  if (isLoggedIn) {
+    // Show logged in UI
+    return (
+      <div>
+        <h1>Logged in</h1>
+        <h2>{`Welcome ${user.first_name}`}</h2>
+        <a href='http://localhost:8080/auth/logout'>LOGOUT</a>
+        <Outlet />
+      </div>
+    );
+  }
+  // Display login UI
+  return <Login />;
 };
 
 export default Root;

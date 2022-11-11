@@ -13,7 +13,7 @@ const Root = () => {
       const response = await checkIfLoggedIn();
       if (response && response.data) {
         console.log('User', response.data);
-        setUser(response.data.displayName);
+        setUser(response.data);
         setIsLoggedIn('true');
       }
     })();
@@ -24,7 +24,7 @@ const Root = () => {
       <h1>Welcome to The Odin Book</h1>
       <a href='http://localhost:3000/login'>login</a>
 
-      {user && <h1>{`Welcome ${user}`}</h1>}
+      {user && <h1>{`Welcome ${user.first_name}`}</h1>}
 
       {!user && (
         <h2>

@@ -1,0 +1,42 @@
+.GoogleButton_Container {
+  min-width: 100%;
+  display: flex;
+  color: white;
+  outline-color: var(--bg-primary);
+  border-radius: var(--board-rad-xsm);
+  font-size: var(--font-m);
+  font-weight: bold;
+  transition: filter 150ms linear;
+  -webkit-transition: -webkit-filter 150ms linear;
+}
+
+.GoogleButton_Container:hover {
+  filter: brightness(95%);
+  cursor: pointer;
+}
+
+.GoogleButton_Icon_Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--pd-m) - 5px);
+  background-color: var(--white-300);
+  border: 1px solid var(--blue-300);
+  border-top-left-radius: var(--board-rad-xsm);
+  border-bottom-left-radius: var(--board-rad-xsm);
+}
+
+.GoogleButton_Icon {
+  width: 25px;
+}
+
+.GoogleButton_Text {
+  background-color: var(--blue-300);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--pd-m) - 5px);
+  border-top-right-radius: var(--board-rad-xsm);
+  border-bottom-right-radius: var(--board-rad-xsm);
+}

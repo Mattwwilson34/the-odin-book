@@ -1,7 +1,19 @@
+@font-face {
+  font-family: 'Klavika-medium';
+  src: local('Klavika'),
+    url(./fonts/Klavika/klavika-medium.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Klavika-light';
+  src: local('Klavika'),
+    url(./fonts/Klavika/klavika-light.otf) format('opentype');
+}
+
 *,
 *::before,
 *:after {
   box-sizing: border-box;
+  font-family: 'Klavika-light';
 }
 
 :root {
@@ -9,6 +21,13 @@
   --blue-300: #1a76f2;
   --green-300: #42b729;
   --white-300: #ffffff;
+
+  /* Margin */
+  --mg-xsm: 0.25rem;
+  --mg-sm: 0.5rem;
+  --mg-m: 1rem;
+  --mg-lg: 1.25rem;
+  --mg-xl: 1.5rem;
 
   /* Padding */
   --pd-xsm: 0.25rem;
@@ -23,6 +42,8 @@
   --font-m: 1rem;
   --font-lg: 1.25rem;
   --font-xl: 1.5rem;
+  --font-xxl: 2rem;
+  --font-xxxl: 3rem;
 
   /* Border radius */
   --board-rad-xsm: 0.25rem;
@@ -42,40 +63,74 @@
 html,
 body {
   margin: 0;
-  font-family: 'OpenSans';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100%;
   width: 100%;
 }
 
-input {
-  padding: var(--pd-xsm) var(--pd-sm);
-  border-radius: var(--board-rad-xsm);
-}
-
-.LoginPage__Login {
-  background-color: var(--white-300);
-  min-width: 50%;
-  padding: var(--pd-m);
-}
-
-.LoginPage__Login * {
+#root {
+  height: 100%;
   width: 100%;
-  font-size: var(--font-lg);
 }
 
-.LoginPage__Login form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--gap-sm);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
 }
 
-.LoginPage__Login a {
-  text-align: center;
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--blue-300);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  display: block;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+
+input {
+  padding: var(--pd-m) var(--pd-xl);
+  border-radius: var(--board-rad-xsm);
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  font-size: var(--font-m);
+}
+
+input:focus {
+  border: 1px solid var(--blue-300);
+}
+
+input[placeholder] {
+  font-size: var(--font-m);
+}
+
+button {
+  min-width: 100%;
+  padding: var(--pd-m) var(--pd-xl);
+  border-radius: var(--board-rad-xsm);
+  outline: none;
+  border: none;
+  background-color: var(--blue-300);
+  color: var(--white-300);
+  font-size: var(--font-m);
+  font-weight: bold;
+  transition: filter 150ms linear;
+  -webkit-transition: -webkit-filter 150ms linear;
+}
+
+button:hover {
+  filter: brightness(95%);
+  cursor: pointer;
 }

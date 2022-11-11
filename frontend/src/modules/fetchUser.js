@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const checkIfLoggedIn = async () => {
+const fetchUser = async () => {
   const serverURL = 'http://localhost:8080/auth/user';
   const axiosSettings = { withCredentials: true };
 
@@ -20,4 +20,4 @@ const checkIfLoggedIn = async () => {
   });
 };
 
-export default checkIfLoggedIn;
+export default fetchUser;

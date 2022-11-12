@@ -134,3 +134,7 @@ button:hover {
   filter: brightness(95%);
   cursor: pointer;
 }
+
+img {
+  width: 48px;
+}

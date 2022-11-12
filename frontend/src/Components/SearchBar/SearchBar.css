@@ -1,0 +1,26 @@
+.Search_Container {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: var(--board-rad-xsm);
+  min-height: 35px;
+  padding: var(--pd-xsm);
+  padding-left: var(--pd-m);
+  min-width: 200px;
+}
+
+.Search_Input {
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.Search_Input:focus {
+  border: none;
+}
+
+.Search_Icon {
+  max-width: 20px;
+  opacity: 0.5;
+}

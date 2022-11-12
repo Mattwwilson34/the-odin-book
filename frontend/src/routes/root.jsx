@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import fetchUser from '../modules/fetchUser';
 import Login from '../Components/Login/Login';
+import Navbar from '../Components/Navbar/Navbar';
 
 const Root = () => {
   const [user, setUser] = useState(null);
@@ -23,6 +24,7 @@ const Root = () => {
     // Show logged in UI
     return (
       <div>
+        <Navbar />
         <h1>Logged in</h1>
         <h2>{`Welcome ${user.first_name}`}</h2>
         <a href='http://localhost:8080/auth/logout'>LOGOUT</a>

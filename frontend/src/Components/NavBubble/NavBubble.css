@@ -1,0 +1,13 @@
+.NavBubble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  aspect-ratio: 1/1;
+  background-color: var(--bg-primary);
+  border-radius: 50%;
+}
+
+.NavBubble > img {
+  width: 20px;
+}

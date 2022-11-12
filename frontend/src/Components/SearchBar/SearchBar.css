@@ -1,8 +1,8 @@
 .Search_Container {
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: var(--board-rad-xsm);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
   min-height: 35px;
   padding: var(--pd-xsm);
   padding-left: var(--pd-m);
@@ -14,6 +14,7 @@
   padding: 0;
   width: 100%;
   height: 100%;
+  border-radius: 999px;
 }
 
 .Search_Input:focus {

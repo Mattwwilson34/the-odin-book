@@ -10,6 +10,11 @@
   align-self: center;
 }
 
-.NavBubble > img {
+.Nav_Bubble_Icon {
   width: 20px;
+}
+
+.Nav_Bubble_Avatar {
+  width: 100%;
+  border-radius: 50%;
 }

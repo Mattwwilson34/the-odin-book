@@ -21,7 +21,7 @@ const Navbar = () => (
       <NavBubble icon={menuIcon} altText='Menu cirlces icon' />
       <NavBubble icon={messengerIcon} altText='messenger icon' />
       <NavBubble icon={bellIcon} altText='bell icon' />
-      <NavBubble icon={avatarIcon} altText='avatar icon' />
+      <NavBubble icon={avatarIcon} altText='avatar icon' avatar />
     </div>
   </div>
 );

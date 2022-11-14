@@ -1,8 +1,6 @@
-import './LeftSidebar.css'
+import './LeftSidebar.css';
 import React from 'react';
 
-const LeftSidebar = () => {
-  return <div>LeftSidebar COMPONENT</div>;
-  }; 
+const LeftSidebar = () => <h1 className='Left_Sidebar'>Left Sidebar</h1>;
 
-  export default LeftSidebar;
+export default LeftSidebar;

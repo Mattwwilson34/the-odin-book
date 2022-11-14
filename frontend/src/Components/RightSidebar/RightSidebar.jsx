@@ -1,8 +1,6 @@
-import './RightSidebar.css'
+import './RightSidebar.css';
 import React from 'react';
 
-const RightSidebar = () => {
-  return <div>RightSidebar COMPONENT</div>;
-  }; 
+const RightSidebar = () => <h1 className='Right_Sidebar'>Right Sidebar</h1>;
 
-  export default RightSidebar;
+export default RightSidebar;

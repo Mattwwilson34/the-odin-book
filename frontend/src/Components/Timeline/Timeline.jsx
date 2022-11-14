@@ -1,8 +1,6 @@
-import './Timeline.css'
+import './Timeline.css';
 import React from 'react';
 
-const Timeline = () => {
-  return <div>Timeline COMPONENT</div>;
-  }; 
+const Timeline = () => <h1 className='Timeline'>Timeline</h1>;
 
-  export default Timeline;
+export default Timeline;

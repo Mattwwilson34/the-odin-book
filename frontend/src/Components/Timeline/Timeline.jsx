@@ -1,6 +1,13 @@
 import './Timeline.css';
 import React from 'react';
+import Status from '../Status/Status';
+import Post from '../Post/Post';
 
-const Timeline = () => <h1 className='Timeline'>Timeline</h1>;
+const Timeline = () => (
+  <div className='Timeline'>
+    <Status />
+    <Post />
+  </div>
+);
 
 export default Timeline;

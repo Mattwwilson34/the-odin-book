@@ -88,6 +88,10 @@ h6 {
   margin: 0;
   padding: 0;
 }
+p {
+  padding: 0;
+  margin: 0;
+}
 
 a {
   text-decoration: none;
@@ -151,7 +155,7 @@ img {
 }
 
 .Timeline {
-  border: 2px dashed red;
+  /* border: 2px dashed red; */
   min-height: 90vh;
 }
 

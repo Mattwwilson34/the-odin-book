@@ -143,6 +143,20 @@ img {
   width: 48px;
 }
 
+.Main_Content_Container {
+  display: grid;
+  grid-template: auto / 1fr 2fr 1fr;
+}
+
+.Timeline {
+  border: 2px dashed red;
+  min-height: 90vh;
+}
+
+.Right_Sidebar {
+  justify-self: end;
+}
+
 /* UTILITY CLASSES */
 .noPointerEvents {
   pointer-events: none;

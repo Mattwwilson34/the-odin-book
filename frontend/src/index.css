@@ -35,6 +35,8 @@
   --pd-m: 1rem;
   --pd-lg: 1.25rem;
   --pd-xl: 1.5rem;
+  --pd-xxl: 2rem;
+  --pd-xxxl: 3rem;
 
   /* Font size */
   --font-xsm: 0.25rem;

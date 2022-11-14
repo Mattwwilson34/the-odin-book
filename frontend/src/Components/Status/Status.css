@@ -1,0 +1,38 @@
+.Status_Input_Container {
+  display: flex;
+  gap: var(--gap-m);
+}
+
+.Status_Input_Button {
+  display: flex;
+  align-items: center;
+  min-width: 0%;
+  width: 100%;
+  min-height: 35px;
+  max-height: 35px;
+  border-radius: 999px;
+  background-color: var(--bg-primary);
+  color: rgba(0, 0, 0, 0.75);
+  text-align: left;
+  padding-left: var(--pd-m);
+}
+
+.Status_Icon_Container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Status_Icon_Wrapper {
+  display: flex;
+  padding: var(--pd-xsm) var(--pd-xxxl);
+  border-radius: 10px;
+}
+
+.Status_Icon_Wrapper:hover {
+  cursor: pointer;
+  background-color: var(--bg-primary);
+}
+
+.Status_Icon_Container > span > img {
+  width: 28px;
+}

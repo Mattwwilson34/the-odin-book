@@ -35,6 +35,8 @@
   --pd-m: 1rem;
   --pd-lg: 1.25rem;
   --pd-xl: 1.5rem;
+  --pd-xxl: 2rem;
+  --pd-xxxl: 3rem;
 
   /* Font size */
   --font-xsm: 0.25rem;
@@ -58,6 +60,10 @@
   --gap-m: 1rem;
   --gap-lg: 1.25rem;
   --gap-xl: 1.5rem;
+
+  /* Filter values */
+  --filter-blue-300: invert(33%) sepia(81%) saturate(2907%) hue-rotate(204deg)
+    brightness(99%) contrast(92%);
 }
 
 html,
@@ -81,6 +87,10 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
+}
+p {
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -133,4 +143,35 @@ button {
 button:hover {
   filter: brightness(95%);
   cursor: pointer;
+}
+
+img {
+  width: 48px;
+}
+
+.Main_Content_Container {
+  display: grid;
+  grid-template: auto / 1fr 2fr 1fr;
+}
+
+.Timeline {
+  /* border: 2px dashed red; */
+  min-height: 90vh;
+}
+
+.Right_Sidebar {
+  justify-self: end;
+}
+
+/* UTILITY CLASSES */
+.noPointerEvents {
+  pointer-events: none;
+}
+
+.filterBlue {
+  filter: var(--filter-blue-300);
+}
+
+.border_blue {
+  border-color: var(--blue-300);
 }

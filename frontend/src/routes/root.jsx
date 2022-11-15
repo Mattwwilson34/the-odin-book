@@ -2,8 +2,13 @@ import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import fetchUser from '../modules/fetchUser';
 import Login from '../Components/Login/Login';
+import Navbar from '../Components/Navbar/Navbar';
+import LeftSidebar from '../Components/LeftSidebar/LeftSidebar';
+import RightSidebar from '../Components/RightSidebar/RightSidebar';
+import Timeline from '../Components/Timeline/Timeline';
 
 const Root = () => {
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -23,9 +28,12 @@ const Root = () => {
     // Show logged in UI
     return (
       <div>
-        <h1>Logged in</h1>
-        <h2>{`Welcome ${user.first_name}`}</h2>
-        <a href='http://localhost:8080/auth/logout'>LOGOUT</a>
+        <Navbar />
+        <div className='Main_Content_Container'>
+          <LeftSidebar />
+          <Timeline />
+          <RightSidebar />
+        </div>
         <Outlet />
       </div>
     );

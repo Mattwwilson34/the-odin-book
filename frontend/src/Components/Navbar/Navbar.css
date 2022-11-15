@@ -1,0 +1,20 @@
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--white-300);
+  min-height: 56px;
+}
+
+.NavBar_Logo_Search_Container {
+  display: flex;
+  align-items: center;
+}
+
+.NavBubble_Container {
+  display: flex;
+  gap: var(--gap-sm);
+}
+
+.Navbar_Home_Icon {
+  width: 28px;
+}

@@ -1,0 +1,51 @@
+.Post {
+  min-height: 400px;
+  background-color: var(--white-300);
+  border-radius: var(--board-rad-sm);
+}
+
+.Post_Header_Container {
+  padding: var(--pd-sm) var(--pd-m);
+  display: flex;
+  gap: var(--gap-m);
+}
+
+.Post_Header_Text_Container {
+  display: flex;
+  flex-direction: column;
+}
+
+.Post_Body_Container {
+  padding: 0;
+}
+
+.Post_Body_Container p {
+  padding: var(--pd-sm) var(--pd-m);
+}
+
+.Post_Body_Container > img {
+  width: 100%;
+}
+
+.Post_Stats_Container {
+  padding: var(--pd-sm) var(--pd-m);
+}
+
+.Post_Reactions_Container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Post_Reaction_Text_Container {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsm);
+}
+
+.Post_Reaction_Text_Container > img {
+  width: 25px;
+}
+
+.Post_Reactions_Text {
+  font-weight: bold;
+}

@@ -1,0 +1,35 @@
+.NavLink_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 100px;
+  padding: var(--pd-xsm) var(--pd-xsm) 0 var(--pd-xsm);
+  gap: var(--gap-xsm);
+}
+
+.NavLink_Container:hover {
+  cursor: pointer;
+}
+
+.NavLink_Icon_Container {
+  display: flex;
+  justify-content: center;
+  min-width: 100%;
+  min-height: 90%;
+  border-radius: 10px;
+}
+
+.NavLink_Icon_Container:hover {
+  cursor: pointer;
+  background-color: var(--bg-primary);
+}
+
+.NavLink_Icon {
+  width: 28px;
+}
+
+.NavLink_Bottom_Border_Div {
+  border-bottom: 3px solid black;
+  border-top-left-radius: var(--board-rad-xsm);
+  border-top-right-radius: var(--board-rad-xsm);
+}

@@ -43,7 +43,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `the_odin_book`.`user_post` (
   `post_id` VARCHAR(36) NOT NULL,
   `user_id` VARCHAR(36) NOT NULL,
-  `post_text` BLOB NOT NULL,
+  `post_text` NVARCHAR(5000) NOT NULL,
   `create_datetime` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`post_id`),
   INDEX `fk_user_post_users1_idx` (`user_id` ASC) VISIBLE,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `the_odin_book`.`post_comment` (
   `post_comment_id` VARCHAR(36) NOT NULL,
   `post_id` VARCHAR(36) NOT NULL,
   `user_id` VARCHAR(36) NOT NULL,
-  `comment_text` BLOB NOT NULL,
+  `comment_text` NVARCHAR(5000) NOT NULL,
   `created_datetime` DATETIME NOT NULL,
   PRIMARY KEY (`post_comment_id`),
   INDEX `fk_post_comment_users1_idx` (`user_id` ASC) VISIBLE,

@@ -12,6 +12,7 @@ const useDB = `USE ${process.env.DB_DATABASE}`;
 
 const createTableUsers = `CREATE TABLE IF NOT EXISTS ${process.env.DB_DATABASE}.users (
   user_id VARCHAR(36) NOT NULL,
+  profile_picture VARCHAR(200) NOT NULL,
   first_name VARCHAR(20) NOT NULL,
   last_name VARCHAR(20) NOT NULL,
   username VARCHAR(20) NOT NULL,
@@ -113,7 +114,7 @@ const insertUser = (userDataObj) => {
   const userDataArray = Object.values(userDataObj);
   const userDataQuoteWrapped = userDataArray.map((data) => `"${data}"`);
   const userData = userDataQuoteWrapped.join(',');
-  return `INSERT INTO users (user_id,first_name,last_name,username,password,email,birthdate,created_date)VALUES(${userData});`;
+  return `INSERT INTO users (user_id,profile_picture,first_name,last_name,username,password,email,birthdate,created_date)VALUES(${userData});`;
 };
 
 export {

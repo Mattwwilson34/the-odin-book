@@ -1,8 +1,10 @@
 import { faker } from '@faker-js/faker';
 import moment from 'moment';
+import getRandomNumber from '../utils/random-number.js';
 
 const randomUser = () => ({
   id: faker.datatype.uuid(),
+  profilePicture: `http://localhost:8080/avatar-${getRandomNumber(1, 10)}.svg`,
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   username: faker.internet.userName(),

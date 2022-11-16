@@ -1,16 +1,16 @@
 import './Status.css';
 import React from 'react';
+import PropTypes from 'prop-types';
 import NavBubble from '../NavBubble/NavBubble';
-import avatarIcon from '../../icons/avatar.svg';
 import photoVideoCard from '../../icons/photo-video-card.svg';
 import smileyFace from '../../icons/smiley-face.svg';
 
-const Status = () => (
+const Status = ({ user }) => (
   <div className='Status_Container'>
     <div className='Status_Input_Container'>
-      <NavBubble icon={avatarIcon} altText='avatar icon' avatar />
+      <NavBubble icon={user.profile_picture} altText='avatar icon' avatar />
       <button className='Status_Input_Button' type='button'>
-        {`What's on your mind **UserName**`}
+        {`What's on your mind ${user.first_name}`}
       </button>
     </div>
     <hr />
@@ -24,5 +24,16 @@ const Status = () => (
     </div>
   </div>
 );
+
+Status.propTypes = {
+  user: PropTypes.shape({
+    profile_picture: PropTypes.string.isRequired,
+    first_name: PropTypes.string.isRequired,
+  }),
+};
+
+Status.defaultProps = {
+  user: {},
+};
 
 export default Status;

@@ -33,6 +33,7 @@ passport.use(
           newUser = {
             ...newUser,
             id: profile._json.sub,
+            profilePicture: profile._json.picture,
             firstName: profile._json.given_name,
             lastName: profile._json.family_name,
             email: profile._json.email,

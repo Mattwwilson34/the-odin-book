@@ -22,6 +22,7 @@ USE `the_odin_book` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `the_odin_book`.`users` (
   `user_id` VARCHAR(36) NOT NULL,
+  `profile_picture` VARCHAR(200) NOT NULL,
   `first_name` VARCHAR(20) NOT NULL,
   `last_name` VARCHAR(20) NOT NULL,
   `username` VARCHAR(20) NOT NULL,

@@ -4,8 +4,11 @@ import buildDatabaseTables from './utils/build-db-tables.js';
 import { insertUser } from './utils/sql-queries.js';
 import randomUser from './utils/random-user.js';
 import db from '../database-connection.js';
+import delay from './utils/delay.js';
 
 await buildDB(db);
+
+await delay(2000);
 
 await switchDB(db);
 

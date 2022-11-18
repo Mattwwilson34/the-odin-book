@@ -14,7 +14,7 @@ setTimeout(async () => {
 setTimeout(async () => {
   await insert.insertRandomUserToDB();
   await insert.insertRandomPostToDB();
-  await insert.insertRandomCommentToDB(2);
+  await insert.insertRandomCommentToDB();
   await insert.insertRandomCommentLikeToDB();
   await insert.insertRandomPostLikeToDB();
   db.end();

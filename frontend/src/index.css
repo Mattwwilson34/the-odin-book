@@ -152,15 +152,18 @@ img {
 .Main_Content_Container {
   display: grid;
   grid-template: auto / 1fr 2fr 1fr;
+  padding-top: 20px;
+}
+.Timeline_Container {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Timeline {
-  /* border: 2px dashed red; */
   min-height: 90vh;
-}
-
-.Right_Sidebar {
-  justify-self: end;
+  max-width: 680px;
 }
 
 /* UTILITY CLASSES */

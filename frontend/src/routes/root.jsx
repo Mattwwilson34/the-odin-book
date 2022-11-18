@@ -30,8 +30,10 @@ const Root = () => {
       <div>
         <Navbar user={user} />
         <div className='Main_Content_Container'>
-          <LeftSidebar />
-          <Timeline user={user} />
+          <LeftSidebar user={user} />
+          <div className='Timeline_Container'>
+            <Timeline user={user} />
+          </div>
           <RightSidebar />
         </div>
         <Outlet />

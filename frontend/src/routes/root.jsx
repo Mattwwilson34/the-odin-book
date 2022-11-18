@@ -28,10 +28,10 @@ const Root = () => {
     // Show logged in UI
     return (
       <div>
-        <Navbar />
+        <Navbar user={user} />
         <div className='Main_Content_Container'>
           <LeftSidebar />
-          <Timeline />
+          <Timeline user={user} />
           <RightSidebar />
         </div>
         <Outlet />

@@ -19,17 +19,17 @@ const Navbar = ({ user }) => (
     </div>
     <NavLink icon={homeIcon} activeURL='http://localhost:3000/' />
     <div className='NavBubble_Container'>
-      <NavBubble icon={menuIcon} altText='Menu cirlces icon' />
-      <NavBubble icon={messengerIcon} altText='messenger icon' />
-      <NavBubble icon={bellIcon} altText='bell icon' />
-      <NavBubble icon={user.profile_picture} altText='avatar icon' avatar />
+      <NavBubble icon={menuIcon} altText='Menu cirlces icon' avatar={false} />
+      <NavBubble icon={messengerIcon} altText='messenger icon' avatar={false} />
+      <NavBubble icon={bellIcon} altText='bell icon' avatar={false} />
+      <NavBubble icon={user.profilePicture} altText='avatar icon' avatar />
     </div>
   </div>
 );
 
 Navbar.propTypes = {
   user: PropTypes.shape({
-    profile_picture: PropTypes.string.isRequired,
+    profilePicture: PropTypes.string.isRequired,
   }),
 };
 

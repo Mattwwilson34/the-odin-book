@@ -23,7 +23,7 @@ const Timeline = ({ user }) => {
       <Status user={user} />
       {isLoading
         ? '<h1>Loading</h1>'
-        : posts.map((post) => <Post postData={post} key={post.post_id} />)}
+        : posts.map((post) => <Post postData={post} key={post.postID} />)}
     </div>
   );
 };

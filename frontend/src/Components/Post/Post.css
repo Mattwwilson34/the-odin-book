@@ -28,6 +28,9 @@
 }
 
 .Post_Stats_Container {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap-xsm);
   padding: var(--pd-sm) var(--pd-m);
 }
 
@@ -42,6 +45,7 @@
   gap: var(--gap-xsm);
 }
 
+.Post_Stats_Container > img,
 .Post_Reaction_Text_Container > img {
   width: 25px;
 }

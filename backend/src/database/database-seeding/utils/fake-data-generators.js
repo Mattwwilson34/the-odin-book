@@ -4,7 +4,7 @@ import getRandomNumber from '../utils/random-number.js';
 
 const randomUser = () => ({
   id: faker.datatype.uuid(),
-  profilePicture: `http://localhost:8080/avatar-${getRandomNumber(1, 10)}.svg`,
+  profilePicture: `http://localhost:8080/avatar-${getRandomNumber(1, 20)}.svg`,
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   username: faker.internet.userName(),

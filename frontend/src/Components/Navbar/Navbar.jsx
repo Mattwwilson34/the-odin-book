@@ -1,5 +1,6 @@
 import './Navbar.css';
 import React from 'react';
+import PropTypes from 'prop-types';
 import SearchBar from '../SearchBar/SearchBar';
 import NavLink from '../NavLink/NavLink';
 import NavBubble from '../NavBubble/NavBubble';
@@ -8,9 +9,9 @@ import homeIcon from '../../icons/home.svg';
 import menuIcon from '../../icons/menu-circles.svg';
 import messengerIcon from '../../icons/messenger.svg';
 import bellIcon from '../../icons/bell.svg';
-import avatarIcon from '../../icons/avatar.svg';
 
-const Navbar = () => (
+// eslint-disable-next-line no-unused-vars
+const Navbar = ({ user }) => (
   <div className='Navbar'>
     <div className='NavBar_Logo_Search_Container'>
       <img src={facebookIcon} alt='facebook icon' />
@@ -21,9 +22,19 @@ const Navbar = () => (
       <NavBubble icon={menuIcon} altText='Menu cirlces icon' />
       <NavBubble icon={messengerIcon} altText='messenger icon' />
       <NavBubble icon={bellIcon} altText='bell icon' />
-      <NavBubble icon={avatarIcon} altText='avatar icon' avatar />
+      <NavBubble icon={user.profile_picture} altText='avatar icon' avatar />
     </div>
   </div>
 );
+
+Navbar.propTypes = {
+  user: PropTypes.shape({
+    profile_picture: PropTypes.string.isRequired,
+  }),
+};
+
+Navbar.defaultProps = {
+  user: {},
+};
 
 export default Navbar;

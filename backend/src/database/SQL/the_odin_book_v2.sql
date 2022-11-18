@@ -18,124 +18,136 @@ CREATE SCHEMA IF NOT EXISTS `the_odin_book` DEFAULT CHARACTER SET utf8mb4 COLLAT
 USE `the_odin_book` ;
 
 -- -----------------------------------------------------
--- Table `the_odin_book`.`users`
+-- Table `the_odin_book`.`Users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `the_odin_book`.`users` (
-  `user_id` VARCHAR(36) NOT NULL,
-  `profile_picture` VARCHAR(200) NOT NULL,
-  `first_name` VARCHAR(20) NOT NULL,
-  `last_name` VARCHAR(20) NOT NULL,
-  `username` VARCHAR(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `the_odin_book`.`Users` (
+  `userID` VARCHAR(36) NOT NULL,
+  `profilePicture` VARCHAR(200) NOT NULL,
+  `firstName` VARCHAR(20) NOT NULL,
+  `lastName` VARCHAR(20) NOT NULL,
+  `username` VARCHAR(40) NOT NULL,
   `password` VARCHAR(20) NOT NULL,
   `email` VARCHAR(40) NOT NULL,
   `birthdate` DATE NOT NULL,
-  `created_date` DATETIME NOT NULL,
-  PRIMARY KEY (`user_id`))
+  `createdDateTime` DATETIME NOT NULL,
+  PRIMARY KEY (`userID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `the_odin_book`.`user_post`
+-- Table `the_odin_book`.`UserPost`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `the_odin_book`.`user_post` (
-  `post_id` VARCHAR(36) NOT NULL,
-  `user_id` VARCHAR(36) NOT NULL,
-  `post_text` BLOB NOT NULL,
-  `create_datetime` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`post_id`),
-  INDEX `fk_user_post_users1_idx` (`user_id` ASC) VISIBLE,
+CREATE TABLE IF NOT EXISTS `the_odin_book`.`UserPost` (
+  `postID` VARCHAR(36) NOT NULL,
+  `userID` VARCHAR(36) NOT NULL,
+  `postText` VARCHAR(5000) CHARACTER SET 'utf8mb3' NOT NULL,
+  `createdDateTime` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`postID`),
+  INDEX `fk_user_post_users1_idx` (`userID` ASC) VISIBLE,
   CONSTRAINT `fk_user_post_users1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `the_odin_book`.`users` (`user_id`))
+    FOREIGN KEY (`userID`)
+    REFERENCES `the_odin_book`.`Users` (`userID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `the_odin_book`.`post_comment`
+-- Table `the_odin_book`.`PostComment`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `the_odin_book`.`post_comment` (
-  `post_comment_id` VARCHAR(36) NOT NULL,
-  `post_id` VARCHAR(36) NOT NULL,
-  `user_id` VARCHAR(36) NOT NULL,
-  `comment_text` BLOB NOT NULL,
-  `created_datetime` DATETIME NOT NULL,
-  PRIMARY KEY (`post_comment_id`),
-  INDEX `fk_post_comment_users1_idx` (`user_id` ASC) VISIBLE,
-  INDEX `fk_post_comment_user_post1_idx` (`post_id` ASC) VISIBLE,
+CREATE TABLE IF NOT EXISTS `the_odin_book`.`PostComment` (
+  `postCommentID` VARCHAR(36) NOT NULL,
+  `postID` VARCHAR(36) NOT NULL,
+  `userID` VARCHAR(36) NOT NULL,
+  `commentText` VARCHAR(5000) CHARACTER SET 'utf8mb3' NOT NULL,
+  `createdDateTime` DATETIME NOT NULL,
+  PRIMARY KEY (`postCommentID`),
+  INDEX `fk_post_comment_users1_idx` (`userID` ASC) VISIBLE,
+  INDEX `fk_post_comment_user_post1_idx` (`postID` ASC) VISIBLE,
   CONSTRAINT `fk_post_comment_user_post1`
-    FOREIGN KEY (`post_id`)
-    REFERENCES `the_odin_book`.`user_post` (`post_id`),
+    FOREIGN KEY (`postID`)
+    REFERENCES `the_odin_book`.`UserPost` (`postID`),
   CONSTRAINT `fk_post_comment_users1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `the_odin_book`.`users` (`user_id`))
+    FOREIGN KEY (`userID`)
+    REFERENCES `the_odin_book`.`Users` (`userID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `the_odin_book`.`comment_like`
+-- Table `the_odin_book`.`CommentLike`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `the_odin_book`.`comment_like` (
-  `comment_like_id` VARCHAR(36) NOT NULL,
-  `post_comment_id` VARCHAR(36) NOT NULL,
-  `user_id` VARCHAR(36) NOT NULL,
-  `created_datetime` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`comment_like_id`),
-  INDEX `fk_comment_like_users1_idx` (`user_id` ASC) VISIBLE,
-  INDEX `fk_comment_like_post_comment1_idx` (`post_comment_id` ASC) VISIBLE,
+CREATE TABLE IF NOT EXISTS `the_odin_book`.`CommentLike` (
+  `commentLikeID` VARCHAR(36) NOT NULL,
+  `postCommentID` VARCHAR(36) NOT NULL,
+  `userID` VARCHAR(36) NOT NULL,
+  `createdDateTime` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`commentLikeID`),
+  INDEX `fk_comment_like_users1_idx` (`userID` ASC) VISIBLE,
+  INDEX `fk_comment_like_post_comment1_idx` (`postCommentID` ASC) VISIBLE,
   CONSTRAINT `fk_comment_like_post_comment1`
-    FOREIGN KEY (`post_comment_id`)
-    REFERENCES `the_odin_book`.`post_comment` (`post_comment_id`),
+    FOREIGN KEY (`postCommentID`)
+    REFERENCES `the_odin_book`.`PostComment` (`postCommentID`),
   CONSTRAINT `fk_comment_like_users1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `the_odin_book`.`users` (`user_id`))
+    FOREIGN KEY (`userID`)
+    REFERENCES `the_odin_book`.`Users` (`userID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `the_odin_book`.`friends`
+-- Table `the_odin_book`.`Friends`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `the_odin_book`.`friends` (
-  `profile_request` VARCHAR(36) NULL DEFAULT NULL,
-  `profile_accept` VARCHAR(36) NULL DEFAULT NULL,
-  INDEX `fk_friends_users_idx` (`profile_request` ASC) VISIBLE,
-  INDEX `fk_friends_users1_idx` (`profile_accept` ASC) VISIBLE,
+CREATE TABLE IF NOT EXISTS `the_odin_book`.`Friends` (
+  `profileRequest` VARCHAR(36) NULL DEFAULT NULL,
+  `profileAccept` VARCHAR(36) NULL DEFAULT NULL,
+  INDEX `fk_friends_users_idx` (`profileRequest` ASC) VISIBLE,
+  INDEX `fk_friends_users1_idx` (`profileAccept` ASC) VISIBLE,
   CONSTRAINT `fk_friends_users`
-    FOREIGN KEY (`profile_request`)
-    REFERENCES `the_odin_book`.`users` (`user_id`),
+    FOREIGN KEY (`profileRequest`)
+    REFERENCES `the_odin_book`.`Users` (`userID`),
   CONSTRAINT `fk_friends_users1`
-    FOREIGN KEY (`profile_accept`)
-    REFERENCES `the_odin_book`.`users` (`user_id`))
+    FOREIGN KEY (`profileAccept`)
+    REFERENCES `the_odin_book`.`Users` (`userID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `the_odin_book`.`post_like`
+-- Table `the_odin_book`.`PostLike`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `the_odin_book`.`post_like` (
-  `post_like_id` VARCHAR(36) NOT NULL,
-  `post_id` VARCHAR(36) NOT NULL,
-  `user_id` VARCHAR(36) NOT NULL,
-  `created_datetime` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`post_like_id`),
-  INDEX `fk_post_like_users1_idx` (`user_id` ASC) VISIBLE,
-  INDEX `fk_post_like_user_post1_idx` (`post_id` ASC) VISIBLE,
+CREATE TABLE IF NOT EXISTS `the_odin_book`.`PostLike` (
+  `postLikeID` VARCHAR(36) NOT NULL,
+  `postID` VARCHAR(36) NOT NULL,
+  `userID` VARCHAR(36) NOT NULL,
+  `createdDateTime` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`postLikeID`),
+  INDEX `fk_post_like_users1_idx` (`userID` ASC) VISIBLE,
+  INDEX `fk_post_like_user_post1_idx` (`postID` ASC) VISIBLE,
   CONSTRAINT `fk_post_like_user_post1`
-    FOREIGN KEY (`post_id`)
-    REFERENCES `the_odin_book`.`user_post` (`post_id`),
+    FOREIGN KEY (`postID`)
+    REFERENCES `the_odin_book`.`UserPost` (`postID`),
   CONSTRAINT `fk_post_like_users1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `the_odin_book`.`users` (`user_id`))
+    FOREIGN KEY (`userID`)
+    REFERENCES `the_odin_book`.`Users` (`userID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `the_odin_book`.`sessions`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `the_odin_book`.`sessions` (
+  `session_id` VARCHAR(128) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_bin' NOT NULL,
+  `expires` INT UNSIGNED NOT NULL,
+  `data` MEDIUMTEXT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_bin' NULL DEFAULT NULL,
+  PRIMARY KEY (`session_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

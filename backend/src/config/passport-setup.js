@@ -3,7 +3,7 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import * as dotenv from 'dotenv';
 import dotenvConfig from './dontenv-config.js';
 import db from '../database/database-connection.js';
-import randomUser from '../database/database-seeding/utils/random-user.js';
+import { randomUser } from '../database/database-seeding/utils/fake-data-generators.js';
 import { insertUser } from '../database/database-seeding/utils/sql-queries.js';
 import { log, danger } from '../utils/console-log.js';
 
@@ -20,7 +20,7 @@ passport.use(
     async (request, accessToken, refreshToken, profile, done) => {
       try {
         const [rows, fields] = await db.query(
-          `SELECT * FROM the_odin_book.users WHERE user_id = ${profile.id}`,
+          `SELECT * FROM the_odin_book.users WHERE userID = ${profile.id}`,
         );
 
         //! MYSQL QUERY EMPTY NO USER IN DB
@@ -66,7 +66,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   const [rows] = await db.query(
-    `SELECT * FROM the_odin_book.users WHERE user_id = ${id}`,
+    `SELECT * FROM the_odin_book.Users WHERE userID = ${id}`,
   );
   done(null, rows[0]);
 });

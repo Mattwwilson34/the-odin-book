@@ -1,6 +1,7 @@
 .Status_Input_Container {
   display: flex;
   gap: var(--gap-m);
+  margin-top: var(--mg-lg);
 }
 
 .Status_Input_Button {

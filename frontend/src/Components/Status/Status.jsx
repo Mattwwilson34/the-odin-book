@@ -8,9 +8,9 @@ import smileyFace from '../../icons/smiley-face.svg';
 const Status = ({ user }) => (
   <div className='Status_Container'>
     <div className='Status_Input_Container'>
-      <NavBubble icon={user.profile_picture} altText='avatar icon' avatar />
+      <NavBubble icon={user.profilePicture} altText='avatar icon' avatar />
       <button className='Status_Input_Button' type='button'>
-        {`What's on your mind ${user.first_name}`}
+        {`What's on your mind ${user.firstName}`}
       </button>
     </div>
     <hr />
@@ -27,8 +27,8 @@ const Status = ({ user }) => (
 
 Status.propTypes = {
   user: PropTypes.shape({
-    profile_picture: PropTypes.string.isRequired,
-    first_name: PropTypes.string.isRequired,
+    profilePicture: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
   }),
 };
 

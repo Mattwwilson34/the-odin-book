@@ -9,27 +9,33 @@ import commentIcon from '../../icons/comment.svg';
 import forwardIcon from '../../icons/forward.svg';
 
 const Post = ({ postData }) => {
-  const { post_text: postText, create_datetime: createdTime } = postData;
   const {
-    first_name: firstName,
-    last_name: lastName,
-    profile_picture: profilePicture,
-  } = postData.userInfo;
+    postText,
+    createdDateTime,
+    firstName,
+    lastName,
+    profilePicture,
+    expandedPostLikeData,
+    commentData,
+  } = postData;
+
+  const numPostLikes = expandedPostLikeData.length;
 
   return (
     <div className='Post'>
       <div className='Post_Header_Container'>
-        <NavBubble icon={profilePicture} avatar />
+        <NavBubble icon={profilePicture} avatar altText='avatar' />
         <div className='Post_Header_Text_Container'>
           <h3>{`${firstName} ${lastName}`}</h3>
-          <div>{moment(createdTime).fromNow()}</div>
+          <div>{moment(createdDateTime).fromNow()}</div>
         </div>
       </div>
       <div className='Post_Body_Container'>
         <p>{postText}</p>
       </div>
       <div className='Post_Stats_Container'>
-        Matt Wilson, Lyra Olson and 105 others
+        <img src={likeIcon} alt='thumbs up' />
+        {numPostLikes}
       </div>
       <hr />
       <div className='Post_Reactions_Container'>
@@ -48,7 +54,9 @@ const Post = ({ postData }) => {
       </div>
       <hr />
       <div className='Post_Comments_Container'>
-        <Comment />
+        {commentData.map((comment) => (
+          <Comment commentData={comment} key={comment.postCommentID} />
+        ))}
       </div>
     </div>
   );
@@ -56,13 +64,13 @@ const Post = ({ postData }) => {
 
 Post.propTypes = {
   postData: PropTypes.shape({
-    post_text: PropTypes.string.isRequired,
-    create_datetime: PropTypes.string.isRequired,
-    userInfo: {
-      first_name: PropTypes.string.isRequired,
-      last_name: PropTypes.string.isRequired,
-      profile_picture: PropTypes.string.isRequired,
-    },
+    postText: PropTypes.string.isRequired,
+    createdDateTime: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    profilePicture: PropTypes.string.isRequired,
+    expandedPostLikeData: PropTypes.array.isRequired,
+    commentData: PropTypes.array.isRequired,
   }).isRequired,
 };
 

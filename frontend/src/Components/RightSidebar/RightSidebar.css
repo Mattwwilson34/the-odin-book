@@ -1,0 +1,35 @@
+.Right_Sidebar {
+  position: fixed;
+  z-index: 1;
+  top: 20;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-self: end;
+  gap: var(--gap-sm);
+  padding: var(--pd-sm);
+  max-width: 250px;
+  min-width: 250px;
+}
+
+.Right_Sidebar_Header {
+  font-family: 'Klavlika-medium';
+}
+
+.Right_Sidebar_Contact_Container {
+  display: flex;
+  gap: var(--gap-lg);
+  background-color: var(--bg-primary);
+  padding: var(--pd-m);
+  border-radius: var(--board-rad-lg);
+}
+
+.Right_Sidebar_Contact_Container:hover {
+  cursor: pointer;
+  filter: brightness(0.96);
+}
+
+.Right_Sidebar_Contact_Container > img {
+  max-width: 30px;
+}

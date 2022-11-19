@@ -6,11 +6,14 @@ import Navbar from '../Components/Navbar/Navbar';
 import LeftSidebar from '../Components/LeftSidebar/LeftSidebar';
 import RightSidebar from '../Components/RightSidebar/RightSidebar';
 import Timeline from '../Components/Timeline/Timeline';
+import StatusModal from '../Components/StatusModal/StatusModal';
 
 const Root = () => {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [statusModalOpen, setStatusModalOpen] = useState(false);
+  const [fetchPosts, setFetchPosts] = useState(true);
 
   // CHECK IF USER IS LOGGED IN ON PAGE LOAD
   useEffect(() => {
@@ -28,11 +31,23 @@ const Root = () => {
     // Show logged in UI
     return (
       <div>
+        {statusModalOpen && (
+          <StatusModal
+            user={user}
+            setStatusModalOpen={setStatusModalOpen}
+            setFetchPosts={setFetchPosts}
+          />
+        )}
         <Navbar user={user} />
         <div className='Main_Content_Container'>
           <LeftSidebar user={user} />
           <div className='Timeline_Container'>
-            <Timeline user={user} />
+            <Timeline
+              user={user}
+              setStatusModalOpen={setStatusModalOpen}
+              fetchPosts={fetchPosts}
+              setFetchPosts={setFetchPosts}
+            />
           </div>
           <RightSidebar />
         </div>

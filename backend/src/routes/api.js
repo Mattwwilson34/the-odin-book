@@ -1,6 +1,7 @@
 import express from 'express';
 import db from '../database/database-connection.js';
-import delay from '../database/database-seeding/utils/delay.js';
+import { randomPost } from '../database/database-seeding/utils/fake-data-generators.js';
+import { insertPost } from '../database/database-seeding/utils/sql-queries.js';
 
 const router = express.Router();
 
@@ -70,6 +71,22 @@ router.get('/posts', async (req, res) => {
   }
 
   res.json(combinedData);
+});
+
+router.post('/posts', async (req, res) => {
+  const post = req.body;
+  const additionalPostData = randomPost(req.body.userID);
+  const updatedPost = { ...additionalPostData, postText: post.postBody };
+
+  try {
+    await db.execute(insertPost(updatedPost));
+    res.send({
+      message: 'Post payload recieved and added to db',
+      dataRecieved: updatedPost,
+    });
+  } catch (err) {
+    if (err) throw err;
+  }
 });
 
 export default router;

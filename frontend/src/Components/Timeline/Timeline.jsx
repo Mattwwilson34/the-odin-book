@@ -26,7 +26,9 @@ const Timeline = ({ user, fetchPosts, setFetchPosts, setStatusModalOpen }) => {
       <Status user={user} setStatusModalOpen={setStatusModalOpen} />
       {isLoading
         ? '<h1>Loading</h1>'
-        : posts.map((post) => <Post postData={post} key={post.postID} />)}
+        : posts.map((post) => (
+            <Post postData={post} key={post.postID} user={user} />
+          ))}
     </div>
   );
 };

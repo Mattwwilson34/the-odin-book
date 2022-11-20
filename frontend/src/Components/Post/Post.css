@@ -42,7 +42,14 @@
 .Post_Reaction_Text_Container {
   display: flex;
   align-items: center;
+  padding: var(--pd-xsm) var(--pd-m);
+  border-radius: var(--board-rad-sm);
   gap: var(--gap-xsm);
+}
+
+.Post_Reaction_Text_Container:hover {
+  cursor: pointer;
+  background-color: var(--bg-primary);
 }
 
 .Post_Stats_Container > img,

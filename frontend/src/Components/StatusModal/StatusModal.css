@@ -72,3 +72,9 @@
 .Status_Modal_User_Info_Container > span {
   font-family: 'Klavika-medium';
 }
+
+.Status_Modal_Post_Btn:disabled {
+  background-color: var(--bg-primary);
+  pointer-events: none;
+  color: rgba(136, 136, 136, 0.5);
+}

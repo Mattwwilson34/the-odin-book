@@ -60,7 +60,12 @@ const StatusModal = ({ user, setFetchPosts, setStatusModalOpen }) => {
           cols='33'
           placeholder={`What's on your mind ${user.firstName}`}
         />
-        <button type='button' onClick={submitPost}>
+        <button
+          className='Status_Modal_Post_Btn'
+          type='button'
+          onClick={submitPost}
+          disabled={!textArea}
+        >
           Post
         </button>
       </div>

@@ -1,14 +1,19 @@
 import './Post.css';
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import NavBubble from '../NavBubble/NavBubble';
 import Comment from '../Comment/Comment';
+import CommentInput from '../CommentInput/CommentInput';
 import likeIcon from '../../icons/like.svg';
 import commentIcon from '../../icons/comment.svg';
 import forwardIcon from '../../icons/forward.svg';
 
 const Post = ({ postData }) => {
+  //
+  // State
+  const [commentInputOpen, setCommentInputOpen] = useState(false);
+
   const {
     postText,
     createdDateTime,
@@ -20,6 +25,8 @@ const Post = ({ postData }) => {
   } = postData;
 
   const numPostLikes = expandedPostLikeData.length;
+
+  const handleClick = () => setCommentInputOpen((prev) => !prev);
 
   return (
     <div className='Post'>
@@ -43,10 +50,14 @@ const Post = ({ postData }) => {
           <img src={likeIcon} alt='thumbs up' />
           <span className='Post_Reactions_Text'>Like</span>
         </div>
-        <div className='Post_Reaction_Text_Container'>
+        <button
+          type='button'
+          onClick={handleClick}
+          className='Post_Reaction_Comment_Btn'
+        >
           <img src={commentIcon} alt='speach bubble' />
           <span className='Post_Reactions_Text'>Comment</span>
-        </div>
+        </button>
         <div className='Post_Reaction_Text_Container'>
           <img src={forwardIcon} alt='arrow pointing right' />
           <span className='Post_Reactions_Text'>Share</span>
@@ -54,6 +65,7 @@ const Post = ({ postData }) => {
       </div>
       <hr />
       <div className='Post_Comments_Container'>
+        {commentInputOpen && <CommentInput />}
         {commentData.map((comment) => (
           <Comment commentData={comment} key={comment.postCommentID} />
         ))}

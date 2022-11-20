@@ -9,7 +9,7 @@ import likeIcon from '../../icons/like.svg';
 import commentIcon from '../../icons/comment.svg';
 import forwardIcon from '../../icons/forward.svg';
 
-const Post = ({ postData }) => {
+const Post = ({ postData, user }) => {
   //
   // State
   const [commentInputOpen, setCommentInputOpen] = useState(false);
@@ -65,7 +65,7 @@ const Post = ({ postData }) => {
       </div>
       <hr />
       <div className='Post_Comments_Container'>
-        {commentInputOpen && <CommentInput />}
+        {commentInputOpen && <CommentInput user={user} />}
         {commentData.map((comment) => (
           <Comment commentData={comment} key={comment.postCommentID} />
         ))}
@@ -84,6 +84,7 @@ Post.propTypes = {
     expandedPostLikeData: PropTypes.array.isRequired,
     commentData: PropTypes.array.isRequired,
   }).isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default Post;

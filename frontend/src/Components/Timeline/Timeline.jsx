@@ -27,7 +27,12 @@ const Timeline = ({ user, fetchPosts, setFetchPosts, setStatusModalOpen }) => {
       {isLoading
         ? '<h1>Loading</h1>'
         : posts.map((post) => (
-            <Post postData={post} key={post.postID} user={user} />
+            <Post
+              postData={post}
+              key={post.postID}
+              user={user}
+              setFetchPosts={setFetchPosts}
+            />
           ))}
     </div>
   );
@@ -35,7 +40,7 @@ const Timeline = ({ user, fetchPosts, setFetchPosts, setStatusModalOpen }) => {
 
 Timeline.propTypes = {
   user: PropTypes.shape({}),
-  fetchPosts: PropTypes.func.isRequired,
+  fetchPosts: PropTypes.bool.isRequired,
   setFetchPosts: PropTypes.func.isRequired,
   setStatusModalOpen: PropTypes.func.isRequired,
 };

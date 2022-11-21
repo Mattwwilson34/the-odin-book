@@ -39,10 +39,33 @@
   justify-content: space-around;
 }
 
+.Post_Reaction_Comment_Btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-sm);
+  max-width: 150px;
+  min-width: 150px;
+  max-height: 20px;
+  background-color: white;
+  color: black;
+}
+
+.Post_Reaction_Comment_Btn > img {
+  width: 25px;
+}
+
 .Post_Reaction_Text_Container {
   display: flex;
   align-items: center;
+  padding: var(--pd-xsm) var(--pd-m);
+  border-radius: var(--board-rad-sm);
   gap: var(--gap-xsm);
+}
+
+.Post_Reaction_Text_Container:hover {
+  cursor: pointer;
+  background-color: var(--bg-primary);
 }
 
 .Post_Stats_Container > img,

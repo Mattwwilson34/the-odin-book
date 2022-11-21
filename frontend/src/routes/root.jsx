@@ -20,7 +20,6 @@ const Root = () => {
     (async () => {
       const response = await fetchUser();
       if (response && response.data) {
-        console.log('User', response.data);
         setUser(response.data);
         setIsLoggedIn('true');
       }

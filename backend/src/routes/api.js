@@ -1,7 +1,13 @@
 import express from 'express';
 import db from '../database/database-connection.js';
-import { randomPost } from '../database/database-seeding/utils/fake-data-generators.js';
-import { insertPost } from '../database/database-seeding/utils/sql-queries.js';
+import {
+  randomPost,
+  randomComment,
+} from '../database/database-seeding/utils/fake-data-generators.js';
+import {
+  insertPost,
+  insertComment,
+} from '../database/database-seeding/utils/sql-queries.js';
 
 const router = express.Router();
 
@@ -87,6 +93,25 @@ router.post('/posts', async (req, res) => {
   } catch (err) {
     if (err) throw err;
   }
+});
+
+router.post('/comment', async (req, res) => {
+  //
+  console.log(req.body);
+  const { userID, postID, commentBody } = req.body;
+
+  let comment = randomComment(userID, postID, true);
+
+  comment = {
+    ...comment,
+    commentText: commentBody,
+  };
+
+  await db.execute(insertComment(comment));
+  res.send({
+    message: 'Comment Payload recieved and added to database.',
+    dataSaved: comment,
+  });
 });
 
 export default router;

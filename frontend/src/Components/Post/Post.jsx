@@ -76,14 +76,30 @@ const Post = ({ postData, user, setFetchPosts }) => {
       </div>
       <hr />
       <div className='Post_Reactions_Container'>
-        <div className='Post_Reaction_Text_Container'>
-          <img src={likeIcon} alt='thumbs up' />
-          <span className='Post_Reactions_Text'>Like</span>
-        </div>
         <button
           type='button'
-          onClick={handleClick}
           className='Post_Reaction_Comment_Btn'
+          onClick={handleLikeClick}
+        >
+          <img
+            src={likeIcon}
+            alt='thumbs up'
+            className={postLiked ? 'filterBlue' : ''}
+          />
+          <span
+            className={
+              postLiked
+                ? ' Post_Reactions_Text filterBlue'
+                : 'Post_Reactions_Text'
+            }
+          >
+            Like
+          </span>
+        </button>
+        <button
+          type='button'
+          className='Post_Reaction_Comment_Btn'
+          onClick={handleCommentClick}
         >
           <img src={commentIcon} alt='speach bubble' />
           <span className='Post_Reactions_Text'>Comment</span>

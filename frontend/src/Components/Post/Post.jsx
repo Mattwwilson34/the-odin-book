@@ -1,5 +1,5 @@
 import './Post.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -15,7 +15,8 @@ const Post = ({ postData, user, setFetchPosts }) => {
   // State
   const [commentInputOpen, setCommentInputOpen] = useState(false);
   const [isPostLiked, setIsPostLiked] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [sendPostData, setSendPostData] = useState(false);
+  const isMounted = useRef(false);
 
   const {
     postText,
@@ -48,14 +49,18 @@ const Post = ({ postData, user, setFetchPosts }) => {
   };
 
   useEffect(() => {
-    if (isMounted) {
+    if (isMounted.current && sendPostData) {
       submitPostLike();
+      setSendPostData(false);
     } else {
-      setIsMounted(true);
+      isMounted.current = true;
     }
   }, [isPostLiked]);
 
-  const handleLikeClick = () => setIsPostLiked((prev) => !prev);
+  const handleLikeClick = () => {
+    setIsPostLiked((prev) => !prev);
+    setSendPostData(true);
+  };
   const handleCommentClick = () => setCommentInputOpen((prev) => !prev);
 
   return (
@@ -112,7 +117,13 @@ const Post = ({ postData, user, setFetchPosts }) => {
       <hr />
       <div className='Post_Comments_Container'>
         {commentData.map((comment) => (
-          <Comment commentData={comment} key={comment.postCommentID} />
+          <Comment
+            commentData={comment}
+            key={comment.postCommentID}
+            postID={postData.postID}
+            userID={user.userID}
+            setFetchPosts={setFetchPosts}
+          />
         ))}
         {commentInputOpen && (
           <CommentInput

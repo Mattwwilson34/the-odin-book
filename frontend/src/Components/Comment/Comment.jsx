@@ -68,11 +68,24 @@ const Comment = ({ commentData, userID, setFetchPosts }) => {
           <div className='Comment_Text_Body'>{commentText}</div>
         </div>
         <div className='Comment_Button_Container'>
-          <a href='http://localhost:3000'>likes {commentLikes.length}</a>
-          <a href='http://localhost:3000'>Reply</a>
-          <a href='http://localhost:3000'>
+          <button
+            type='button'
+            className={
+              isCommentLiked
+                ? 'Comment_Button_Container_Btn color_blue'
+                : 'Comment_Button_Container_Btn'
+            }
+            onClick={handleLikeClick}
+          >
+            {' '}
+            {`like (${commentLikes.length})`}
+          </button>
+          <button type='button' className='Comment_Button_Container_Btn'>
+            Reply
+          </button>
+          <button type='button' className='Comment_Button_Container_Btn'>
             {moment(createdDateTime).fromNow()}
-          </a>
+          </button>
         </div>
       </div>
     </div>

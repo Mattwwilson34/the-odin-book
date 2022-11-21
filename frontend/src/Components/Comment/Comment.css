@@ -22,14 +22,26 @@
   display: flex;
   gap: var(--gap-lg);
   padding-left: var(--pd-sm);
+  margin-top: 4px;
 }
 
-.Comment_Button_Container > a {
-  color: var(--bg-primary);
-  filter: brightness(0.5);
+.Comment_Button_Container_Btn {
+  background-color: transparent;
+  padding: 0;
+  min-width: auto;
+  max-width: auto;
+  color: #95989b;
   font-family: 'Klavika-medium';
 }
 
-.Comment_Button_Container > a:nth-of-type(3) {
+.Comment_Button_Container_Btn:hover {
+  text-decoration: underline;
+}
+
+.Comment_Button_Container_Btn:nth-of-type(3) {
   font-family: 'klavika-light';
+}
+
+.color_blue {
+  color: var(--blue-300);
 }

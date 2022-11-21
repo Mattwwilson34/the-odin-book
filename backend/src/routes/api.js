@@ -26,7 +26,7 @@ router.get('/posts', async (req, res) => {
   ];
 
   const [posts] = await db.execute(
-    `SELECT ${postFields} FROM userPost INNER JOIN Users ON userPost.userID=Users.userID`,
+    `SELECT ${postFields} FROM userPost INNER JOIN Users ON userPost.userID=Users.userID ORDER BY userPost.createdDateTime DESC`,
   );
 
   for await (const post of posts) {
@@ -81,7 +81,7 @@ router.get('/posts', async (req, res) => {
 
 router.post('/posts', async (req, res) => {
   const post = req.body;
-  const additionalPostData = randomPost(req.body.userID);
+  const additionalPostData = randomPost(req.body.userID, true);
   const updatedPost = { ...additionalPostData, postText: post.postBody };
 
   try {

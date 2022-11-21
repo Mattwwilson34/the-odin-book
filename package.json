@@ -4,6 +4,7 @@
   "description": "The Odin Book a Facebook core feature clone.",
   "main": "index.js",
   "scripts": {
+    "seed-database": "cd backend && npm run seed-database",
     "frontend-lint": "cd frontend && npm run lint",
     "backend-lint": "cd backend && npm run lint",
     "server": "cd backend && npm run backend",

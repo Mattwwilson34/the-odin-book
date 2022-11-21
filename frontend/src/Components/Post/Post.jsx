@@ -14,7 +14,7 @@ const Post = ({ postData, user, setFetchPosts }) => {
   //
   // State
   const [commentInputOpen, setCommentInputOpen] = useState(false);
-  const [postLiked, setPostLiked] = useState(false);
+  const [isPostLiked, setIsPostLiked] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   const {
@@ -35,7 +35,7 @@ const Post = ({ postData, user, setFetchPosts }) => {
     const postLikeData = {
       postID: postData.postID,
       userID: user.userID,
-      liked: postLiked,
+      liked: isPostLiked,
     };
 
     try {
@@ -53,9 +53,9 @@ const Post = ({ postData, user, setFetchPosts }) => {
     } else {
       setIsMounted(true);
     }
-  }, [postLiked]);
+  }, [isPostLiked]);
 
-  const handleLikeClick = () => setPostLiked((prev) => !prev);
+  const handleLikeClick = () => setIsPostLiked((prev) => !prev);
   const handleCommentClick = () => setCommentInputOpen((prev) => !prev);
 
   return (
@@ -84,11 +84,11 @@ const Post = ({ postData, user, setFetchPosts }) => {
           <img
             src={likeIcon}
             alt='thumbs up'
-            className={postLiked ? 'filterBlue' : ''}
+            className={isPostLiked ? 'filterBlue' : ''}
           />
           <span
             className={
-              postLiked
+              isPostLiked
                 ? ' Post_Reactions_Text filterBlue'
                 : 'Post_Reactions_Text'
             }

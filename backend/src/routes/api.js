@@ -52,7 +52,7 @@ router.get('/posts', async (req, res) => {
     let commentData = [];
     // Get post comments
     const [comments] = await db.execute(
-      `SELECT * FROM postComment WHERE postID = ?`,
+      `SELECT * FROM postComment WHERE postID = ? ORDER BY createdDateTime`,
       [post.postID],
     );
 

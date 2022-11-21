@@ -48,7 +48,7 @@ const StatusModal = ({ user, setFetchPosts, setStatusModalOpen }) => {
         </div>
         <hr />
         <div className='Status_Modal_User_Info_Container'>
-          <NavBubble avatar icon={user.profilePicture} />
+          <NavBubble avatar icon={user.profilePicture} altText='icon' />
           <span>{`${user.firstName} ${user.lastName}`}</span>
         </div>
         <textarea

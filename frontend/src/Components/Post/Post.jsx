@@ -1,6 +1,7 @@
 import './Post.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import NavBubble from '../NavBubble/NavBubble';
 import Comment from '../Comment/Comment';
@@ -13,6 +14,8 @@ const Post = ({ postData, user, setFetchPosts }) => {
   //
   // State
   const [commentInputOpen, setCommentInputOpen] = useState(false);
+  const [postLiked, setPostLiked] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const {
     postText,
@@ -26,7 +29,34 @@ const Post = ({ postData, user, setFetchPosts }) => {
 
   const numPostLikes = expandedPostLikeData.length;
 
-  const handleClick = () => setCommentInputOpen((prev) => !prev);
+  const submitPostLike = async () => {
+    const postLikeURL = 'http://localhost:8080/api/postLike';
+
+    const postLikeData = {
+      postID: postData.postID,
+      userID: user.userID,
+      liked: postLiked,
+    };
+
+    try {
+      const response = await axios.post(postLikeURL, postLikeData);
+      setFetchPosts(true);
+      console.log(response.data.message);
+    } catch (err) {
+      if (err) throw err;
+    }
+  };
+
+  useEffect(() => {
+    if (isMounted) {
+      submitPostLike();
+    } else {
+      setIsMounted(true);
+    }
+  }, [postLiked]);
+
+  const handleLikeClick = () => setPostLiked((prev) => !prev);
+  const handleCommentClick = () => setCommentInputOpen((prev) => !prev);
 
   return (
     <div className='Post'>

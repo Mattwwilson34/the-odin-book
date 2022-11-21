@@ -59,7 +59,7 @@ const randomComment = (userId, postId, createdNow = false) => {
   };
 };
 
-const randomCommentLike = (userId, postCommentId) => {
+const randomCommentLike = (userId, postCommentId, createdNow = false) => {
   let createdAt = moment(faker.date.past()).format('YYYY-MM-DD HH:mm:ss');
   if (createdNow) createdAt = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 

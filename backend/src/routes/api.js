@@ -4,11 +4,13 @@ import {
   randomPost,
   randomComment,
   randomPostLike,
+  randomCommentLike,
 } from '../database/database-seeding/utils/fake-data-generators.js';
 import {
   insertPost,
   insertComment,
   insertPostLike,
+  insertCommentLike,
 } from '../database/database-seeding/utils/sql-queries.js';
 
 const router = express.Router();
@@ -135,6 +137,29 @@ router.post('/postLike', async (req, res) => {
     res.send({
       message: 'Post like Payload recieved and deleted from database.',
       dataSaved: postLike,
+    });
+  }
+});
+
+router.post('/commentLike', async (req, res) => {
+  const { postCommentID, userID, liked } = req.body;
+  console.log(req.body);
+
+  let commentLike = randomCommentLike(userID, postCommentID, true);
+
+  if (liked) {
+    await db.execute(insertCommentLike(commentLike));
+    res.send({
+      message: 'Comment like Payload recieved and added to database.',
+      dataSaved: commentLike,
+    });
+  } else {
+    await db.execute(
+      `DELETE from commentLike WHERE postCommentID="${postCommentID}" AND userID="${userID}"`,
+    );
+    res.send({
+      message: 'Comment like Payload recieved and deleted from database.',
+      dataSaved: commentLike,
     });
   }
 });

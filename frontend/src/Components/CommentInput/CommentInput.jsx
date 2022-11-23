@@ -46,7 +46,12 @@ const CommentInput = ({ user, postID, setFetchPosts }) => {
   return (
     <div className='Comment_Input'>
       <div className='Comment_Input_Container'>
-        <NavBubble avatar icon={user.profilePicture} altText='avatar' />
+        <NavBubble
+          avatar
+          icon={user.profilePicture}
+          altText='avatar'
+          openProfile
+        />
         <Input
           type='text'
           placeholder='Write a comment...'

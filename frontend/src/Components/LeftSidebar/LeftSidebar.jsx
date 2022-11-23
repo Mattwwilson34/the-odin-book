@@ -9,7 +9,12 @@ import groups from '../../icons/group.svg';
 const LeftSidebar = ({ user }) => (
   <div className='Left_Sidebar'>
     <div className='Left_Sidebar_Link_Container'>
-      <NavBubble avatar icon={user.profilePicture} altText='avatar' />
+      <NavBubble
+        avatar
+        icon={user.profilePicture}
+        altText='avatar'
+        openProfile
+      />
       <span>{`${user.firstName} ${user.lastName}`}</span>
     </div>
     <div className='Left_Sidebar_Link_Container'>

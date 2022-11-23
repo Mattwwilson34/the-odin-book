@@ -13,7 +13,12 @@ const Status = ({ user, setStatusModalOpen }) => {
   return (
     <div className='Status_Container'>
       <div className='Status_Input_Container'>
-        <NavBubble icon={user.profilePicture} altText='avatar icon' avatar />
+        <NavBubble
+          icon={user.profilePicture}
+          altText='avatar icon'
+          avatar
+          openProfile
+        />
         <button
           className='Status_Input_Button'
           type='button'

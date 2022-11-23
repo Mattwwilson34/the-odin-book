@@ -31,7 +31,11 @@ NavBubble.propTypes = {
   icon: PropTypes.string.isRequired,
   altText: PropTypes.string.isRequired,
   avatar: PropTypes.bool.isRequired,
-  openProfile: PropTypes.bool.isRequired,
+  openProfile: PropTypes.bool,
+};
+
+NavBubble.defaultProps = {
+  openProfile: false,
 };
 
 export default NavBubble;

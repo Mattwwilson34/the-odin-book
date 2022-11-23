@@ -57,7 +57,7 @@ const Comment = ({ commentData, userID, setFetchPosts }) => {
   return (
     <div className='Comment_Container'>
       <div className='Comment_Left_Column'>
-        <NavBubble icon={profilePicture} avatar altText='avatar' />
+        <NavBubble icon={profilePicture} avatar altText='avatar' openProfile />
       </div>
       <div className='Comment_Right_Column'>
         <div className='Comment_Text_Container'>

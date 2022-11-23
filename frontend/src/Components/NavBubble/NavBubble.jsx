@@ -8,6 +8,7 @@ const NavBubble = ({ icon, altText, avatar }) => (
       className={avatar ? 'Nav_Bubble_Avatar' : 'Nav_Bubble_Icon'}
       src={icon}
       alt={altText}
+      referrerPolicy='no-referrer'
     />
   </div>
 );

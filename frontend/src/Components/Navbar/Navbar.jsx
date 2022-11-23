@@ -22,12 +22,7 @@ const Navbar = ({ user }) => (
       <NavBubble icon={menuIcon} altText='Menu cirlces icon' avatar={false} />
       <NavBubble icon={messengerIcon} altText='messenger icon' avatar={false} />
       <NavBubble icon={bellIcon} altText='bell icon' avatar={false} />
-      <NavBubble
-        icon={user.profilePicture}
-        altText='avatar icon'
-        avatar
-        openProfile={false}
-      />
+      <NavBubble icon={user.profilePicture} altText='avatar icon' avatar />
     </div>
   </div>
 );

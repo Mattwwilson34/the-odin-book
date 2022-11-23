@@ -9,7 +9,6 @@ import Timeline from '../Components/Timeline/Timeline';
 import StatusModal from '../Components/StatusModal/StatusModal';
 
 const Root = () => {
-  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [statusModalOpen, setStatusModalOpen] = useState(false);

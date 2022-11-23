@@ -3,11 +3,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const NavBubble = ({ icon, altText, avatar, openProfile }) => {
+const NavBubble = ({ icon, altText, avatar, openProfile, user }) => {
   //
   const navigate = useNavigate();
 
-  const redirectToProfile = () => (openProfile ? navigate('/profile') : false);
+  const redirectToProfile = () => {
+    console.log('user', user);
+    return openProfile ? navigate('/profile', { state: user }) : false;
+  };
 
   return (
     <div
@@ -32,10 +35,12 @@ NavBubble.propTypes = {
   altText: PropTypes.string.isRequired,
   avatar: PropTypes.bool.isRequired,
   openProfile: PropTypes.bool,
+  user: PropTypes.object,
 };
 
 NavBubble.defaultProps = {
   openProfile: false,
+  user: {},
 };
 
 export default NavBubble;

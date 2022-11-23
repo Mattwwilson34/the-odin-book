@@ -51,6 +51,7 @@ const CommentInput = ({ user, postID, setFetchPosts }) => {
           icon={user.profilePicture}
           altText='avatar'
           openProfile
+          user={user}
         />
         <Input
           type='text'

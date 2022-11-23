@@ -66,7 +66,13 @@ const Post = ({ postData, user, setFetchPosts }) => {
   return (
     <div className='Post'>
       <div className='Post_Header_Container'>
-        <NavBubble icon={profilePicture} avatar altText='avatar' openProfile />
+        <NavBubble
+          icon={profilePicture}
+          user={user}
+          avatar
+          altText='avatar'
+          openProfile
+        />
         <div className='Post_Header_Text_Container'>
           <h3>{`${firstName} ${lastName}`}</h3>
           <div>{moment(createdDateTime).fromNow()}</div>
@@ -123,6 +129,7 @@ const Post = ({ postData, user, setFetchPosts }) => {
             postID={postData.postID}
             userID={user.userID}
             setFetchPosts={setFetchPosts}
+            user={user}
           />
         ))}
         {commentInputOpen && (

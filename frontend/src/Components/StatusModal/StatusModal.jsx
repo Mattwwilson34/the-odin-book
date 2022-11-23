@@ -51,6 +51,7 @@ const StatusModal = ({ user, setFetchPosts, setStatusModalOpen }) => {
           <NavBubble
             avatar
             icon={user.profilePicture}
+            user={user}
             altText='icon'
             openProfile
           />

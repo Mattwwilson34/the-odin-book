@@ -5,7 +5,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import NavBubble from '../NavBubble/NavBubble';
 
-const Comment = ({ commentData, userID, setFetchPosts }) => {
+const Comment = ({ commentData, userID, setFetchPosts, user }) => {
   //
   // State
   const [isCommentLiked, setIsCommentLiked] = useState(false);
@@ -57,7 +57,13 @@ const Comment = ({ commentData, userID, setFetchPosts }) => {
   return (
     <div className='Comment_Container'>
       <div className='Comment_Left_Column'>
-        <NavBubble icon={profilePicture} avatar altText='avatar' openProfile />
+        <NavBubble
+          icon={profilePicture}
+          avatar
+          altText='avatar'
+          openProfile
+          user={user}
+        />
       </div>
       <div className='Comment_Right_Column'>
         <div className='Comment_Text_Container'>
@@ -102,6 +108,7 @@ Comment.propTypes = {
   }).isRequired,
   userID: PropTypes.string.isRequired,
   setFetchPosts: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default Comment;

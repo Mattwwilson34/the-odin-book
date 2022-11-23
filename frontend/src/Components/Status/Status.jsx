@@ -15,6 +15,7 @@ const Status = ({ user, setStatusModalOpen }) => {
       <div className='Status_Input_Container'>
         <NavBubble
           icon={user.profilePicture}
+          user={user}
           altText='avatar icon'
           avatar
           openProfile

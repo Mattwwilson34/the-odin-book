@@ -166,6 +166,12 @@ img {
   max-width: 680px;
 }
 
+.Profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* UTILITY CLASSES */
 .noPointerEvents {
   pointer-events: none;

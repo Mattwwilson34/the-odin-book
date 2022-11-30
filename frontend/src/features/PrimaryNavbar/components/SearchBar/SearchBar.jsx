@@ -1,6 +1,6 @@
 import './SearchBar.css';
 import React, { useState } from 'react';
-import searchIcon from '../../assets/icons/search.svg';
+import { magnifyingGlass } from '../../utils/icon-exports';
 
 const SearchBar = () => {
   const [searchActive, setSearchActive] = useState(false);
@@ -8,7 +8,11 @@ const SearchBar = () => {
   return (
     <div className='Search_Container'>
       {!searchActive && (
-        <img className='Search_Icon' src={searchIcon} alt='magnifying glass' />
+        <img
+          className='Search_Icon'
+          src={magnifyingGlass}
+          alt='magnifying glass'
+        />
       )}
       <input
         className='Search_Input'

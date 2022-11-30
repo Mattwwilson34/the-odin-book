@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import Navbar from '../Components/Navbar/Navbar';
-import ProfileHeader from '../Components/Profile-Components/ProfileHeader/ProfileHeader';
-import ProfileBody from '../Components/Profile-Components/PofileBody/PofileBody';
+import Navbar from '../components/Navbar/Navbar';
+import ProfileHeader from '../components/Profile-Components/ProfileHeader/ProfileHeader';
+import ProfileBody from '../components/Profile-Components/PofileBody/PofileBody';
 
 const Profile = () => {
   const { state: user } = useLocation();

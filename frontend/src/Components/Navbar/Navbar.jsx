@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import SearchBar from '../SearchBar/SearchBar';
 import NavLink from '../NavLink/NavLink';
 import NavBubble from '../NavBubble/NavBubble';
-import facebookIcon from '../../icons/facebook.svg';
-import homeIcon from '../../icons/home.svg';
-import menuIcon from '../../icons/menu-circles.svg';
-import messengerIcon from '../../icons/messenger.svg';
-import bellIcon from '../../icons/bell.svg';
+import facebookIcon from '../../assets/icons/facebook.svg';
+import homeIcon from '../../assets/icons/home.svg';
+import menuIcon from '../../assets/icons/menu-circles.svg';
+import messengerIcon from '../../assets/icons/messenger.svg';
+import bellIcon from '../../assets/icons/bell.svg';
 
 // eslint-disable-next-line no-unused-vars
 const Navbar = ({ user }) => (

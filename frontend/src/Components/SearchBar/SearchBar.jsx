@@ -1,6 +1,6 @@
 import './SearchBar.css';
 import React, { useState } from 'react';
-import searchIcon from '../../icons/search.svg';
+import searchIcon from '../../assets/icons/search.svg';
 
 const SearchBar = () => {
   const [searchActive, setSearchActive] = useState(false);

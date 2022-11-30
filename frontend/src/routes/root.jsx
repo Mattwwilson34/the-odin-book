@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import fetchUser from '../modules/fetchUser';
-import Login from '../Components/Login/Login';
-import Navbar from '../Components/Navbar/Navbar';
-import LeftSidebar from '../Components/LeftSidebar/LeftSidebar';
-import RightSidebar from '../Components/RightSidebar/RightSidebar';
-import Timeline from '../Components/Timeline/Timeline';
-import StatusModal from '../Components/StatusModal/StatusModal';
+import Login from '../components/Login/Login';
+import Navbar from '../components/Navbar/Navbar';
+import LeftSidebar from '../components/LeftSidebar/LeftSidebar';
+import RightSidebar from '../components/RightSidebar/RightSidebar';
+import Timeline from '../components/Timeline/Timeline';
+import StatusModal from '../components/StatusModal/StatusModal';
 
 const Root = () => {
   const [user, setUser] = useState(null);

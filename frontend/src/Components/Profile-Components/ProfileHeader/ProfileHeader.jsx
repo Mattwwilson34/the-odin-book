@@ -2,7 +2,7 @@ import './ProfileHeader.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import NavBubble from '../../NavBubble/NavBubble';
-import banner from '../../../photos/cover-photo.jpg';
+import banner from '../../../assets/photos/cover-photo.jpg';
 
 const ProfileHeader = ({ user }) => {
   const loop = () => {

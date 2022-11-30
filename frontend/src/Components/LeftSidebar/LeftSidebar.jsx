@@ -2,9 +2,9 @@ import './LeftSidebar.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import NavBubble from '../NavBubble/NavBubble';
-import friends from '../../icons/friends.svg';
-import calendar from '../../icons/calendar.svg';
-import groups from '../../icons/group.svg';
+import friends from '../../assets/icons/friends.svg';
+import calendar from '../../assets/icons/calendar.svg';
+import groups from '../../assets/icons/group.svg';
 
 const LeftSidebar = ({ user }) => (
   <div className='Left_Sidebar'>

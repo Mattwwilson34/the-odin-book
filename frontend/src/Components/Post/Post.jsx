@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import NavBubble from '../NavBubble/NavBubble';
 import Comment from '../Comment/Comment';
 import CommentInput from '../CommentInput/CommentInput';
-import likeIcon from '../../icons/like.svg';
-import commentIcon from '../../icons/comment.svg';
-import forwardIcon from '../../icons/forward.svg';
+import likeIcon from '../../assets/icons/like.svg';
+import commentIcon from '../../assets/icons/comment.svg';
+import forwardIcon from '../../assets/icons/forward.svg';
 
 const Post = ({ postData, user, setFetchPosts }) => {
   //

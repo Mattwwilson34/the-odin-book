@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'Klavika-medium';
   src: local('Klavika'),
-    url(./fonts/Klavika/klavika-medium.otf) format('opentype');
+    url(./assets/fonts/Klavika/klavika-medium.otf) format('opentype');
 }
 @font-face {
   font-family: 'Klavika-light';
   src: local('Klavika'),
-    url(./fonts/Klavika/klavika-light.otf) format('opentype');
+    url(./assets/fonts/Klavika/klavika-light.otf) format('opentype');
 }
 
 *,

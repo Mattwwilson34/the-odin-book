@@ -2,8 +2,8 @@ import './Status.css';
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import NavBubble from '../NavBubble/NavBubble';
-import photoVideoCard from '../../icons/photo-video-card.svg';
-import smileyFace from '../../icons/smiley-face.svg';
+import photoVideoCard from '../../assets/icons/photo-video-card.svg';
+import smileyFace from '../../assets/icons/smiley-face.svg';
 
 const Status = ({ user, setStatusModalOpen }) => {
   const handleStatusButtonClick = useCallback(() => {

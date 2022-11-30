@@ -1,6 +1,6 @@
 import './GoogleButton.css';
 import React from 'react';
-import googleIcon from '../../icons/google.svg';
+import googleIcon from '../../assets/icons/google.svg';
 import redirectToGoogleOAuth from '../../modules/redirect-google-OAuth';
 
 const GoogleButton = () => (

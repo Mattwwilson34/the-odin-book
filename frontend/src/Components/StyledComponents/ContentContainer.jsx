@@ -9,6 +9,7 @@ const ContentContainer = styled.div`
   border-radius: 10px;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  border: ${(props) => (props.border ? '2px dashed red' : 'none')};
 `;
 
 export default ContentContainer;

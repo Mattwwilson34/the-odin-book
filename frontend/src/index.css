@@ -127,7 +127,6 @@ input[placeholder] {
 }
 
 button {
-  min-width: 100%;
   padding: var(--pd-m) var(--pd-xl);
   border-radius: var(--board-rad-xsm);
   outline: none;
@@ -139,11 +138,11 @@ button {
   transition: filter 150ms linear;
   -webkit-transition: -webkit-filter 150ms linear;
 }
-
+/* 
 button:hover {
   filter: brightness(95%);
   cursor: pointer;
-}
+} */
 
 img {
   width: 48px;

@@ -8,12 +8,18 @@ const Div = styled.div`
   width: ${(props) => (props.small ? '30px' : '40px')};
   border-radius: 50%;
   background-size: cover;
+  align-self: flex-start;
 `;
 
-const Avatar = ({ user }) => <Div user={user} />;
+const Avatar = ({ user, small }) => <Div user={user} small={small} />;
 
 Avatar.propTypes = {
   user: PropTypes.object.isRequired,
+  small: PropTypes.bool,
+};
+
+Avatar.defaultProps = {
+  small: false,
 };
 
 export default Avatar;

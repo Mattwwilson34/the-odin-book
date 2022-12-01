@@ -20,6 +20,11 @@ const Comment = ({ commentData }) => {
 
   const handleClick = () => setliked((prev) => !prev);
 
+  const getLikeOrLikes = (numOfLikes) => {
+    if (numOfLikes < 1 || numOfLikes > 1) return 'likes';
+    return 'like';
+  };
+
   return (
     <ContentContainer>
       <Avatar user={commentUserData[0]} small />
@@ -29,7 +34,7 @@ const Comment = ({ commentData }) => {
       </CommentContainer>
       <ActionContainer>
         <DataSpan onClick={handleClick} liked={liked} bold>
-          {`${commentLikes.length} likes`}
+          {`${commentLikes.length} ${getLikeOrLikes(commentLikes.length)}`}
         </DataSpan>
         <DataSpan bold>Reply</DataSpan>
         <DataSpan>{moment(createdDateTime).fromNow()}</DataSpan>

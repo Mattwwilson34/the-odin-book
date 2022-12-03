@@ -16,4 +16,20 @@ const submitCommentLike = async (postCommentID, userID, liked) => {
   }
 };
 
-export default submitCommentLike;
+const submitComment = async (userID, postID, commentBody) => {
+  const commentURL = 'http://localhost:8080/api/comment';
+
+  const comment = {
+    userID,
+    postID,
+    commentBody,
+  };
+
+  try {
+    await axios.post(commentURL, comment);
+  } catch (err) {
+    if (err) throw err;
+  }
+};
+
+export { submitCommentLike, submitComment };

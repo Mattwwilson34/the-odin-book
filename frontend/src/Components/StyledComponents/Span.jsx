@@ -6,9 +6,10 @@ const Span = styled.span`
   align-items: center;
   font-family: ${(props) => (props.bold ? 'Klavika-medium' : 'Klavika-light')};
   align-self: stretch;
-  margin: ${(props) => props.margin};
+  margin: ${({ margin }) => margin};
   left: ${(props) => props.left};
   font-size: ${(props) => props.fontSize || '1.25rem'};
+  width: ${({ width }) => width};
 `;
 
 export default Span;

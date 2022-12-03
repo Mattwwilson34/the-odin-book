@@ -9,6 +9,10 @@ const Button = styled.button.attrs((props) => ({
   outline: none;
   color: ${(props) => props.color};
   background-color: ${(props) => props.bgColor};
+  padding: 15px;
+  font-size: 1.25rem;
+  background-color: #1a76f2;
+  color: white;
 
   &[disabled] {
     background-color: grey;

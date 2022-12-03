@@ -24,7 +24,7 @@ const CommentInput = ({ user, postID }) => {
   };
 
   return (
-    <ContentContainer border width='100%'>
+    <ContentContainer width='100%'>
       <Avatar user={user} small />
       <CommentTextInput
         type='text'

@@ -35,7 +35,7 @@ const Post = ({ postData, user }) => {
   const handleCommentClick = () => setCommentInputOpen((prev) => !prev);
 
   return (
-    <ContentContainer border margin='20px 0' width='100%'>
+    <ContentContainer margin='20px 0' width='100%'>
       <Avatar user={user} />
       <SpanContainer>
         <Span>{`${firstName} ${lastName}`}</Span>

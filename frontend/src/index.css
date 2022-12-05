@@ -155,17 +155,6 @@ img {
   grid-template: auto / 1fr 2fr 1fr;
   padding-top: 20px;
 }
-.Timeline_Container {
-  grid-column: 2 / 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Timeline {
-  min-height: 90vh;
-  max-width: 680px;
-}
 
 .Profile {
   display: flex;

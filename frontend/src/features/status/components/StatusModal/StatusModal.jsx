@@ -9,10 +9,12 @@ import TextArea from '../../../../components/StyledComponents/TextArea';
 import Button from '../../../../components/StyledComponents/Button';
 import Span from '../../../../components/StyledComponents/Span';
 
-import submitStatus from '../../api/status-api';
+import useAddPostData from '../../../posts/hooks/useAddPostData';
 
 const StatusModal = ({ user, setModalOpen }) => {
   const [textArea, setTextArea] = useState(null);
+
+  const { mutate: addPost } = useAddPostData();
 
   const handleChange = (e) => setTextArea(e.target.value);
 
@@ -21,7 +23,8 @@ const StatusModal = ({ user, setModalOpen }) => {
   }, [setModalOpen]);
 
   const submitPost = async () => {
-    submitStatus(user.userID, textArea);
+    const post = { user: user.userID, textArea };
+    addPost(post);
     setModalOpen(false);
   };
 

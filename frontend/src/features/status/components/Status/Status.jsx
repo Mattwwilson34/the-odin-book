@@ -11,6 +11,7 @@ import ContentContainer from '../../../../components/StyledComponents/ContentCon
 import * as icons from '../../utils/icons-exports';
 
 const StatusContainer = styled(ContentContainer)`
+  width: 100%;
   gap: 6px;
 `;
 

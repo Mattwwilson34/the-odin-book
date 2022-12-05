@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import * as commentAPI from '../../api/comment-api';
+import useAddCommentData from '../../hooks/useAddComment';
 import ContentContainer from '../../../../components/StyledComponents/ContentContainer';
 import Avatar from '../../../../components/Avatar';
 import CommentTextInput from '../StyledComponents/commentTextInput';
@@ -10,10 +10,18 @@ import Span from '../../../../components/StyledComponents/Span';
 const CommentInput = ({ user, postID }) => {
   const [commentText, setCommentText] = useState('');
 
+  const { mutate: addComment } = useAddCommentData();
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && e.target.value !== '') {
-      console.log(commentText);
-      commentAPI.submitComment(user.userID, postID, commentText);
+      console.log('sent');
+
+      const comment = {
+        user: user.userID,
+        postID,
+        commentText,
+      };
+      addComment(comment);
       setCommentText('');
       e.target.value = '';
     }

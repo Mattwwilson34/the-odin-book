@@ -1,4 +1,4 @@
-import Comment from '../Comment/Comment';
+import Comment from '../Comment';
 
 const Comments = ({ commentData }) =>
   commentData.map((comment) => (

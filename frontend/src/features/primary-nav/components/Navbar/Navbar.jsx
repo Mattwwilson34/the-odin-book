@@ -1,43 +1,37 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import SearchBar from '../SearchBar';
-import NavLink from '../NavLink';
-import NavBubble from '../../../../components/NavBubble';
-
-import './Navbar.css';
-
-import facebookIcon from '../../../../assets/icons/facebook.svg';
 import * as icons from '../../utils/icon-exports';
+import IconBubble from '../StyledComponents/IconBubble';
+import ContentContainer from '../../../../components/StyledComponents/ContentContainer';
+import Avatar from '../../../../components/Avatar';
+import LogoBubble from '../StyledComponents/LogoBubble';
+import IconLink from '../../../../components/IconLink';
+
+const NavContainer = styled(ContentContainer)`
+  display: grid;
+  grid-template: auto / 1fr 2fr 1fr;
+  border-radius: 0;
+`;
 
 const Navbar = ({ user }) => (
-  <div className='Navbar'>
-    <div className='NavBar_Logo_Search_Container'>
-      <img src={facebookIcon} alt='facebook icon' />
-      <SearchBar />
-    </div>
-    <NavLink icon={icons.home} activeURL='http://localhost:3000/' />
-    <div className='NavBubble_Container'>
-      <NavBubble
-        icon={icons.circle}
-        altText='Menu cirlces icon'
-        avatar={false}
-      />
-      <NavBubble
-        icon={icons.messenger}
-        altText='messenger icon'
-        avatar={false}
-      />
-      <NavBubble icon={icons.bell} altText='bell icon' avatar={false} />
-      <NavBubble icon={user.profilePicture} altText='avatar icon' avatar />
-    </div>
-  </div>
+  <NavContainer padding='5px'>
+    <ContentContainer padding='0'>
+      <LogoBubble svg={icons.facebook} />
+    </ContentContainer>
+    <ContentContainer padding='0'>
+      <IconLink svg={icons.home} href='/' />
+    </ContentContainer>
+    <ContentContainer padding='0' margin='0 0 0 auto' gap='10px'>
+      <IconBubble icon={icons.messenger} />
+      <IconBubble icon={icons.bell} />
+      <IconBubble icon={icons.circle} />
+      <Avatar user={user} />
+    </ContentContainer>
+  </NavContainer>
 );
-
 Navbar.propTypes = {
-  user: PropTypes.shape({
-    profilePicture: PropTypes.string.isRequired,
-  }),
+  user: PropTypes.object,
 };
 
 Navbar.defaultProps = {

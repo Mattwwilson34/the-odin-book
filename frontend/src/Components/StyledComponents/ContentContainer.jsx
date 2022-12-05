@@ -5,6 +5,7 @@ const ContentContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   padding: ${({ padding }) => padding || '10px'};
+  gap: ${({ gap }) => gap};
   background: white;
   border-radius: 10px;
   font-size: ${({ fontSize }) => fontSize};

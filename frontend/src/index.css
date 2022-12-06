@@ -112,40 +112,6 @@ hr {
   padding: 0;
 }
 
-input {
-  padding: var(--pd-m) var(--pd-xl);
-  border-radius: var(--board-rad-xsm);
-  outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  font-size: var(--font-m);
-}
-
-input:focus {
-  border: 1px solid var(--blue-300);
-}
-
-input[placeholder] {
-  font-size: var(--font-m);
-}
-
-/* button {
-  padding: var(--pd-m) var(--pd-xl);
-  border-radius: var(--board-rad-xsm);
-  outline: none;
-  border: none;
-  background-color: var(--blue-300);
-  color: var(--white-300);
-  font-size: var(--font-m);
-  font-weight: bold;
-  transition: filter 150ms linear;
-  -webkit-transition: -webkit-filter 150ms linear;
-} */
-/* 
-button:hover {
-  filter: brightness(95%);
-  cursor: pointer;
-} */
-
 img {
   width: 48px;
 }

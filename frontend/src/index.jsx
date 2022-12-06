@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Root from './routes/root';
+
+import HomePage from './routes/home.page';
 import Profile from './routes/profile';
 import LoginSuccess from './routes/login-success';
 import ErrorPage from './utils/error-page';
@@ -15,7 +16,7 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <HomePage />,
     errorElement: <ErrorPage />,
     children: [],
   },

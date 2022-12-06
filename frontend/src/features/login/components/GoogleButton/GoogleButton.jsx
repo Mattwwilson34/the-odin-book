@@ -1,4 +1,3 @@
-import './GoogleButton.css';
 import React from 'react';
 import styled from 'styled-components';
 import SVG from 'react-inlinesvg';

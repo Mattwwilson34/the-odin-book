@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import * as icons from '../../utils/icon-exports';
 
@@ -45,7 +44,7 @@ const Post = ({ postData, user }) => {
         {postText}
       </ContentContainer>
       <ButtonContainer>
-        <LikeButton text={numPostLikes} disabled />
+        <LikeButton text={String(numPostLikes)} disabled />
       </ButtonContainer>
       <hr />
       <ButtonContainer justify='space-around'>

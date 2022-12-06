@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import Navbar from '../components/Navbar/Navbar';
+import Navbar from '../features/primary-nav/components/Navbar';
 import ProfileHeader from '../components/Profile-Components/ProfileHeader/ProfileHeader';
 import ProfileBody from '../components/Profile-Components/PofileBody/PofileBody';
 

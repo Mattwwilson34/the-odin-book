@@ -1,8 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Login from '../features/login/components/Login';
 import Navbar from '../features/primary-nav';
-// import LeftSidebar from '../components/LeftSidebar/LeftSidebar';
-// import RightSidebar from '../components/RightSidebar/RightSidebar';
+import LeftSidebar from '../features/LeftSideBar';
 import Timeline from '../features/timeline/components/Timeline/Timeline';
 
 import useUserData from '../hooks/useUerData';
@@ -15,7 +14,7 @@ const HomePage = () => {
       <div>
         <Navbar user={user.data} />
         <div className='Main_Content_Container'>
-          {/* <LeftSidebar user={user} /> */}
+          <LeftSidebar user={user.data} />
           <Timeline user={user.data} />
           {/* <RightSidebar /> */}
         </div>

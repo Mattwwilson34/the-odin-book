@@ -39,7 +39,7 @@ const StatusModal = ({ user, setModalOpen }) => {
         <Avatar user={user} />
         <Span margin='0 10px' bold>{`${user.firstName} ${user.lastName}`}</Span>
         <TextArea user={user} onChange={handleChange} />
-        <Button disabled={!textArea} onClick={submitPost}>
+        <Button disabled={!textArea} onClick={submitPost} width='100%'>
           Post
         </Button>
       </ContentContainer>

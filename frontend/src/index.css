@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'Klavika-medium';
   src: local('Klavika'),
-    url(./fonts/Klavika/klavika-medium.otf) format('opentype');
+    url(./assets/fonts/Klavika/klavika-medium.otf) format('opentype');
 }
 @font-face {
   font-family: 'Klavika-light';
   src: local('Klavika'),
-    url(./fonts/Klavika/klavika-light.otf) format('opentype');
+    url(./assets/fonts/Klavika/klavika-light.otf) format('opentype');
 }
 
 *,
@@ -108,41 +108,8 @@ hr {
   width: 100%;
   background-color: rgb(0, 0, 0);
   opacity: 0.5;
-}
-
-input {
-  padding: var(--pd-m) var(--pd-xl);
-  border-radius: var(--board-rad-xsm);
-  outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  font-size: var(--font-m);
-}
-
-input:focus {
-  border: 1px solid var(--blue-300);
-}
-
-input[placeholder] {
-  font-size: var(--font-m);
-}
-
-button {
-  min-width: 100%;
-  padding: var(--pd-m) var(--pd-xl);
-  border-radius: var(--board-rad-xsm);
-  outline: none;
-  border: none;
-  background-color: var(--blue-300);
-  color: var(--white-300);
-  font-size: var(--font-m);
-  font-weight: bold;
-  transition: filter 150ms linear;
-  -webkit-transition: -webkit-filter 150ms linear;
-}
-
-button:hover {
-  filter: brightness(95%);
-  cursor: pointer;
+  margin: 5px;
+  padding: 0;
 }
 
 img {
@@ -154,16 +121,11 @@ img {
   grid-template: auto / 1fr 2fr 1fr;
   padding-top: 20px;
 }
-.Timeline_Container {
-  grid-column: 2 / 3;
+
+.Profile {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.Timeline {
-  min-height: 90vh;
-  max-width: 680px;
 }
 
 /* UTILITY CLASSES */

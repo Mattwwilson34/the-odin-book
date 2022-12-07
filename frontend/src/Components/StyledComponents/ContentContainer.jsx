@@ -6,7 +6,7 @@ const ContentContainer = styled.div`
   align-items: center;
   padding: ${({ padding }) => padding || '10px'};
   gap: ${({ gap }) => gap};
-  background: white;
+  background: ${({ background }) => background || 'white'};
   border-radius: 10px;
   font-size: ${({ fontSize }) => fontSize};
   margin: ${({ margin }) => margin};

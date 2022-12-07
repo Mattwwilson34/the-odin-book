@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Div = styled.div`
+const Img = styled.img.attrs((props) => ({
+  src: props.user.profilePicture,
+}))`
   background: url('${(props) => props.user.profilePicture}');
   background-position: center;
   height: ${(props) => (props.small ? '30px' : '40px')};
@@ -11,7 +13,7 @@ const Div = styled.div`
   align-self: flex-start;
 `;
 
-const Avatar = ({ user, small }) => <Div user={user} small={small} />;
+const Avatar = ({ user, small }) => <Img user={user} small={small} />;
 
 Avatar.propTypes = {
   user: PropTypes.object.isRequired,

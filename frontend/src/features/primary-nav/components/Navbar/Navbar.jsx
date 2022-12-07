@@ -6,12 +6,13 @@ import IconBubble from '../StyledComponents/IconBubble';
 import ContentContainer from '../../../../components/StyledComponents/ContentContainer';
 import Avatar from '../../../../components/Avatar';
 import LogoBubble from '../StyledComponents/LogoBubble';
-import IconLink from '../../../../components/IconLink';
+import IconLink from '../../../../components/StyledComponents/IconLink';
 
 const NavContainer = styled(ContentContainer)`
   display: grid;
   grid-template: auto / 1fr 2fr 1fr;
   border-radius: 0;
+  padding: 5px 10px;
 `;
 
 const Navbar = ({ user }) => (

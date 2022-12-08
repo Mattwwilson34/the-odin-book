@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import HomePage from './routes/home.page';
-import Profile from './routes/profile';
+import Profile from './routes/profile.page';
 import LoginSuccess from './routes/login-success';
 import ErrorPage from './utils/error-page';
 import './index.css';
@@ -27,6 +27,7 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <Profile />,
+    errorElement: <ErrorPage />,
   },
 ]);
 

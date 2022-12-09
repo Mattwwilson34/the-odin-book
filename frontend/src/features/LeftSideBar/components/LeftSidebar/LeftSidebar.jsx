@@ -9,7 +9,7 @@ import IconButton from '../../../../components/StyledComponents/IconButton';
 import ContentContainer from '../../../../components/StyledComponents/ContentContainer';
 import Span from '../../../../components/StyledComponents/Span';
 import SidebarContainer from '../StyledComponents/SidebarContainer';
-import HoverContainer from '../../../../components/StyledComponents/hoverContainer';
+import HoverContainer from '../../../../components/StyledComponents/HoverContainer';
 
 const LeftSidebar = ({ user }) => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const LeftSidebar = ({ user }) => {
           <Span bold>{`${user.firstName} ${user.lastName}`}</Span>
         </ContentContainer>
       </HoverContainer>
-      <HoverContainer>
+      <HoverContainer onClick={() => navigate('/friends', { state: { user } })}>
         <IconButton
           svg={icons.friends}
           text='friends'

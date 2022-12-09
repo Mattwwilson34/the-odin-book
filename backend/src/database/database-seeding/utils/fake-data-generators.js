@@ -71,10 +71,23 @@ const randomCommentLike = (userId, postCommentId, createdNow = false) => {
   };
 };
 
+const randomFriendship = (userIdOne, userIdTwo, createdNow = false) => {
+  let createdAt = moment(faker.date.past()).format('YYYY-MM-DD HH:mm:ss');
+  if (createdNow) createdAt = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+
+  return {
+    userIdOne,
+    userIdTwo,
+    friendshipStatus: 1,
+    createdAt: createdAt,
+  };
+};
+
 export {
   randomUser,
   randomPost,
   randomPostLike,
   randomComment,
   randomCommentLike,
+  randomFriendship,
 };

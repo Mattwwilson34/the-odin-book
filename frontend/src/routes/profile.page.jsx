@@ -1,4 +1,4 @@
-import useUserData from '../hooks/useUerData';
+import useUserData from '../hooks/useUserData';
 import Navbar from '../features/primary-nav/components/Navbar';
 import Profile from '../features/profile';
 

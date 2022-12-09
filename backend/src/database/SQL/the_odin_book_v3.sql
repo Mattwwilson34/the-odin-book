@@ -103,18 +103,21 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `the_odin_book`.`Friends`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `the_odin_book`.`Friends` (
-  `friendOne` VARCHAR(36) NULL DEFAULT NULL,
-  `FriendTwo` VARCHAR(36) NULL DEFAULT NULL,
-  `FriendshipStatus` ENUM('0', '1', '2') NULL DEFAULT '0',
-  `createdDateTime` DATETIME NULL,
-  INDEX `fk_friends_users_idx` (`friendOne` ASC) VISIBLE,
-  INDEX `fk_friends_users1_idx` (`FriendTwo` ASC) VISIBLE,
-  CONSTRAINT `fk_friends_users`
-    FOREIGN KEY (`friendOne`)
-    REFERENCES `the_odin_book`.`Users` (`userID`),
-  CONSTRAINT `fk_friends_users1`
-    FOREIGN KEY (`FriendTwo`)
-    REFERENCES `the_odin_book`.`Users` (`userID`))
+  `userIdOne` VARCHAR(36) NOT NULL,
+  `userIdTwo` VARCHAR(36) NOT NULL,
+  `friendshipStatus` ENUM('0', '1', '2') NULL DEFAULT '0',
+  `createdDateTime` DATETIME NULL DEFAULT NULL,
+  INDEX `fk_Friends_Users1_idx` (`userIdOne` ASC) VISIBLE,
+  CONSTRAINT `fk_Friends_Users1`
+    FOREIGN KEY (`userIdOne`)
+    REFERENCES `the_odin_book`.`Users` (`userID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Friends_Users2`
+    FOREIGN KEY (`userIdTwo`)
+    REFERENCES `the_odin_book`.`Users` (`userID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

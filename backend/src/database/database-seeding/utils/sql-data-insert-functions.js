@@ -118,7 +118,7 @@ const insertRandomPostLikeToDB = async (numberOfPostLikes = 300) => {
 const insertRandomFriendshipsToDB = async (friendsPerUser = 5) => {
   //
   //batch insert array
-  let friendShipDataArray = [];
+  let friendShipDataArrayContainer = [];
 
   // Get userIds from db
   const [userIds] = await db.query('SELECT userID from Users');
@@ -144,7 +144,10 @@ const insertRandomFriendshipsToDB = async (friendsPerUser = 5) => {
 
       const friendShipObject = fakeData.randomFriendship(userIdOne, userIdTwo);
 
-      friendShipDataArray = sqlQuery.getFriendshipDataArray(friendShipObject);
+      const friendShipDataArray =
+        sqlQuery.getFriendshipDataArray(friendShipObject);
+
+      friendShipDataArrayContainer.push(friendShipDataArray);
     }
     // reset alreadyFriends array for next user iteration
     alreadyFriends.length = 0;
@@ -154,7 +157,7 @@ const insertRandomFriendshipsToDB = async (friendsPerUser = 5) => {
   const sql = `INSERT INTO friends (userIdOne,userIdTwo,friendshipStatus,createdDateTime)VALUES ?`;
   try {
     // mysql2 batch inserting requires a special array format thus the double array paramater
-    await db.query(sql, [[friendShipDataArray]], true);
+    await db.query(sql, [friendShipDataArrayContainer], true);
   } catch (err) {
     if (err) throw err;
   }
@@ -162,8 +165,6 @@ const insertRandomFriendshipsToDB = async (friendsPerUser = 5) => {
   const totalFriends = userIds.length * friendsPerUser;
   log(success(`✅ Added ${totalFriends} friendships to Friends Table`));
 };
-
-// insertRandomFriendshipsToDB();
 
 export {
   insertRandomUserToDB,

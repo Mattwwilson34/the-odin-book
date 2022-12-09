@@ -181,4 +181,9 @@ router.get('/friends/:userID', async (req, res) => {
 
   const [friendData] = await db.execute(
     `SELECT firstName, lastName, username, profilePicture FROM the_odin_book.Users WHERE userID IN (${friendIDs})`,
+  );
+
+  res.send(friendData);
+});
+
 export default router;

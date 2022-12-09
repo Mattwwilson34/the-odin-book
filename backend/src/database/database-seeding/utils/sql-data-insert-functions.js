@@ -3,6 +3,7 @@ import * as fakeData from './fake-data-generators.js';
 import getRandomNumber from './random-number.js';
 import db from '../../database-connection.js';
 import { log, success } from '../../../utils/console-log.js';
+import { getRandomUserID } from './friends-table-utils/getRandomUserID.js';
 
 const insertRandomUserToDB = async (numberOfUsers = 10) => {
   for (let i = 0; i < numberOfUsers; i += 1) {
@@ -117,47 +118,43 @@ const insertRandomPostLikeToDB = async (numberOfPostLikes = 300) => {
 const insertRandomFriendshipsToDB = async (friendsPerUser = 5) => {
   //
   //batch insert array
-  const friendshipDataArrayContainer = [];
+  let friendShipDataArray = [];
 
   // Get userIds from db
   const [userIds] = await db.query('SELECT userID from Users');
 
-  userIds.forEach(async (userId, index) => {
+  userIds.forEach(async (userId) => {
     // destructure userID so that comparisons are [string <> string] not [string <> obj]
     const { userID: userIdOne } = userId;
 
     // holds existing friendships to prevent duplicate entries
     let alreadyFriends = [];
 
-    // create random friendships *no repeate friendships*
+    // create random friendships *no repeat friendships*
     for (let i = 0; i < friendsPerUser; i += 1) {
-      let userIdTwo = userIds[getRandomNumber(0, userIds.length - 1)].userID;
+      let userIdTwo = getRandomUserID(userIds);
 
       // get new userIdTwo if same as userId or if friendship already exists
-      while (userIdTwo === userIdOne || alreadyFriends.includes(userIdTwo)) {
-        userIdTwo = userIds[getRandomNumber(0, userIds.length - 1)].userID;
+      while (userIdOne === userIdTwo || alreadyFriends.includes(userIdTwo)) {
+        userIdTwo = getRandomUserID(userIds);
       }
 
-      // userIdTwo passed validation add to alreadyFriends array to prevent duplicate
+      // store id for future id validations
       alreadyFriends.push(userIdTwo);
 
-      // get friendship object with all needed fields
-      const friendShip = fakeData.randomFriendship(userIdOne, userIdTwo);
+      const friendShipObject = fakeData.randomFriendship(userIdOne, userIdTwo);
 
-      // get array of friendship data fieldso
-      const friendShipDataArray = sqlQuery.insertFriendship(friendShip);
-
-      // add
-      friendshipDataArrayContainer.push(friendShipDataArray);
+      friendShipDataArray = sqlQuery.getFriendshipDataArray(friendShipObject);
     }
-    // reset friends array for next user iteration
+    // reset alreadyFriends array for next user iteration
     alreadyFriends.length = 0;
   });
 
   // batch insert all friendships into friendship table
   const sql = `INSERT INTO friends (userIdOne,userIdTwo,friendshipStatus,createdDateTime)VALUES ?`;
   try {
-    await db.query(sql, [friendshipDataArrayContainer], true);
+    // mysql2 batch inserting requires a special array format thus the double array paramater
+    await db.query(sql, [[friendShipDataArray]], true);
   } catch (err) {
     if (err) throw err;
   }

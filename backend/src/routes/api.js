@@ -164,4 +164,21 @@ router.post('/commentLike', async (req, res) => {
   }
 });
 
+// Friends
+router.get('/friends/:userID', async (req, res) => {
+  const userID = req.params.userID;
+  const [friends] = await db.execute(
+    `SELECT * FROM the_odin_book.Friends WHERE userIdOne= ?`,
+    [userID],
+  );
+
+  const friendIDs = [];
+  friends.forEach((friend) => {
+    friendIDs.push(`"${friend.userIdTwo}"`);
+  });
+
+  console.log(friendIDs);
+
+  const [friendData] = await db.execute(
+    `SELECT firstName, lastName, username, profilePicture FROM the_odin_book.Users WHERE userID IN (${friendIDs})`,
 export default router;

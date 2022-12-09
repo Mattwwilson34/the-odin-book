@@ -78,7 +78,7 @@ const randomFriendship = (userIdOne, userIdTwo, createdNow = false) => {
   return {
     userIdOne,
     userIdTwo,
-    friendshipStatus: 1,
+    friendshipStatus: '1',
     createdAt: createdAt,
   };
 };

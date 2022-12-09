@@ -25,7 +25,7 @@ const insertCommentLike = (commentLikeDataObj) => {
   return `INSERT INTO CommentLike (commentLikeID,postCommentID,userID,createdDateTime)VALUES(${userData});`;
 };
 
-const insertFriendship = (object) => Object.values(object);
+const getFriendshipDataArray = (object) => Object.values(object);
 
 export {
   insertUser,
@@ -33,5 +33,5 @@ export {
   insertComment,
   insertPostLike,
   insertCommentLike,
-  insertFriendship,
+  getFriendshipDataArray,
 };

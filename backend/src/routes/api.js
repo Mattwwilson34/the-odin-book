@@ -167,6 +167,7 @@ router.post('/commentLike', async (req, res) => {
 // Friends
 router.get('/friends/:userID', async (req, res) => {
   const userID = req.params.userID;
+
   const [friends] = await db.execute(
     `SELECT * FROM the_odin_book.Friends WHERE userIdOne= ?`,
     [userID],
@@ -177,13 +178,36 @@ router.get('/friends/:userID', async (req, res) => {
     friendIDs.push(`"${friend.userIdTwo}"`);
   });
 
-  console.log(friendIDs);
-
   const [friendData] = await db.execute(
     `SELECT firstName, lastName, username, profilePicture FROM the_odin_book.Users WHERE userID IN (${friendIDs})`,
   );
 
-  res.send(friendData);
+  const friendDataPlusStatus = [];
+  friendData.forEach((friend, index) => {
+    const updatedFriend = {
+      ...friend,
+      friendshipStatus: friends[index].friendshipStatus,
+    };
+    friendDataPlusStatus.push(updatedFriend);
+  });
+
+  const sortedFriends = {
+    friends: [],
+    notFriends: [],
+    pendingFriends: [],
+  };
+
+  friendDataPlusStatus.forEach((friend) => {
+    if (friend.friendshipStatus === '0') {
+      sortedFriends.notFriends.push(friend);
+    } else if (friend.friendshipStatus === '1') {
+      sortedFriends.friends.push(friend);
+    } else {
+      sortedFriends.pendingFriends.push(friend);
+    }
+  });
+
+  res.send(sortedFriends);
 });
 
 export default router;

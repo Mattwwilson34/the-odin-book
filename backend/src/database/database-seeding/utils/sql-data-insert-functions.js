@@ -115,7 +115,7 @@ const insertRandomPostLikeToDB = async (numberOfPostLikes = 300) => {
   );
 };
 
-const insertRandomFriendshipsToDB = async (friendsPerUser = 5) => {
+const insertRandomFriendshipsToDB = async (friendsPerUser = 9) => {
   //
   //batch insert array
   let friendShipDataArrayContainer = [];
@@ -154,7 +154,7 @@ const insertRandomFriendshipsToDB = async (friendsPerUser = 5) => {
   });
 
   // batch insert all friendships into friendship table
-  const sql = `INSERT INTO friends (userIdOne,userIdTwo,friendshipStatus,createdDateTime)VALUES ?`;
+  const sql = `INSERT INTO Friends (userIdOne,userIdTwo,friendshipStatus,createdDateTime)VALUES ?`;
   try {
     // mysql2 batch inserting requires a special array format thus the double array paramater
     await db.query(sql, [friendShipDataArrayContainer], true);

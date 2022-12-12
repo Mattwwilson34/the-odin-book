@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import moment from 'moment';
+import getRandomIntInclusive from '../utils/random-number.js';
 import getRandomNumber from '../utils/random-number.js';
 
 const randomUser = (createdNow = false) => {
@@ -78,7 +79,7 @@ const randomFriendship = (userIdOne, userIdTwo, createdNow = false) => {
   return {
     userIdOne,
     userIdTwo,
-    friendshipStatus: '1',
+    friendshipStatus: String(getRandomIntInclusive(0, 2)),
     createdAt: createdAt,
   };
 };

@@ -5,6 +5,7 @@ import ContentContainer from '../../../../components/StyledComponents/ContentCon
 import Button from '../../../../components/StyledComponents/Button';
 import TextInput from '../../../../components/StyledComponents/TextInput';
 import GoogleButton from '../GoogleButton';
+import SignUpModal from '../../../signup/components/SignUpModal';
 
 const LoginContainer = styled(ContentContainer)`
   margin: 20vh auto;
@@ -22,30 +23,36 @@ const StyledHeader = styled.h1`
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signUpModalOpen, setSignUpModalOpen] = useState(false);
 
   const handleChange = (e) => {
     const { placeholder: input, value } = e.target;
     return input === 'Email' ? setEmail(value) : setPassword(value);
   };
 
+  const handleClick = () => setSignUpModalOpen((prev) => !prev);
+
   return (
-    <LoginContainer gap='10px'>
-      <StyledHeader>odinbook</StyledHeader>
-      <TextInput width='100%' placeholder='Email' onChange={handleChange} />
-      <TextInput
-        width='100%'
-        type='password'
-        placeholder='Password'
-        onChange={handleChange}
-      />
-      <Button width='100%' disabled={!email || !password}>
-        Login
-      </Button>
-      <Button width='100%' backgroundColor='#42b729'>
-        Create Account
-      </Button>
-      <GoogleButton />
-    </LoginContainer>
+    <>
+      {signUpModalOpen && <SignUpModal />}
+      <LoginContainer gap='10px'>
+        <StyledHeader>odinbook</StyledHeader>
+        <TextInput width='100%' placeholder='Email' onChange={handleChange} />
+        <TextInput
+          width='100%'
+          type='password'
+          placeholder='Password'
+          onChange={handleChange}
+        />
+        <Button width='100%' disabled={!email || !password}>
+          Login
+        </Button>
+        <Button width='100%' backgroundColor='#42b729' onClick={handleClick}>
+          Create Account
+        </Button>
+        <GoogleButton />
+      </LoginContainer>
+    </>
   );
 };
 

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
-import Avatar from '../components/Avatar';
-import ContentContainer from '../components/StyledComponents/ContentContainer';
-import Span from '../components/StyledComponents/Span';
+// import Avatar from '../components/Avatar';
+// import ContentContainer from '../components/StyledComponents/ContentContainer';
+// import Span from '../components/StyledComponents/Span';
 import useFriendsData from '../features/friends/hooks/useFriendsData';
 import Navbar from '../features/primary-nav';
+import FriendCard from '../features/friends/components/FriendCard';
 
 const FriendsContainer = styled.div`
   margin: 20px 0;
@@ -33,13 +34,28 @@ const friendsPage = () => {
   return (
     <div>
       <Navbar user={user} />
+      <h2>Current Friends</h2>
+      <hr />
       <FriendsContainer>
         {isSuccess &&
-          friends.data.map((friend) => (
-            <ContentContainer gap='10px' width='200px' key={friend.firstName}>
-              <Avatar user={friend} />
-              <Span>{`${friend.firstName} ${friend.lastName}`}</Span>
-            </ContentContainer>
+          friends.data.friends.map((friend) => (
+            <FriendCard src={friend.profilePicture} user={friend} />
+          ))}
+      </FriendsContainer>
+      <h2>Potential Friends</h2>
+      <hr />
+      <FriendsContainer>
+        {isSuccess &&
+          friends.data.notFriends.map((friend) => (
+            <FriendCard src={friend.profilePicture} user={friend} />
+          ))}
+      </FriendsContainer>
+      <h2>Pending Friends</h2>
+      <hr />
+      <FriendsContainer>
+        {isSuccess &&
+          friends.data.pendingFriends.map((friend) => (
+            <FriendCard src={friend.profilePicture} user={friend} />
           ))}
       </FriendsContainer>
     </div>

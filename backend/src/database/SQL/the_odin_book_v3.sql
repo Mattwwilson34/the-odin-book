@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `the_odin_book`.`Users` (
   `firstName` VARCHAR(20) NOT NULL,
   `lastName` VARCHAR(20) NOT NULL,
   `username` VARCHAR(50) NOT NULL,
-  `password` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `email` VARCHAR(40) NOT NULL,
   `birthdate` DATE NOT NULL,
   `createdDateTime` DATETIME NOT NULL,

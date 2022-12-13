@@ -1,46 +1,60 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import Message from '../Message';
 import Button from '../../../../components/StyledComponents/Button';
 import ModalContainer from '../StyledComponents/ModalContainer';
 import Form from '../StyledComponents/Form';
 import FormContentContainer from '../StyledComponents/FormContentContainer';
 import Input from '../StyledComponents/Input';
 
+import postSignupData from '../../api/postSignupData';
 
-
-const SignUpModal = () => {
+const SignUpModal = ({ setSignUpModalOpen }) => {
+  const [message, setMessage] = useState('');
   const [inputValues, setInputValues] = useState({
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    date: '',
+    birthdate: '',
   });
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setSignUpModalOpen((prevState) => !prevState);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputValues((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputValues);
+    setMessage('');
+    const response = await postSignupData(inputValues);
+    const { message: serverMessage } = response.data;
+    if (serverMessage) {
+      setMessage(serverMessage);
+    } else {
+      setSignUpModalOpen((prevState) => !prevState);
+    }
   };
 
   return (
-    <StyledDiv>
+    <ModalContainer>
+      {message && <Message message={message} />}
       <Form onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
         <p>{`It's quick and easy`}</p>
         <FormContentContainer>
           <Input
-            type='text'
             name='firstName'
             placeholder='First Name'
             value={inputValues.firstName}
             onChange={handleChange}
           />
           <Input
-            type='text'
             name='lastName'
             placeholder='lastName'
             value={inputValues.lastName}
@@ -63,13 +77,20 @@ const SignUpModal = () => {
         />
         <Input
           type='date'
-          name='date'
+          name='birthdate'
           value={inputValues.date}
           onChange={handleChange}
         />
         <Button type='submit'>Submit</Button>
+        <Button backgroundColor='red' onClick={handleClick}>
+          Cancel
+        </Button>
       </Form>
-    </StyledDiv>
+    </ModalContainer>
   );
+};
+
+SignUpModal.propTypes = {
+  setSignUpModalOpen: PropTypes.func.isRequired,
 };
 export default SignUpModal;

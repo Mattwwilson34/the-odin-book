@@ -1,41 +1,11 @@
-/* eslint-disable no-unused-vars */
-import styled from 'styled-components';
 import { useState } from 'react';
 import Button from '../../../../components/StyledComponents/Button';
+import ModalContainer from '../StyledComponents/ModalContainer';
+import Form from '../StyledComponents/Form';
+import FormContentContainer from '../StyledComponents/FormContentContainer';
+import Input from '../StyledComponents/Input';
 
-const StyledDiv = styled.div`
-  background-color: #b0b0b0;
-  position: absolute;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  alignt-items: center;
-`;
 
-const Form = styled.form`
-  border: 1px dashed red;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 8px;
-`;
-
-const FormContentContainer = styled.div`
-  display: flex;
-  gap: 8px;
-`;
-
-const Input = styled.input.attrs((props) => ({
-  type: props.type,
-  placehold: props.placeholder,
-}))`
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
-  font-size: 1.5rem;
-`;
 
 const SignUpModal = () => {
   const [inputValues, setInputValues] = useState({

@@ -5,7 +5,7 @@ import ContentContainer from '../../../../components/StyledComponents/ContentCon
 import Button from '../../../../components/StyledComponents/Button';
 import TextInput from '../../../../components/StyledComponents/TextInput';
 import GoogleButton from '../GoogleButton';
-import SignUpModal from '../../../signup/components/SignUpModal';
+import SignUpModal from '../../../signup';
 
 const LoginContainer = styled(ContentContainer)`
   margin: 20vh auto;

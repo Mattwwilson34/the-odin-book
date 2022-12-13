@@ -34,7 +34,9 @@ const Login = () => {
 
   return (
     <>
-      {signUpModalOpen && <SignUpModal />}
+      {signUpModalOpen && (
+        <SignUpModal setSignUpModalOpen={setSignUpModalOpen} />
+      )}
       <LoginContainer gap='10px'>
         <StyledHeader>odinbook</StyledHeader>
         <TextInput width='100%' placeholder='Email' onChange={handleChange} />

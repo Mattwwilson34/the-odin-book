@@ -6,6 +6,7 @@ import Button from '../../../../components/StyledComponents/Button';
 import TextInput from '../../../../components/StyledComponents/TextInput';
 import GoogleButton from '../GoogleButton';
 import SignUpModal from '../../../signup';
+import postLoginData from '../../api/postLoginData';
 
 const LoginContainer = styled(ContentContainer)`
   margin: 20vh auto;
@@ -25,12 +26,26 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
 
+  const reloadPage = () => {
+    window.location.reload(false);
+  };
+
   const handleChange = (e) => {
     const { placeholder: input, value } = e.target;
     return input === 'Email' ? setEmail(value) : setPassword(value);
   };
 
   const handleClick = () => setSignUpModalOpen((prev) => !prev);
+
+  const handleSubmit = async () => {
+    console.log('submitted');
+    const loginData = {
+      username: email,
+      password,
+    };
+    await postLoginData(loginData);
+    reloadPage();
+  };
 
   return (
     <>
@@ -46,7 +61,11 @@ const Login = () => {
           placeholder='Password'
           onChange={handleChange}
         />
-        <Button width='100%' disabled={!email || !password}>
+        <Button
+          width='100%'
+          disabled={!email || !password}
+          onClick={handleSubmit}
+        >
           Login
         </Button>
         <Button width='100%' backgroundColor='#42b729' onClick={handleClick}>

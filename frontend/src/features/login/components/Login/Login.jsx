@@ -7,6 +7,7 @@ import TextInput from '../../../../components/StyledComponents/TextInput';
 import GoogleButton from '../GoogleButton';
 import SignUpModal from '../../../signup';
 import postLoginData from '../../api/postLoginData';
+import LoginFormMessage from '../LoginFormMessage/LoginFormMessage';
 
 const LoginContainer = styled(ContentContainer)`
   margin: 20vh auto;
@@ -25,6 +26,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
+  const [loginMessage, setLoginMessage] = useState('');
 
   const reloadPage = () => {
     window.location.reload(false);
@@ -50,8 +52,12 @@ const Login = () => {
   return (
     <>
       {signUpModalOpen && (
-        <SignUpModal setSignUpModalOpen={setSignUpModalOpen} />
+        <SignUpModal
+          setSignUpModalOpen={setSignUpModalOpen}
+          setLoginMessage={setLoginMessage}
+        />
       )}
+      {loginMessage && <LoginFormMessage message={loginMessage} />}
       <LoginContainer gap='10px'>
         <StyledHeader>odinbook</StyledHeader>
         <TextInput width='100%' placeholder='Email' onChange={handleChange} />

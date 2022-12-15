@@ -25,7 +25,9 @@ const postSignupController = async (req, res) => {
     } catch (err) {
       console.log(err);
     }
-    res.sendStatus(201);
+    res.send({
+      message: 'Registrations successfull, please login with your credentials.',
+    });
     return true;
   }
 };

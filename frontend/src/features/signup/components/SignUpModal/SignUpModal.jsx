@@ -9,7 +9,7 @@ import Input from '../StyledComponents/Input';
 
 import postSignupData from '../../api/postSignupData';
 
-const SignUpModal = ({ setSignUpModalOpen }) => {
+const SignUpModal = ({ setSignUpModalOpen, setLoginMessage }) => {
   const [message, setMessage] = useState('');
   const [inputValues, setInputValues] = useState({
     firstName: '',
@@ -33,10 +33,12 @@ const SignUpModal = ({ setSignUpModalOpen }) => {
     e.preventDefault();
     setMessage('');
     const response = await postSignupData(inputValues);
+    const { status } = response;
     const { message: serverMessage } = response.data;
-    if (serverMessage) {
+    if (status !== 200) {
       setMessage(serverMessage);
     } else {
+      setLoginMessage(serverMessage);
       setSignUpModalOpen((prevState) => !prevState);
     }
   };
@@ -92,5 +94,6 @@ const SignUpModal = ({ setSignUpModalOpen }) => {
 
 SignUpModal.propTypes = {
   setSignUpModalOpen: PropTypes.func.isRequired,
+  setLoginMessage: PropTypes.func.isRequired,
 };
 export default SignUpModal;

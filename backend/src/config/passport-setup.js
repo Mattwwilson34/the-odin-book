@@ -1,14 +1,70 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import { Strategy as LocalStrategy } from 'passport-local';
+import bcrypt from 'bcrypt';
 import * as dotenv from 'dotenv';
 import dotenvConfig from './dontenv-config.js';
 import db from '../database/database-connection.js';
 import { randomUser } from '../database/database-seeding/utils/fake-data-generators.js';
 import { insertUser } from '../database/database-seeding/utils/sql-queries.js';
 import { log, danger } from '../utils/console-log.js';
+import chalk from 'chalk';
 
 dotenv.config(dotenvConfig);
 
+// LOCAL STRATEGY
+passport.use(
+  new LocalStrategy(async function (username, password, done) {
+    console.log(chalk.blue('===================='));
+    console.log(chalk.blue('LOCAL STRATEGY'));
+    console.log(chalk.blue('===================='));
+
+    const sql = 'SELECT * FROM Users WHERE email= ?';
+    const email = username;
+
+    try {
+      const [userArray] = await db.query(sql, [email]);
+
+      console.log(chalk.blue('============================='));
+      console.log(chalk.blue('LOCAL STRAT USER ARRAY FROM DB'));
+      console.log(chalk.blue('============================='));
+      console.log(chalk.red('============================='));
+      console.log(chalk.red('userArray'));
+      console.log(userArray);
+      console.log(chalk.red('============================='));
+
+      if (userArray.length === 0) {
+        return done(null, false);
+      }
+
+      const validPassword = await bcrypt.compare(
+        password,
+        userArray[0].password,
+      );
+
+      if (!validPassword) {
+        return done(null, false);
+      }
+      console.log(chalk.blue('============================='));
+      console.log(chalk.blue('USERNAME + PASSWORD VALID'));
+      console.log(chalk.blue('============================='));
+      console.log(chalk.blue('============================='));
+      console.log(chalk.blue('LOCAL STRAT USER ID BEING SENT TO DONE'));
+      console.log(chalk.blue('============================='));
+      console.log(chalk.red('============================='));
+      console.log({ id: userArray[0].userID });
+      console.log(chalk.red('============================='));
+
+      return done(null, { id: userArray[0].userID });
+    } catch (err) {
+      if (err) {
+        return done(err);
+      }
+    }
+  }),
+);
+
+// GOOGLE STRATEGY
 passport.use(
   new GoogleStrategy(
     {
@@ -61,14 +117,36 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
+  console.log(chalk.blue('============================='));
+  console.log(chalk.blue('SERIALIZE USER FUNC + USER PARAM'));
+  console.log(chalk.blue('============================='));
+  console.log(chalk.red('============================='));
+  console.log(user);
+  console.log(chalk.red('============================='));
   done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
-  const [rows] = await db.query(
-    `SELECT * FROM the_odin_book.Users WHERE userID = ${id}`,
-  );
-  done(null, rows[0]);
+  //
+  console.log(chalk.blue('============================='));
+  console.log(chalk.blue('DESERIALIZE USER FUNC + ID param'));
+  console.log(chalk.blue('============================='));
+  console.log(chalk.red('============================='));
+  console.log(id);
+  console.log(chalk.red('============================='));
+
+  const sql = `SELECT * FROM the_odin_book.Users WHERE userID= ?`;
+
+  const [userArray] = await db.execute(sql, [id]);
+
+  console.log(chalk.blue('============================='));
+  console.log(chalk.blue('DESERIALIZE USER FUNC + USER RETURNED FROM DB'));
+  console.log(chalk.blue('============================='));
+  console.log(chalk.red('============================='));
+  console.log(userArray[0]);
+  console.log(chalk.red('============================='));
+
+  done(null, userArray[0]);
 });
 
 export default passport;

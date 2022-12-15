@@ -1,10 +1,22 @@
 import express from 'express';
 import passport from 'passport';
+import chalk from 'chalk';
 
 const router = express.Router();
 
+const homePageURL = `http://localhost:3000`;
+
 // MIDDLEWARE
 const isLoggedIn = (req, res, next) => {
+  console.log(chalk.blue('============================='));
+  console.log(chalk.blue('IS LOGGED IN MIDDLEWARE'));
+  console.log(chalk.blue('============================='));
+  console.log(chalk.red('============================='));
+  console.log({ reqdotuser: req.user });
+  console.log(chalk.red('============================='));
+
+  console.log(req.session);
+
   if (req.user) {
     next();
   } else {
@@ -12,15 +24,24 @@ const isLoggedIn = (req, res, next) => {
   }
 };
 
-router.get('/login', (req, res) => {
-  res.send('You hit the /auth/login route');
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/auth/login',
+    failureRedirect: '/auth/failure',
+  }),
+);
+
+router.get('/login', (req, res, next) => {
+  console.log('redirect successful');
+  res.sendStatus(201).redirect('http://localhost:3000/');
 });
 
 router.get('/logout', (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
     req.session.destroy();
-    res.redirect('http://localhost:3000');
+    res.status(200).send('logged out');
   });
 });
 

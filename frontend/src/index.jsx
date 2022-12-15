@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import axios from 'axios';
 
 import HomePage from './routes/home.page';
 import ProfilePage from './routes/profile.page';
@@ -11,8 +12,16 @@ import LoginSuccess from './routes/login-success';
 import ErrorPage from './utils/error-page';
 import './index.css';
 
+axios.defaults.withCredentials = true;
+
 // Create a client
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {

@@ -1,4 +1,4 @@
-import fetchUser from '../../../utils/getUser';
+import getUser from '../../../utils/getUser';
 
 const redirectToGoogleOAuth = () => {
   let timer = null;
@@ -14,7 +14,7 @@ const redirectToGoogleOAuth = () => {
   if (newWindow) {
     timer = setInterval(() => {
       if (newWindow.closed) {
-        fetchUser();
+        getUser();
         if (timer) clearInterval(timer);
         window.location.replace('http://localhost:3000');
       }

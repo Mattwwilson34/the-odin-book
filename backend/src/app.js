@@ -33,4 +33,8 @@ app.use(passport.session());
 app.use('/auth', auth);
 app.use('/api', api);
 
+app.use(function (err, req, res, next) {
+  console.log(err);
+});
+
 export default app;

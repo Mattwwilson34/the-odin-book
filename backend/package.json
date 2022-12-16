@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
+    "bcrypt": "^5.1.0",
     "chalk": "^5.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -29,6 +30,7 @@
     "mysql2": "^2.3.3",
     "passport": "^0.6.0",
     "passport-google-oauth": "^2.0.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0"
   }
 }

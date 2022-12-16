@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ContentContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: ${({ alignItems }) => alignItems || 'center'};
   padding: ${({ padding }) => padding || '10px'};
   gap: ${({ gap }) => gap};
   background: ${({ background }) => background || 'white'};

@@ -3,6 +3,7 @@ import * as fakeData from './fake-data-generators.js';
 import getRandomNumber from './random-number.js';
 import db from '../../database-connection.js';
 import { log, success } from '../../../utils/console-log.js';
+import { getRandomUserID } from './friends-table-utils/getRandomUserID.js';
 
 const insertRandomUserToDB = async (numberOfUsers = 10) => {
   for (let i = 0; i < numberOfUsers; i += 1) {
@@ -114,10 +115,62 @@ const insertRandomPostLikeToDB = async (numberOfPostLikes = 300) => {
   );
 };
 
+const insertRandomFriendshipsToDB = async (friendsPerUser = 9) => {
+  //
+  //batch insert array
+  let friendShipDataArrayContainer = [];
+
+  // Get userIds from db
+  const [userIds] = await db.query('SELECT userID from Users');
+
+  userIds.forEach(async (userId) => {
+    // destructure userID so that comparisons are [string <> string] not [string <> obj]
+    const { userID: userIdOne } = userId;
+
+    // holds existing friendships to prevent duplicate entries
+    let alreadyFriends = [];
+
+    // create random friendships *no repeat friendships*
+    for (let i = 0; i < friendsPerUser; i += 1) {
+      let userIdTwo = getRandomUserID(userIds);
+
+      // get new userIdTwo if same as userId or if friendship already exists
+      while (userIdOne === userIdTwo || alreadyFriends.includes(userIdTwo)) {
+        userIdTwo = getRandomUserID(userIds);
+      }
+
+      // store id for future id validations
+      alreadyFriends.push(userIdTwo);
+
+      const friendShipObject = fakeData.randomFriendship(userIdOne, userIdTwo);
+
+      const friendShipDataArray =
+        sqlQuery.getFriendshipDataArray(friendShipObject);
+
+      friendShipDataArrayContainer.push(friendShipDataArray);
+    }
+    // reset alreadyFriends array for next user iteration
+    alreadyFriends.length = 0;
+  });
+
+  // batch insert all friendships into friendship table
+  const sql = `INSERT INTO Friends (userIdOne,userIdTwo,friendshipStatus,createdDateTime)VALUES ?`;
+  try {
+    // mysql2 batch inserting requires a special array format thus the double array paramater
+    await db.query(sql, [friendShipDataArrayContainer], true);
+  } catch (err) {
+    if (err) throw err;
+  }
+
+  const totalFriends = userIds.length * friendsPerUser;
+  log(success(`✅ Added ${totalFriends} friendships to Friends Table`));
+};
+
 export {
   insertRandomUserToDB,
   insertRandomPostToDB,
   insertRandomCommentToDB,
   insertRandomCommentLikeToDB,
   insertRandomPostLikeToDB,
+  insertRandomFriendshipsToDB,
 };

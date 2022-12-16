@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import moment from 'moment';
+import getRandomIntInclusive from '../utils/random-number.js';
 import getRandomNumber from '../utils/random-number.js';
 
 const randomUser = (createdNow = false) => {
@@ -71,10 +72,23 @@ const randomCommentLike = (userId, postCommentId, createdNow = false) => {
   };
 };
 
+const randomFriendship = (userIdOne, userIdTwo, createdNow = false) => {
+  let createdAt = moment(faker.date.past()).format('YYYY-MM-DD HH:mm:ss');
+  if (createdNow) createdAt = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+
+  return {
+    userIdOne,
+    userIdTwo,
+    friendshipStatus: String(getRandomIntInclusive(0, 2)),
+    createdAt: createdAt,
+  };
+};
+
 export {
   randomUser,
   randomPost,
   randomPostLike,
   randomComment,
   randomCommentLike,
+  randomFriendship,
 };

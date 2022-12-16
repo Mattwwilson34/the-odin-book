@@ -35,7 +35,7 @@ const Post = ({ postData, user }) => {
 
   return (
     <ContentContainer margin='20px 0' width='100%'>
-      <Avatar user={user} />
+      <Avatar user={postData} />
       <SpanContainer>
         <Span>{`${firstName} ${lastName}`}</Span>
         <TimeSpan>{moment(createdDateTime).fromNow()}</TimeSpan>

@@ -9,6 +9,7 @@ const StyledDiv = styled.div`
   font-size: 1.25rem;
   padding: 10px;
   margin: 10px;
+  text-align: center;
 `;
 const StyledSpan = styled.span``;
 

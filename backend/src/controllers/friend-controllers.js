@@ -8,6 +8,9 @@ const getFriendsController = async (req, res) => {
     [userID],
   );
 
+  // FIX: if there are no friends returned then the app crashes
+  //      must handle this issue
+
   const friendIDs = [];
   friends.forEach((friend) => {
     friendIDs.push(`"${friend.userIdTwo}"`);

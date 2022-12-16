@@ -61,7 +61,8 @@ router.get(
 );
 
 router.get('/failure', (req, res) => {
-  res.send('Failure!');
+  console.log('hit the failure route');
+  res.send({ message: 'username or password is incorrect, please try again.' });
 });
 
 router.get('/protected', isLoggedIn, (req, res) => {

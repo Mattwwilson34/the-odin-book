@@ -17,16 +17,22 @@ const getFriendsController = async (req, res) => {
   });
 
   const [friendData] = await db.execute(
-    `SELECT firstName, lastName, username, profilePicture FROM the_odin_book.Users WHERE userID IN (${friendIDs})`,
+    `SELECT userID, firstName, lastName, username, profilePicture FROM the_odin_book.Users WHERE userID IN (${friendIDs})`,
   );
 
   const friendDataPlusStatus = [];
-  friendData.forEach((friend, index) => {
-    const updatedFriend = {
-      ...friend,
-      friendshipStatus: friends[index].friendshipStatus,
-    };
-    friendDataPlusStatus.push(updatedFriend);
+  friendData.forEach((friend) => {
+    friends.forEach((friendship) => {
+      if (friend.userID !== friendship.userIdTwo) {
+        return;
+      } else {
+        const updatedFriend = {
+          ...friend,
+          friendshipStatus: friendship.friendshipStatus,
+        };
+        friendDataPlusStatus.push(updatedFriend);
+      }
+    });
   });
 
   const sortedFriends = {
@@ -48,4 +54,14 @@ const getFriendsController = async (req, res) => {
   res.send(sortedFriends);
 };
 
-export { getFriendsController };
+const updateFriendsController = async (req, res) => {
+  const { userID: userIdOne, friendID: userIdTwo, friendshipStatus } = req.body;
+
+  const sql = `UPDATE friends SET friendshipStatus= "${friendshipStatus}" WHERE userIdOne= ? AND userIdTwo= ?`;
+
+  await db.execute(sql, [userIdOne, userIdTwo]);
+
+  res.sendStatus(200);
+};
+
+export { getFriendsController, updateFriendsController };

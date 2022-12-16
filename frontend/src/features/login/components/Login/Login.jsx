@@ -40,13 +40,16 @@ const Login = () => {
   const handleClick = () => setSignUpModalOpen((prev) => !prev);
 
   const handleSubmit = async () => {
-    console.log('submitted');
     const loginData = {
       username: email,
       password,
     };
-    await postLoginData(loginData);
-    reloadPage();
+    const response = await postLoginData(loginData);
+    if (response.data.message) {
+      setLoginMessage(response.data.message);
+    } else {
+      reloadPage();
+    }
   };
 
   return (

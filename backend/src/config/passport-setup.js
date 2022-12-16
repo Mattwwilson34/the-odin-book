@@ -34,6 +34,9 @@ passport.use(
       console.log(chalk.red('============================='));
 
       if (userArray.length === 0) {
+        console.log(chalk.yellow('===================================='));
+        console.log(chalk.yellow('LOCAL STRAT USERNAME NOT FOUND IN DB'));
+        console.log(chalk.yellow('===================================='));
         return done(null, false);
       }
 

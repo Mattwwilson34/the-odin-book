@@ -43,6 +43,9 @@ passport.use(
       );
 
       if (!validPassword) {
+        console.log(chalk.yellow('============================='));
+        console.log(chalk.yellow('LOCAL STRAT PASSWORD INCORRECT'));
+        console.log(chalk.yellow('============================='));
         return done(null, false);
       }
       console.log(chalk.blue('============================='));

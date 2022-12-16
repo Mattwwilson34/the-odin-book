@@ -1,34 +1,57 @@
-/* eslint-disable no-unused-vars */
-
-import styled from 'styled-components';
+import { useQueryClient } from '@tanstack/react-query';
 import PropTypes from 'prop-types';
-import ContentContainer from '../../../../components/StyledComponents/ContentContainer';
+import Button from '../../../../components/StyledComponents/Button';
+import updateFriendshipStatus from '../../api/update-friendship-status';
+import CardAvatar from '../StyledComponents/CardAvatar';
+import CardContentContainer from '../StyledComponents/CardContentContainer';
 
-const Card = styled(ContentContainer)`
-  border: 1px dashed red;
-  padding: 0;
-  align-items: flex-start;
-  gap: 10px;
-  flex: 0 1 200px;
-`;
+const FriendCard = ({ src, friend, user }) => {
+  //
+  const queryClient = useQueryClient();
+  //
+  const { userID: friendID } = friend;
+  const { userID } = user;
 
-const Div = styled.div`
-  background-image: url(${({ src }) => src});
-  background-size: cover;
-  width: 100%;
-  height: 150px;
-  border: 1px dashed red;
-`;
+  const handleClick = async (friendshipStatus) => {
+    const friendShipObject = {
+      userID,
+      friendID,
+      friendshipStatus,
+    };
+    await updateFriendshipStatus(friendShipObject);
+    queryClient.invalidateQueries({ queryKey: 'friends' });
+  };
 
-const FriendCard = ({ src, user }) => (
-  <Card>
-    <Div src={src} />
-    <h2>{`${user.firstName} ${user.lastName}`}</h2>
-  </Card>
-);
-
+  const { friendshipStatus } = friend;
+  return (
+    <CardContentContainer>
+      <CardAvatar src={src} />
+      <h2>{`${friend.firstName} ${friend.lastName}`}</h2>
+      {friendshipStatus === '1' && (
+        <Button
+          backgroundColor='red'
+          width='100%'
+          onClick={() => handleClick('0')}
+        >
+          delete friend
+        </Button>
+      )}
+      {friendshipStatus === '0' && (
+        <Button width='100%' onClick={() => handleClick('2')}>
+          send friend request
+        </Button>
+      )}
+      {friendshipStatus === '2' && (
+        <Button width='100%' onClick={() => handleClick('1')}>
+          accept friend
+        </Button>
+      )}
+    </CardContentContainer>
+  );
+};
 FriendCard.propTypes = {
   src: PropTypes.string.isRequired,
+  friend: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
 };
 export default FriendCard;

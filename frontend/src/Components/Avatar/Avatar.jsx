@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Img = styled.img.attrs((props) => ({
@@ -15,7 +16,9 @@ const Img = styled.img.attrs((props) => ({
 `;
 
 const Avatar = ({ user, small, square }) => (
-  <Img user={user} small={small} square={square} />
+  <Link to={`/profile/${user.userID}`}>
+    <Img user={user} small={small} square={square} />
+  </Link>
 );
 
 Avatar.propTypes = {

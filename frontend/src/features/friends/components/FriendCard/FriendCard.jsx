@@ -4,6 +4,7 @@ import Button from '../../../../components/StyledComponents/Button';
 import updateFriendshipStatus from '../../api/update-friendship-status';
 import CardAvatar from '../StyledComponents/CardAvatar';
 import CardContentContainer from '../StyledComponents/CardContentContainer';
+import ProfileLink from '../StyledComponents/ProfileLink';
 
 const FriendCard = ({ src, friend, user }) => {
   //
@@ -23,10 +24,13 @@ const FriendCard = ({ src, friend, user }) => {
   };
 
   const { friendshipStatus } = friend;
+
   return (
     <CardContentContainer>
-      <CardAvatar src={src} />
-      <h2>{`${friend.firstName} ${friend.lastName}`}</h2>
+      <ProfileLink to={`/profile/${friend.userID}`}>
+        <CardAvatar src={src} />
+        <h2>{`${friend.firstName} ${friend.lastName}`}</h2>
+      </ProfileLink>
       {friendshipStatus === '1' && (
         <Button
           backgroundColor='red'
@@ -38,7 +42,7 @@ const FriendCard = ({ src, friend, user }) => {
       )}
       {friendshipStatus === '0' && (
         <Button width='100%' onClick={() => handleClick('2')}>
-          send friend request
+          request friend
         </Button>
       )}
       {friendshipStatus === '2' && (
@@ -49,6 +53,7 @@ const FriendCard = ({ src, friend, user }) => {
     </CardContentContainer>
   );
 };
+
 FriendCard.propTypes = {
   src: PropTypes.string.isRequired,
   friend: PropTypes.object.isRequired,

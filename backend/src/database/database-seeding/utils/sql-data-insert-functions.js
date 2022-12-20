@@ -18,6 +18,35 @@ const insertRandomUserToDB = async (numberOfUsers = 10) => {
   log(success(`✅ Added ${numberOfUsers} users to the User Table`));
 };
 
+const insertRandomPhotoToDB = async (numberOfPhotosPerUser = 18) => {
+  // Get userIds from db
+  const [userIds] = await db.query('SELECT userID from Users');
+
+  const photoObjectArray = [];
+
+  userIds.forEach((id) => {
+    for (let i = 0; i < numberOfPhotosPerUser; i += 1) {
+      const randomPhotoObject = fakeData.randomPhoto(id.userID);
+
+      photoObjectArray.push(Object.values(randomPhotoObject));
+    }
+  });
+
+  // console.log(photoObjectArray);
+
+  // batch insert all friendships into friendship table
+  const sql = `INSERT INTO UserPhoto (photoID, userID, photoURL) VALUES ?`;
+
+  try {
+    await db.query(sql, [photoObjectArray], true);
+
+    const totalPhotos = userIds.length * numberOfPhotosPerUser;
+    log(success(`✅ Added ${totalPhotos} photos to userPhotos Table`));
+  } catch (err) {
+    if (err) throw err;
+  }
+};
+
 const insertRandomPostToDB = async (numberOfPosts = 20) => {
   // Get userIds from db
   const [userIds] = await db.query('SELECT userID from Users');
@@ -168,6 +197,7 @@ const insertRandomFriendshipsToDB = async (friendsPerUser = 9) => {
 
 export {
   insertRandomUserToDB,
+  insertRandomPhotoToDB,
   insertRandomPostToDB,
   insertRandomCommentToDB,
   insertRandomCommentLikeToDB,

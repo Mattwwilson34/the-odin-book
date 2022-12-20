@@ -14,6 +14,7 @@ setTimeout(async () => {
 setTimeout(async () => {
   await insertDevelopmentUsersToDB();
   await insert.insertRandomUserToDB();
+  await insert.insertRandomPhotoToDB();
   await insert.insertRandomPostToDB();
   await insert.insertRandomCommentToDB();
   await insert.insertRandomCommentLikeToDB();

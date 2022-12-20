@@ -19,7 +19,41 @@ const randomUser = (createdNow = false) => {
     password: faker.internet.password(),
     email: faker.internet.email(),
     birthdate: moment(faker.date.birthdate()).format('YYYY-MM-DD'),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    bio: faker.random.words(20),
+    jobTitle: faker.name.jobTitle(),
     registeredAt: moment(faker.date.past()).format('YYYY-MM-DD HH:mm:ss'),
+  };
+};
+
+const randomPhoto = (userID) => {
+  const fakePhotoCatagories = [
+    'abstract',
+    'animals',
+    'avatar',
+    'business',
+    'cats',
+    'city',
+    'dataUri',
+    'fashion',
+    'food',
+    'image',
+    'imageUrl',
+    'nature',
+    'nightlife',
+    'people',
+    'sports',
+    'technics',
+    'transport',
+  ];
+  return {
+    photoID: faker.datatype.uuid(),
+    userID,
+    photoURL:
+      faker.image[
+        fakePhotoCatagories[getRandomNumber(0, fakePhotoCatagories.length - 1)]
+      ](),
   };
 };
 
@@ -86,6 +120,7 @@ const randomFriendship = (userIdOne, userIdTwo, createdNow = false) => {
 
 export {
   randomUser,
+  randomPhoto,
   randomPost,
   randomPostLike,
   randomComment,

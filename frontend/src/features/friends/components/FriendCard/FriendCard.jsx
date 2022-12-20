@@ -6,7 +6,7 @@ import CardAvatar from '../StyledComponents/CardAvatar';
 import CardContentContainer from '../StyledComponents/CardContentContainer';
 import ProfileLink from '../StyledComponents/ProfileLink';
 
-const FriendCard = ({ src, friend, user }) => {
+const FriendCard = ({ src, friend, user, admin }) => {
   //
   const queryClient = useQueryClient();
   //
@@ -31,7 +31,7 @@ const FriendCard = ({ src, friend, user }) => {
         <CardAvatar src={src} />
         <h2>{`${friend.firstName} ${friend.lastName}`}</h2>
       </ProfileLink>
-      {friendshipStatus === '1' && (
+      {friendshipStatus === '1' && admin && (
         <Button
           backgroundColor='red'
           width='100%'
@@ -58,5 +58,10 @@ FriendCard.propTypes = {
   src: PropTypes.string.isRequired,
   friend: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  admin: PropTypes.bool,
+};
+
+FriendCard.defaultProps = {
+  admin: false,
 };
 export default FriendCard;

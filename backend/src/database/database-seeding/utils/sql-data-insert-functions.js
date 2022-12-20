@@ -5,7 +5,7 @@ import db from '../../database-connection.js';
 import { log, success } from '../../../utils/console-log.js';
 import { getRandomUserID } from './friends-table-utils/getRandomUserID.js';
 
-const insertRandomUserToDB = async (numberOfUsers = 10) => {
+const insertRandomUserToDB = async (numberOfUsers = 50) => {
   for (let i = 0; i < numberOfUsers; i += 1) {
     const user = fakeData.randomUser();
     try {
@@ -16,6 +16,35 @@ const insertRandomUserToDB = async (numberOfUsers = 10) => {
     }
   }
   log(success(`✅ Added ${numberOfUsers} users to the User Table`));
+};
+
+const insertRandomPhotoToDB = async (numberOfPhotosPerUser = 18) => {
+  // Get userIds from db
+  const [userIds] = await db.query('SELECT userID from Users');
+
+  const photoObjectArray = [];
+
+  userIds.forEach((id) => {
+    for (let i = 0; i < numberOfPhotosPerUser; i += 1) {
+      const randomPhotoObject = fakeData.randomPhoto(id.userID);
+
+      photoObjectArray.push(Object.values(randomPhotoObject));
+    }
+  });
+
+  // console.log(photoObjectArray);
+
+  // batch insert all friendships into friendship table
+  const sql = `INSERT INTO UserPhoto (photoID, userID, photoURL) VALUES ?`;
+
+  try {
+    await db.query(sql, [photoObjectArray], true);
+
+    const totalPhotos = userIds.length * numberOfPhotosPerUser;
+    log(success(`✅ Added ${totalPhotos} photos to userPhotos Table`));
+  } catch (err) {
+    if (err) throw err;
+  }
 };
 
 const insertRandomPostToDB = async (numberOfPosts = 20) => {
@@ -115,7 +144,7 @@ const insertRandomPostLikeToDB = async (numberOfPostLikes = 300) => {
   );
 };
 
-const insertRandomFriendshipsToDB = async (friendsPerUser = 9) => {
+const insertRandomFriendshipsToDB = async (friendsPerUser = 50) => {
   //
   //batch insert array
   let friendShipDataArrayContainer = [];
@@ -168,6 +197,7 @@ const insertRandomFriendshipsToDB = async (friendsPerUser = 9) => {
 
 export {
   insertRandomUserToDB,
+  insertRandomPhotoToDB,
   insertRandomPostToDB,
   insertRandomCommentToDB,
   insertRandomCommentLikeToDB,

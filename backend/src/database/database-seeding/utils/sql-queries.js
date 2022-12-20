@@ -2,7 +2,7 @@ import getQuoteWrappedStringFromObj from './quote-wrapped-string-from-object.js'
 
 const insertUser = (userDataObj) => {
   const userData = getQuoteWrappedStringFromObj(userDataObj);
-  return `INSERT INTO users (userID,profilePicture,firstName,lastName,username,password,email,birthdate,createdDateTime)VALUES(${userData});`;
+  return `INSERT INTO users (userID,profilePicture,firstName,lastName,username,password,email,birthdate,city,state,bio,jobTitle,createdDateTime)VALUES(${userData});`;
 };
 
 const insertPost = (postDataObj) => {

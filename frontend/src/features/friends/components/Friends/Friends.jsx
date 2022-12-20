@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import FriendsContainer from '../StyledComponents/FriendsContainer';
 import FriendCard from '../FriendCard/index';
 
+const FriendsWrapper = styled.div`
+  padding: 10px;
+`;
+
 const Friends = ({ friends, user }) => (
-  <>
+  <FriendsWrapper>
     <h2>Current Friends</h2>
     <hr />
     <FriendsContainer>
@@ -40,7 +45,7 @@ const Friends = ({ friends, user }) => (
         />
       ))}
     </FriendsContainer>
-  </>
+  </FriendsWrapper>
 );
 
 Friends.propTypes = {

@@ -6,12 +6,12 @@ import Intro from '../Intro';
 import Photos from '../Photos';
 import Friends from '../Friends';
 
-const Profile = ({ user }) => (
+const Profile = ({ user, admin, profile }) => (
   <ContentContainer border background='#eff2f5' width='80%' margin='auto'>
     <ProfileContainer maxWidth='450px'>
-      <Intro />
-      <Photos />
-      <Friends />
+      <Intro admin={admin} profile={profile} />
+      <Photos profile={profile} />
+      <Friends profile={profile} />
     </ProfileContainer>
     <ProfileContainer>
       <Timeline user={user.data} />
@@ -21,6 +21,8 @@ const Profile = ({ user }) => (
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
+  admin: PropTypes.bool.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
 export default Profile;

@@ -54,7 +54,7 @@ const getPostsController = async (req, res) => {
       //
       // Get user info
       const [commentUserData] = await db.execute(
-        `SELECT firstName, lastName, profilePicture FROM Users WHERE userID = ?`,
+        `SELECT userID, firstName, lastName, profilePicture FROM Users WHERE userID = ?`,
         [comment.userID],
       );
 

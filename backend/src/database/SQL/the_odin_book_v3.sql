@@ -29,11 +29,33 @@ CREATE TABLE IF NOT EXISTS `the_odin_book`.`Users` (
   `password` VARCHAR(100) NOT NULL,
   `email` VARCHAR(40) NOT NULL,
   `birthdate` DATE NOT NULL,
+  `city` varchar(45) null,
+  `state` varchar(20) null,
+  `bio` varchar(5000) null,
+  `jobTitle` VARCHAR(100) NULL, 
   `createdDateTime` DATETIME NOT NULL,
   PRIMARY KEY (`userID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+-- -----------------------------------------------------
+-- Table `the_odin_book`.`UserPhoto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `the_odin_book`.`UserPhoto` (
+  `photoID` VARCHAR(36) NOT NULL,
+  `userID` VARCHAR(36) NOT NULL,
+  `photoURL` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`photoID`),
+  INDEX `userID_idx` (`userID` ASC) VISIBLE,
+  CONSTRAINT `userID`
+  FOREIGN KEY (`userID`)
+  REFERENCES `the_odin_book`.`Users` (`userID`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
+  USE `the_odin_book` ;
 
 
 -- -----------------------------------------------------

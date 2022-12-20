@@ -14,6 +14,10 @@ const devUser = {
   password: 'a',
   email: 'a@a',
   birthdate: moment(faker.date.birthdate()).format('YYYY-MM-DD'),
+  city: faker.address.city(),
+  state: faker.address.state(),
+  bio: faker.random.words(20),
+  jobTitle: faker.name.jobTitle(),
   registeredAt: moment(faker.date.past()).format('YYYY-MM-DD HH:mm:ss'),
 };
 
@@ -30,6 +34,10 @@ const devGoogleUser = {
   password: 'pFaxlTRy8wdnuk3',
   email: 'mattwwilson34@gmail.com',
   birthdate: moment(faker.date.birthdate()).format('YYYY-MM-DD'),
+  city: faker.address.city(),
+  state: faker.address.state(),
+  bio: faker.random.words(20),
+  jobTitle: faker.name.jobTitle(),
   registeredAt: moment(faker.date.past()).format('YYYY-MM-DD HH:mm:ss'),
 };
 

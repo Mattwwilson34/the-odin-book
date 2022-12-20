@@ -7,7 +7,7 @@ const FriendsWrapper = styled.div`
   padding: 10px;
 `;
 
-const Friends = ({ friends, user }) => (
+const Friends = ({ friends, user, admin }) => (
   <FriendsWrapper>
     <h2>Current Friends</h2>
     <hr />
@@ -18,39 +18,45 @@ const Friends = ({ friends, user }) => (
           user={user}
           friend={friend}
           key={friend.username}
+          admin={admin}
         />
       ))}
     </FriendsContainer>
-    <h2>Potential Friends</h2>
-    <hr />
-    <FriendsContainer>
-      {friends.data.notFriends.map((friend) => (
-        <FriendCard
-          src={friend.profilePicture}
-          user={user}
-          friend={friend}
-          key={friend.username}
-        />
-      ))}
-    </FriendsContainer>
-    <h2>Pending Friends</h2>
-    <hr />
-    <FriendsContainer>
-      {friends.data.pendingFriends.map((friend) => (
-        <FriendCard
-          src={friend.profilePicture}
-          user={user}
-          friend={friend}
-          key={friend.username}
-        />
-      ))}
-    </FriendsContainer>
+    {admin && (
+      <>
+        <h2>Potential Friends</h2>
+        <hr />
+        <FriendsContainer>
+          {friends.data.notFriends.map((friend) => (
+            <FriendCard
+              src={friend.profilePicture}
+              user={user}
+              friend={friend}
+              key={friend.username}
+            />
+          ))}
+        </FriendsContainer>
+        <h2>Pending Friends</h2>
+        <hr />
+        <FriendsContainer>
+          {friends.data.pendingFriends.map((friend) => (
+            <FriendCard
+              src={friend.profilePicture}
+              user={user}
+              friend={friend}
+              key={friend.username}
+            />
+          ))}
+        </FriendsContainer>
+      </>
+    )}
   </FriendsWrapper>
 );
 
 Friends.propTypes = {
   friends: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  admin: PropTypes.bool.isRequired,
 };
 
 export default Friends;

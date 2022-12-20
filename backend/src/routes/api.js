@@ -7,6 +7,7 @@ import getProfile from '../controllers/profile-controllers.js';
 
 const router = express.Router();
 
+router.get('/', (req, res) => res.send(req.user));
 
 router.post('/signup', postSignupController);
 

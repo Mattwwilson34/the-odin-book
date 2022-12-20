@@ -5,7 +5,7 @@ import db from '../../database-connection.js';
 import { log, success } from '../../../utils/console-log.js';
 import { getRandomUserID } from './friends-table-utils/getRandomUserID.js';
 
-const insertRandomUserToDB = async (numberOfUsers = 10) => {
+const insertRandomUserToDB = async (numberOfUsers = 50) => {
   for (let i = 0; i < numberOfUsers; i += 1) {
     const user = fakeData.randomUser();
     try {
@@ -144,7 +144,7 @@ const insertRandomPostLikeToDB = async (numberOfPostLikes = 300) => {
   );
 };
 
-const insertRandomFriendshipsToDB = async (friendsPerUser = 9) => {
+const insertRandomFriendshipsToDB = async (friendsPerUser = 50) => {
   //
   //batch insert array
   let friendShipDataArrayContainer = [];

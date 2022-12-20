@@ -16,7 +16,7 @@ const LeftSidebar = ({ user }) => {
 
   return (
     <SidebarContainer>
-      <HoverContainer onClick={() => navigate('/profile')}>
+      <HoverContainer onClick={() => navigate(`/profile/${user.userID}`)}>
         <ContentContainer padding='0' background='transparent' gap='10px'>
           <Avatar user={user} />
           <Span bold>{`${user.firstName} ${user.lastName}`}</Span>

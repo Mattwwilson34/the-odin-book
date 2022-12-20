@@ -45,7 +45,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `the_odin_book`.`UserPhoto` (
   `photoID` VARCHAR(36) NOT NULL,
   `userID` VARCHAR(36) NOT NULL,
-  `photoURL` VARCHAR(300) NOT NULL,
+  `photoURL` VARCHAR(500) NOT NULL,
   PRIMARY KEY (`photoID`),
   INDEX `userID_idx` (`userID` ASC) VISIBLE,
   CONSTRAINT `userID`

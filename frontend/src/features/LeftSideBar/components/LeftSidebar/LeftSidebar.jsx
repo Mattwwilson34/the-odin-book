@@ -22,7 +22,7 @@ const LeftSidebar = ({ user }) => {
           <Span bold>{`${user.firstName} ${user.lastName}`}</Span>
         </ContentContainer>
       </HoverContainer>
-      <HoverContainer onClick={() => navigate('/friends', { state: { user } })}>
+      <HoverContainer onClick={() => navigate(`/friends/${user.userID}`)}>
         <IconButton
           svg={icons.friends}
           text='friends'

@@ -40,7 +40,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: '/friends',
+    path: '/friends/:userID',
     element: <FriendsPage />,
     errorElement: <ErrorPage />,
   },

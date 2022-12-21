@@ -56,16 +56,12 @@ const Friends = ({ profile }) => {
       <FriendsContainer>
         <Header>
           Friends
-          <Link to='/'>See all friends</Link>
+          <Link to={`/friends/${profile.userID}`}>See all friends</Link>
           <div>{friends.length}</div>
         </Header>
         {reducedFriends.map((friend) => (
-          <FriendContainer to={`/profile/${friend.userID}`}>
-            <FriendPhoto
-              profile={profile}
-              url={friend.profilePicture}
-              key={friend.userID}
-            />
+          <FriendContainer to={`/profile/${friend.userID}`} key={friend.userID}>
+            <FriendPhoto profile={profile} url={friend.profilePicture} />
             <span>
               <b>{`${friend.firstName} ${friend.lastName}`}</b>
             </span>

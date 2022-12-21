@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import Avatar from 'boring-avatars';
 import styled from 'styled-components';
 import SVG from 'react-inlinesvg';
-
-import newMessage from '../../assets/icons/new-message.svg';
+import Message from '../Message';
+import newMessageIcon from '../../assets/icons/new-message.svg';
 
 const Container = styled.div`
   display: flex;
@@ -30,30 +31,42 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-const Conversation = () => (
-  <Container>
-    <div>
-      <h2>Chats</h2>
-      <SVG src={newMessage} onClick={() => console.log('new message')} />
-    </div>
-    <Div>
-      <Avatar />
-      <Span>Matt Wilson</Span>
-    </Div>
+const Conversation = ({ setConversations }) => {
+  const handleClick = () => {
+    setConversations((oldConversations) => {
+      console.log(oldConversations);
+      return [...oldConversations, <Message />];
+    });
+  };
 
-    <Div>
-      <Avatar />
-      <Span>Matt Wilson</Span>
-    </Div>
-    <Div>
-      <Avatar />
-      <Span>Matt Wilson</Span>
-    </Div>
-    <Div>
-      <Avatar />
-      <Span>Matt Wilson</Span>
-    </Div>
-  </Container>
-);
+  return (
+    <Container>
+      <div>
+        <h2>Chats</h2>
+        <SVG src={newMessageIcon} onClick={() => console.log('new message')} />
+      </div>
+      <Div onClick={handleClick}>
+        <Avatar />
+        <Span>Matt Wilson</Span>
+      </Div>
+
+      <Div onClick={handleClick}>
+        <Avatar />
+        <Span>Matt Wilson</Span>
+      </Div>
+      <Div>
+        <Avatar />
+        <Span>Matt Wilson</Span>
+      </Div>
+      <Div>
+        <Avatar />
+        <Span>Matt Wilson</Span>
+      </Div>
+    </Container>
+  );
+};
+Conversation.propTypes = {
+  setConversations: PropTypes.func.isRequired,
+};
 
 export default Conversation;

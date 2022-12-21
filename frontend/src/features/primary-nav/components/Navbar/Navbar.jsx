@@ -15,6 +15,9 @@ const NavContainer = styled(ContentContainer)`
   grid-template: auto / 1fr 2fr 1fr;
   border-radius: 0;
   padding: 5px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 
 const logout = async () => {

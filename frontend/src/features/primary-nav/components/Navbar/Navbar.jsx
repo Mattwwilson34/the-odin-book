@@ -11,6 +11,7 @@ import LogoBubble from '../StyledComponents/LogoBubble';
 import IconLink from '../../../../components/StyledComponents/IconLink';
 import Button from '../../../../components/StyledComponents/Button';
 import MessengerMenu from '../../../messenger/components/MessageMenu';
+import ConversationContainer from '../StyledComponents/ConversationsContainer';
 
 const NavContainer = styled(ContentContainer)`
   display: grid;
@@ -29,6 +30,7 @@ const logout = async () => {
 
 const Navbar = ({ user }) => {
   const [messengerMenuOpen, setMessengerMenuOpen] = useState(false);
+  const [conversations, setConversations] = useState([]);
 
   const handleMessengerClick = () => setMessengerMenuOpen((prev) => !prev);
 
@@ -51,7 +53,14 @@ const Navbar = ({ user }) => {
           <Avatar user={user} />
         </ContentContainer>
       </NavContainer>
-      {messengerMenuOpen && <MessengerMenu />}
+      {messengerMenuOpen && (
+        <MessengerMenu setConversations={setConversations} />
+      )}
+      {conversations.length !== 0 && (
+        <ConversationContainer>
+          {conversations.map((conversation) => conversation)}
+        </ConversationContainer>
+      )}
     </>
   );
 };

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Conversation from '../Conversation/Conversation';
 
 const MessageMenuContainer = styled.div`
@@ -14,10 +15,13 @@ const MessageMenuContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const MessageMenu = () => (
+const MessageMenu = ({ setConversations }) => (
   <MessageMenuContainer>
-    <Conversation />
+    <Conversation setConversations={setConversations} />
   </MessageMenuContainer>
 );
 
+MessageMenu.propTypes = {
+  setConversations: PropTypes.func.isRequired,
+};
 export default MessageMenu;

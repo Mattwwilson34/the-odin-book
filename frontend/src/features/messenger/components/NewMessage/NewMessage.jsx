@@ -1,9 +1,7 @@
-import './NewMessage.css'
+const NewMessage = () => (
+  <div>
+    <h1>NewMessage COMPONENT</h1>
+  </div>
+);
 
-  const NewMessage = () => (
-    <div>
-      <h1>NewMessage COMPONENT</h1>
-    </div>
-  );
-
-  export default NewMessage;
+export default NewMessage;

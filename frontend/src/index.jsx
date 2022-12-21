@@ -12,6 +12,9 @@ import LoginSuccess from './routes/login-success';
 import ErrorPage from './utils/error-page';
 import './index.css';
 
+// testing socket io
+import './utils/socket-io';
+
 axios.defaults.withCredentials = true;
 
 // Create a client

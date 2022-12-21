@@ -1,15 +1,7 @@
 import PropTypes from 'prop-types';
 import Avatar from 'boring-avatars';
 import styled from 'styled-components';
-import SVG from 'react-inlinesvg';
 import Message from '../Message';
-import newMessageIcon from '../../assets/icons/new-message.svg';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
 
 const Div = styled.div`
   display: flex;
@@ -40,11 +32,7 @@ const Conversation = ({ setConversations }) => {
   };
 
   return (
-    <Container>
-      <div>
-        <h2>Chats</h2>
-        <SVG src={newMessageIcon} onClick={() => console.log('new message')} />
-      </div>
+    <>
       <Div onClick={handleClick}>
         <Avatar />
         <Span>Matt Wilson</Span>
@@ -62,7 +50,7 @@ const Conversation = ({ setConversations }) => {
         <Avatar />
         <Span>Matt Wilson</Span>
       </Div>
-    </Container>
+    </>
   );
 };
 Conversation.propTypes = {

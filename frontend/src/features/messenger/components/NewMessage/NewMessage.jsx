@@ -1,6 +1,11 @@
+import MessageContainer from '../StyledComponents/MessageContainer';
+
 const NewMessage = () => (
   <div>
-    <h1>NewMessage COMPONENT</h1>
+    <MessageContainer>
+      <h1>&#10005;</h1>
+      <h1>New Message COMPONENT</h1>
+    </MessageContainer>
   </div>
 );
 

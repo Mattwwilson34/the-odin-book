@@ -1,9 +1,15 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import Avatar from 'boring-avatars';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 
-const Div = styled.div`
+const Button = styled.button.attrs(({ disabled }) => ({
+  type: 'button',
+  disabled,
+}))`
   display: flex;
+  background-color: transparent;
   align-content: center;
   gap: 10px;
   padding: 5px;
@@ -22,38 +28,27 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-const ChatMenuButton = ({ setConversations }) => {
+const ChatMenuButton = ({ setChats }) => {
+  //
+  const [disabled, setDisabled] = useState(false);
+
   const handleClick = () => {
-    setConversations((oldConversations) => {
-      console.log(oldConversations);
-      return [...oldConversations, { name: 'matt' }];
+    setChats((prevChats) => {
+      console.log(prevChats);
+      return [...prevChats, uuidv4()];
     });
+    setDisabled((prev) => !prev);
   };
 
   return (
-    <>
-      <Div onClick={handleClick}>
-        <Avatar />
-        <Span>Matt Wilson</Span>
-      </Div>
-
-      <Div onClick={handleClick}>
-        <Avatar />
-        <Span>Matt Wilson</Span>
-      </Div>
-      <Div>
-        <Avatar />
-        <Span>Matt Wilson</Span>
-      </Div>
-      <Div>
-        <Avatar />
-        <Span>Matt Wilson</Span>
-      </Div>
-    </>
+    <Button disabled={disabled} onClick={handleClick}>
+      <Avatar />
+      <Span>Matt Wilson</Span>
+    </Button>
   );
 };
 ChatMenuButton.propTypes = {
-  setConversations: PropTypes.func.isRequired,
+  setChats: PropTypes.func.isRequired,
 };
 
 export default ChatMenuButton;

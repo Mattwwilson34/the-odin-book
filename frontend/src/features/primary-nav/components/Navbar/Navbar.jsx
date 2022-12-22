@@ -10,9 +10,10 @@ import Avatar from '../../../../components/Avatar';
 import LogoBubble from '../StyledComponents/LogoBubble';
 import IconLink from '../../../../components/StyledComponents/IconLink';
 import Button from '../../../../components/StyledComponents/Button';
-import ConversationContainer from '../StyledComponents/ConversationsContainer';
+import ChatsContainer from '../StyledComponents/ChatsContainer';
 import Chat from '../../../messenger/components/Chat';
 import ChatMenu from '../../../messenger/components/ChatMenu';
+import Messages from '../../../messenger/components/Messages';
 
 const NavContainer = styled(ContentContainer)`
   display: grid;
@@ -31,7 +32,7 @@ const logout = async () => {
 
 const Navbar = ({ user }) => {
   const [messengerMenuOpen, setMessengerMenuOpen] = useState(false);
-  const [conversations, setConversations] = useState([]);
+  const [chats, setChats] = useState([]);
 
   const handleMessengerClick = () => setMessengerMenuOpen((prev) => !prev);
 
@@ -54,13 +55,15 @@ const Navbar = ({ user }) => {
           <Avatar user={user} />
         </ContentContainer>
       </NavContainer>
-      {messengerMenuOpen && <ChatMenu setConversations={setConversations} />}
-      {conversations.length !== 0 && (
-        <ConversationContainer>
-          {conversations.map((conversation, index) => (
-            <Chat index={index} setConversations={setConversations} />
+      {messengerMenuOpen && <ChatMenu chats={chats} setChats={setChats} />}
+      {chats.length !== 0 && (
+        <ChatsContainer>
+          {chats.map((chat) => (
+            <Chat setChats={setChats} key={chat} chat={chat}>
+              <Messages />
+            </Chat>
           ))}
-        </ConversationContainer>
+        </ChatsContainer>
       )}
     </>
   );

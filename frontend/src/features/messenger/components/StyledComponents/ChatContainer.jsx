@@ -1,42 +1,47 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Avatar from 'boring-avatars';
+import Header from './ChatHeader';
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: white;
   height: 300px;
-  padding: 10px;
   border-radius: 10px;
-  border: 1px dashed red;
 `;
 
-const Header = styled.div`
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-content: center;
-  border-bottom: 1px solid black;
-  padding: 0 0 5px 0;
-  margin: 0 0 5px 0;
-
-  & > h3 {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-  }
-
-  & > button {
-    font-size: 1.5rem;
-    display: block;
-    margin-left: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-  }
+const Input = styled.input.attrs(() => ({
+  type: 'text',
+}))`
+  justify-self: flex-end;
 `;
 
-const ChatContainer = ({ children, index, setConversations }) => {
-  const handleClick = () => setConversations((prev) => prev.slice(index, 1));
+const ChatContainer = ({ children, chat, setChats }) => {
+  //
+  const [inputText, setInputText] = useState('');
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setInputText(value);
+    console.log(inputText);
+  };
+
+  const handleKeyPress = (e) => {
+    console.log(e.key);
+    if (e.key === 'Enter' && inputText !== '') {
+      console.log('Message sent: ', inputText);
+      e.target.value = '';
+    }
+  };
+
+  const handleClick = () =>
+    setChats((prevChatsArray) => {
+      const chatID = chat;
+      const updatedArray = prevChatsArray.filter((val) => val !== chatID);
+      return updatedArray;
+    });
 
   return (
     <Container>
@@ -48,13 +53,14 @@ const ChatContainer = ({ children, index, setConversations }) => {
         </button>
       </Header>
       {children}
+      <Input onChange={handleChange} onKeyPress={handleKeyPress} />
     </Container>
   );
 };
 ChatContainer.propTypes = {
   children: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
-  setConversations: PropTypes.func.isRequired,
+  chat: PropTypes.string.isRequired,
+  setChats: PropTypes.func.isRequired,
 };
 
 export default ChatContainer;

@@ -1,6 +1,6 @@
 import ChatContainer from '../StyledComponents/ChatContainer';
 
-const NewMessage = () => (
+const NewChat = () => (
   <div>
     <ChatContainer>
       <h1>&#10005;</h1>
@@ -9,4 +9,4 @@ const NewMessage = () => (
   </div>
 );
 
-export default NewMessage;
+export default NewChat;

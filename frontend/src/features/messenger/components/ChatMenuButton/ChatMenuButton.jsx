@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import Avatar from 'boring-avatars';
 import styled from 'styled-components';
-import Message from '../Message';
 
 const Div = styled.div`
   display: flex;
@@ -23,11 +22,11 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-const Conversation = ({ setConversations }) => {
+const ChatMenuButton = ({ setConversations }) => {
   const handleClick = () => {
     setConversations((oldConversations) => {
       console.log(oldConversations);
-      return [...oldConversations, <Message />];
+      return [...oldConversations, { name: 'matt' }];
     });
   };
 
@@ -53,8 +52,8 @@ const Conversation = ({ setConversations }) => {
     </>
   );
 };
-Conversation.propTypes = {
+ChatMenuButton.propTypes = {
   setConversations: PropTypes.func.isRequired,
 };
 
-export default Conversation;
+export default ChatMenuButton;

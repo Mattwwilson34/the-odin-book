@@ -10,8 +10,9 @@ import Avatar from '../../../../components/Avatar';
 import LogoBubble from '../StyledComponents/LogoBubble';
 import IconLink from '../../../../components/StyledComponents/IconLink';
 import Button from '../../../../components/StyledComponents/Button';
-import MessengerMenu from '../../../messenger/components/MessageMenu';
 import ConversationContainer from '../StyledComponents/ConversationsContainer';
+import Chat from '../../../messenger/components/Chat';
+import ChatMenu from '../../../messenger/components/ChatMenu';
 
 const NavContainer = styled(ContentContainer)`
   display: grid;
@@ -53,12 +54,12 @@ const Navbar = ({ user }) => {
           <Avatar user={user} />
         </ContentContainer>
       </NavContainer>
-      {messengerMenuOpen && (
-        <MessengerMenu setConversations={setConversations} />
-      )}
+      {messengerMenuOpen && <ChatMenu setConversations={setConversations} />}
       {conversations.length !== 0 && (
         <ConversationContainer>
-          {conversations.map((conversation) => conversation)}
+          {conversations.map((conversation, index) => (
+            <Chat index={index} setConversations={setConversations} />
+          ))}
         </ConversationContainer>
       )}
     </>

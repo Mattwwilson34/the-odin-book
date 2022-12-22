@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import ChatContainer from '../StyledComponents/ChatContainer';
 
-const Chat = ({ children, setChats, chat }) => (
-  <ChatContainer setChats={setChats} chat={chat}>
+const Chat = ({ children, setChats, chatID }) => (
+  <ChatContainer setChats={setChats} chatID={chatID}>
     {children}
   </ChatContainer>
 );
@@ -10,7 +10,7 @@ const Chat = ({ children, setChats, chat }) => (
 Chat.propTypes = {
   children: PropTypes.object.isRequired,
   setChats: PropTypes.func.isRequired,
-  chat: PropTypes.string.isRequired,
+  chatID: PropTypes.string.isRequired,
 };
 
 export default Chat;

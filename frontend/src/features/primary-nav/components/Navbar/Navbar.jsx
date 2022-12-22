@@ -15,6 +15,8 @@ import Chat from '../../../messenger/components/Chat';
 import ChatMenu from '../../../messenger/components/ChatMenu';
 import Messages from '../../../messenger/components/Messages';
 
+import chatIDArray from '../../../messenger/utils/chatIDArray';
+
 const NavContainer = styled(ContentContainer)`
   display: grid;
   grid-template: auto / 1fr 2fr 1fr;
@@ -55,14 +57,14 @@ const Navbar = ({ user }) => {
           <Avatar user={user} />
         </ContentContainer>
       </NavContainer>
-      {messengerMenuOpen && <ChatMenu chats={chats} setChats={setChats} />}
+      {messengerMenuOpen && (
+        <ChatMenu chatIDArray={chatIDArray} setChats={setChats} />
+      )}
       {chats.length !== 0 && (
         <ChatsContainer>
-          {chats.map((chat) => (
-            <Chat setChats={setChats} key={chat} chat={chat}>
-              <Messages />
-            </Chat>
-          ))}
+          <Chat setChats={setChats} chat={chats[0]} chatID={chatIDArray[0]}>
+            <Messages />
+          </Chat>
         </ChatsContainer>
       )}
     </>

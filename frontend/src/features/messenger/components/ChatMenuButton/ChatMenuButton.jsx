@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Avatar from 'boring-avatars';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
+
+import socket from '../../../../utils/socket-io';
 
 const Button = styled.button.attrs(({ disabled }) => ({
   type: 'button',
@@ -28,16 +29,14 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-const ChatMenuButton = ({ setChats }) => {
+const ChatMenuButton = ({ setChats, chatID }) => {
   //
   const [disabled, setDisabled] = useState(false);
 
   const handleClick = () => {
-    setChats((prevChats) => {
-      console.log(prevChats);
-      return [...prevChats, uuidv4()];
-    });
+    setChats((prevChats) => [...prevChats, chatID]);
     setDisabled((prev) => !prev);
+    socket.emit('join_chat', chatID);
   };
 
   return (
@@ -49,6 +48,7 @@ const ChatMenuButton = ({ setChats }) => {
 };
 ChatMenuButton.propTypes = {
   setChats: PropTypes.func.isRequired,
+  chatID: PropTypes.string.isRequired,
 };
 
 export default ChatMenuButton;

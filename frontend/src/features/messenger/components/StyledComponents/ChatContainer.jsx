@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Avatar from 'boring-avatars';
 import Header from './ChatHeader';
 
+import socket from '../../../../utils/socket-io';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,7 +20,7 @@ const Input = styled.input.attrs(() => ({
   justify-self: flex-end;
 `;
 
-const ChatContainer = ({ children, chat, setChats }) => {
+const ChatContainer = ({ children, chatID, setChats }) => {
   //
   const [inputText, setInputText] = useState('');
 
@@ -27,16 +29,18 @@ const ChatContainer = ({ children, chat, setChats }) => {
     setInputText(value);
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = async (e) => {
     if (e.key === 'Enter' && inputText !== '') {
       console.log('Message sent: ', inputText);
+      await socket.emit('send_message', { text: inputText });
       e.target.value = '';
     }
   };
 
   const handleClick = () =>
     setChats((prevChatsArray) => {
-      const chatID = chat;
+      console.log('chat id:', chatID);
+
       const updatedArray = prevChatsArray.filter((val) => val !== chatID);
       return updatedArray;
     });
@@ -57,7 +61,7 @@ const ChatContainer = ({ children, chat, setChats }) => {
 };
 ChatContainer.propTypes = {
   children: PropTypes.object.isRequired,
-  chat: PropTypes.string.isRequired,
+  chatID: PropTypes.string.isRequired,
   setChats: PropTypes.func.isRequired,
 };
 

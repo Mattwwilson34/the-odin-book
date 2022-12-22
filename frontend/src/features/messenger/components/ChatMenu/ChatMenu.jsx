@@ -18,7 +18,7 @@ const ChatMenuContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const ChatMenu = ({ setChats }) => {
+const ChatMenu = ({ chatIDArray, setChats }) => {
   const handleClick = () => setChats((prev) => [...prev, <NewChat />]);
 
   return (
@@ -27,11 +27,12 @@ const ChatMenu = ({ setChats }) => {
         <h2>Chats</h2>
         <SVG src={newMessageIcon} onClick={handleClick} />
       </div>
-      <ChatMenuButtons setChats={setChats} />
+      <ChatMenuButtons setChats={setChats} chatIDArray={chatIDArray} />
     </ChatMenuContainer>
   );
 };
 ChatMenu.propTypes = {
+  chatIDArray: PropTypes.array.isRequired,
   setChats: PropTypes.func.isRequired,
 };
 export default ChatMenu;

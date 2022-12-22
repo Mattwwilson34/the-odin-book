@@ -8,14 +8,14 @@ const homePageURL = `http://localhost:3000`;
 
 // MIDDLEWARE
 const isLoggedIn = (req, res, next) => {
-  console.log(chalk.blue('============================='));
-  console.log(chalk.blue('IS LOGGED IN MIDDLEWARE'));
-  console.log(chalk.blue('============================='));
-  console.log(chalk.red('============================='));
-  console.log({ reqdotuser: req.user });
-  console.log(chalk.red('============================='));
-
-  console.log(req.session);
+  // console.log(chalk.blue('============================='));
+  // console.log(chalk.blue('IS LOGGED IN MIDDLEWARE'));
+  // console.log(chalk.blue('============================='));
+  // console.log(chalk.red('============================='));
+  // console.log({ reqdotuser: req.user });
+  // console.log(chalk.red('============================='));
+  //
+  // console.log(req.session);
 
   if (req.user) {
     next();

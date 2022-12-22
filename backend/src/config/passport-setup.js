@@ -15,9 +15,9 @@ dotenv.config(dotenvConfig);
 // LOCAL STRATEGY
 passport.use(
   new LocalStrategy(async function (username, password, done) {
-    console.log(chalk.blue('===================='));
-    console.log(chalk.blue('LOCAL STRATEGY'));
-    console.log(chalk.blue('===================='));
+    // console.log(chalk.blue('===================='));
+    // console.log(chalk.blue('LOCAL STRATEGY'));
+    // console.log(chalk.blue('===================='));
 
     const sql = 'SELECT * FROM Users WHERE email= ?';
     const email = username;
@@ -25,18 +25,18 @@ passport.use(
     try {
       const [userArray] = await db.query(sql, [email]);
 
-      console.log(chalk.blue('============================='));
-      console.log(chalk.blue('LOCAL STRAT USER ARRAY FROM DB'));
-      console.log(chalk.blue('============================='));
-      console.log(chalk.red('============================='));
-      console.log(chalk.red('userArray'));
-      console.log(userArray);
-      console.log(chalk.red('============================='));
+      // console.log(chalk.blue('============================='));
+      // console.log(chalk.blue('LOCAL STRAT USER ARRAY FROM DB'));
+      // console.log(chalk.blue('============================='));
+      // console.log(chalk.red('============================='));
+      // console.log(chalk.red('userArray'));
+      // console.log(userArray);
+      // console.log(chalk.red('============================='));
 
       if (userArray.length === 0) {
-        console.log(chalk.yellow('===================================='));
-        console.log(chalk.yellow('LOCAL STRAT USERNAME NOT FOUND IN DB'));
-        console.log(chalk.yellow('===================================='));
+        // console.log(chalk.yellow('===================================='));
+        // console.log(chalk.yellow('LOCAL STRAT USERNAME NOT FOUND IN DB'));
+        // console.log(chalk.yellow('===================================='));
         return done(null, false);
       }
 
@@ -46,20 +46,20 @@ passport.use(
       );
 
       if (!validPassword) {
-        console.log(chalk.yellow('============================='));
-        console.log(chalk.yellow('LOCAL STRAT PASSWORD INCORRECT'));
-        console.log(chalk.yellow('============================='));
+        // console.log(chalk.yellow('============================='));
+        // console.log(chalk.yellow('LOCAL STRAT PASSWORD INCORRECT'));
+        // console.log(chalk.yellow('============================='));
         return done(null, false);
       }
-      console.log(chalk.blue('============================='));
-      console.log(chalk.blue('USERNAME + PASSWORD VALID'));
-      console.log(chalk.blue('============================='));
-      console.log(chalk.blue('============================='));
-      console.log(chalk.blue('LOCAL STRAT USER ID BEING SENT TO DONE'));
-      console.log(chalk.blue('============================='));
-      console.log(chalk.red('============================='));
-      console.log({ id: userArray[0].userID });
-      console.log(chalk.red('============================='));
+      // console.log(chalk.blue('============================='));
+      // console.log(chalk.blue('USERNAME + PASSWORD VALID'));
+      // console.log(chalk.blue('============================='));
+      // console.log(chalk.blue('============================='));
+      // console.log(chalk.blue('LOCAL STRAT USER ID BEING SENT TO DONE'));
+      // console.log(chalk.blue('============================='));
+      // console.log(chalk.red('============================='));
+      // console.log({ id: userArray[0].userID });
+      // console.log(chalk.red('============================='));
 
       return done(null, { id: userArray[0].userID });
     } catch (err) {
@@ -123,34 +123,34 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log(chalk.blue('============================='));
-  console.log(chalk.blue('SERIALIZE USER FUNC + USER PARAM'));
-  console.log(chalk.blue('============================='));
-  console.log(chalk.red('============================='));
-  console.log(user);
-  console.log(chalk.red('============================='));
+  // console.log(chalk.blue('============================='));
+  // console.log(chalk.blue('SERIALIZE USER FUNC + USER PARAM'));
+  // console.log(chalk.blue('============================='));
+  // console.log(chalk.red('============================='));
+  // console.log(user);
+  // console.log(chalk.red('============================='));
   done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
   //
-  console.log(chalk.blue('============================='));
-  console.log(chalk.blue('DESERIALIZE USER FUNC + ID param'));
-  console.log(chalk.blue('============================='));
-  console.log(chalk.red('============================='));
-  console.log(id);
-  console.log(chalk.red('============================='));
+  // console.log(chalk.blue('============================='));
+  // console.log(chalk.blue('DESERIALIZE USER FUNC + ID param'));
+  // console.log(chalk.blue('============================='));
+  // console.log(chalk.red('============================='));
+  // console.log(id);
+  // console.log(chalk.red('============================='));
 
   const sql = `SELECT * FROM the_odin_book.Users WHERE userID= ?`;
 
   const [userArray] = await db.execute(sql, [id]);
 
-  console.log(chalk.blue('============================='));
-  console.log(chalk.blue('DESERIALIZE USER FUNC + USER RETURNED FROM DB'));
-  console.log(chalk.blue('============================='));
-  console.log(chalk.red('============================='));
-  console.log(userArray[0]);
-  console.log(chalk.red('============================='));
+  // console.log(chalk.blue('============================='));
+  // console.log(chalk.blue('DESERIALIZE USER FUNC + USER RETURNED FROM DB'));
+  // console.log(chalk.blue('============================='));
+  // console.log(chalk.red('============================='));
+  // console.log(userArray[0]);
+  // console.log(chalk.red('============================='));
 
   done(null, userArray[0]);
 });

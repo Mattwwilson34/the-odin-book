@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import SVG from 'react-inlinesvg';
 import PropTypes from 'prop-types';
-import ChatMenuButton from '../ChatMenuButton/ChatMenuButton';
 import newMessageIcon from '../../assets/icons/new-message.svg';
+import ChatMenuButtons from '../ChatMenuButtons/ChatMenuButtons';
 import NewChat from '../NewChat/NewChat';
 
 const ChatMenuContainer = styled.div`
@@ -18,8 +18,8 @@ const ChatMenuContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const ChatMenu = ({ setConversations }) => {
-  const handleClick = () => setConversations((prev) => [...prev, <NewChat />]);
+const ChatMenu = ({ setChats }) => {
+  const handleClick = () => setChats((prev) => [...prev, <NewChat />]);
 
   return (
     <ChatMenuContainer>
@@ -27,11 +27,11 @@ const ChatMenu = ({ setConversations }) => {
         <h2>Chats</h2>
         <SVG src={newMessageIcon} onClick={handleClick} />
       </div>
-      <ChatMenuButton setConversations={setConversations} />
+      <ChatMenuButtons setChats={setChats} />
     </ChatMenuContainer>
   );
 };
 ChatMenu.propTypes = {
-  setConversations: PropTypes.func.isRequired,
+  setChats: PropTypes.func.isRequired,
 };
 export default ChatMenu;

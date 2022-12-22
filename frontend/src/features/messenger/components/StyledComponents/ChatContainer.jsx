@@ -25,11 +25,9 @@ const ChatContainer = ({ children, chat, setChats }) => {
   const handleChange = (e) => {
     const { value } = e.target;
     setInputText(value);
-    console.log(inputText);
   };
 
   const handleKeyPress = (e) => {
-    console.log(e.key);
     if (e.key === 'Enter' && inputText !== '') {
       console.log('Message sent: ', inputText);
       e.target.value = '';

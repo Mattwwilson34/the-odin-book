@@ -1,4 +1,5 @@
 import { Server } from 'socket.io';
+import http from 'node:http';
 import * as dotenv from 'dotenv';
 import app from './app.js';
 import chalk from 'chalk';
@@ -23,9 +24,16 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-  console.log(chalk.yellow('==========================='));
   console.log(chalk.red.underline.bold(`SOCKET ID: ${socket.id}`));
-  console.log(chalk.yellow('==========================='));
+
+  socket.on('join_chat', (data) => {
+    socket.join(data);
+    console.log(`User joined with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on('send_message', (data) => {
+    console.log(data);
+  });
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
